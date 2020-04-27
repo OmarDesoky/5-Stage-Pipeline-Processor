@@ -102,36 +102,62 @@ def hex2bin(hex, n_bits):
 # each list contain operation,register or value
 # for example input (inc r1         #r1= 6, C --> 0, N -->0, Z-->0)
 # output ['inc','r1']
-def handleComments(contents):
-    listWords = []
-    for line in contents:
-        readWords = list( line.split(" ") )
-        writeWords = []
-        flush = False
-        for word in readWords:
-            if word == '':
-                continue
-            if word[0] == '#' or flush == True:
-                break
-            else:
-                # handles for example ("hello this# not printable")
-                # output should be [hello,this]
-                ind = word.find("#")
-                if(ind == 0):
-                    break
-                if ind != -1:
-                    flush = True
-                    word = word[0:ind]
-                # handle for example ("hello this\t here")
-                # output should be [hello,this,here]
-                ind = word.find("\t")
-                if ind!=-1:
-                    word = word[0:ind]
-                writeWords.append(word)
+def parseInstructions(contents):
+    # remove comments
+    for i in range(len(contents)):
+        ind = contents[i].find("#")
+        if(ind!=-1):
+            contents[i] =contents[i][0:ind]
 
-        if(len(writeWords)!= 0):
-            listWords.append(writeWords)
-    return listWords
+    # remove empty elements  => ''
+    while("" in contents) : 
+        contents.remove("")
+
+    newContents = []
+    for line in contents:
+        newContents.append(list(line.split(" ")))
+
+    contents = []
+    for line in newContents:
+        while("" in line) :
+            line.remove("")
+        contents.append(line)
+
+    for i in  range(len(contents)):
+        for j in range(len(contents[i])):
+            contents[i][j] = contents[i][j].replace("\t","")
+
+    newContents = []
+    for i in range((len(contents))):
+        line = " "
+        newContents.append(line.join(contents[i]))
+
+
+    contents = []
+    for line in newContents:
+        contents.append(list(line.split(" ")))
+
+
+    finalResult = []
+    for i in range(len(contents)):
+        oneInstruction = []
+        oneInstruction.append(contents[i][0])
+
+        if(len(contents[i])>1):
+            words = " "
+            oneInstruction += words.join(contents[i][1:]).split(',')
+
+        finalResult.append(oneInstruction)
+
+
+    for i in range(len(finalResult)):
+        for j in range(len(finalResult[i])):
+            finalResult[i][j] =finalResult[i][j].replace(" ","")
+
+
+    return finalResult
+
+
 
 
 # this function converts instructions into binary other than .org
@@ -176,10 +202,10 @@ def convertAdd(listString):
 
 def convertSwap(listString):
     return mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) +mapReg(listString[1]) + "000000000000000000"
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 def convertIadd(listString):
-    return mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) + "00000" + hex2bin(listString[2],16)
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    return mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) + "00000" + hex2bin(listString[3],16)
+
 def convertSh(listString):
     return mapOp(listString[0]) + mapReg(listString[1]) + mapReg(listString[1]) + "00000" + hex2bin(listString[2],16)
 
@@ -213,7 +239,7 @@ def convertRt(listString):
 
 
 contents = readInput()
-parsedContent = handleComments(contents)
+parsedContent = parseInstructions(contents)
 
 # output in ram
 
@@ -222,7 +248,6 @@ f.write("// memory data file (do not edit the following line - required for mem 
 # f.write("// instance=/demomain/ram1/MEM")
 f.write("// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1\r")
 
-print(int("1",16))
 i = 0
 cursor = 0
 while(i< len(parsedContent)):

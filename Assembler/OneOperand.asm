@@ -19,5 +19,9 @@ in R2          #R2= 10,add 10 on the in port, flags no change
 NOT R2	       #R2= FFFFFFEF, C--> no change, N -->1,Z-->0
 inc R1         #R1= 6, C --> 0, N -->0, Z-->0
 Dec R2         #R2= FFEE,C-->1 , N-->1, Z-->0
+add r1,r2,r3
+sub r2,r3, r7
+shr r5,100
 out R1
 out R2
+shr r5,100
