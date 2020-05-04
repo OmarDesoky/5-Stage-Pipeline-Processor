@@ -21,7 +21,11 @@ inc R1         #R1= 6, C --> 0, N -->0, Z-->0
 Dec R2         #R2= FFEE,C-->1 , N-->1, Z-->0
 add r1,r2,r3
 sub r2,r3, r7
-shr r5,100
+not r5
+and r3,r4,r5
 out R1
 out R2
+ldm R2,100
+ldd r2,100
+std r1,50
 shr r5,100

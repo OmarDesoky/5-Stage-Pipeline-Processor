@@ -76,7 +76,7 @@ def mapReg(regName):
 # it lowercases and removes newlines
 # it outputs list of string lines
 def readInput():
-    f= open("OneOperand.asm","r")
+    f= open("input.asm","r")
     contents = f.read().splitlines()
     # convert to lowercase
     for i in range(len(contents)):
@@ -222,13 +222,13 @@ def convertPop(listString):
     return mapOp(listString[0]) + mapReg(listString[1]) + "000000000000000000000000"
 
 def convertLdm(listString):
-    return mapOp(listString[0]) + mapReg(listString[1]) + "00000000" + hex2bin(listString[1],16)
+    return mapOp(listString[0]) + mapReg(listString[1]) + "00000000" + hex2bin(listString[2],16)
 
 def convertLdd(listString):
-    return mapOp(listString[0]) + mapReg(listString[1]) + "0000" + hex2bin(listString[1],20)
+    return mapOp(listString[0]) + mapReg(listString[1]) + "0000" + hex2bin(listString[2],20)
 
 def convertStd(listString):
-    return mapOp(listString[0]) + "000" + mapReg(listString[1]) + "0" + hex2bin(listString[1],20)
+    return mapOp(listString[0]) + "000" + mapReg(listString[1]) + "0" + hex2bin(listString[2],20)
 
 def convertJmp(listString):
     return mapOp(listString[0]) + "000" + mapReg(listString[1]) + "000000000000000000000"
