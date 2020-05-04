@@ -7,6 +7,7 @@ entity ex_mem is
 port (
     clk: in std_logic;
     rst_async: in std_logic;
+    enable: in std_logic;
     wb_in: in std_logic_vector(3 downto 0);
     mem_in: in std_logic_vector(3 downto 0);
     alu_out_1_in: in std_logic_vector(31 downto 0);
@@ -33,7 +34,7 @@ architecture ex_mem_buffer of ex_mem is
 
 begin
 
-process(clk,rst_async)
+process(clk,rst_async,enable)
 begin
     if rst_async = '1' then
         wb_out <= (others => '0');
@@ -46,7 +47,7 @@ begin
         dst_out <= (others => '0');
     
     else
-        if rising_edge(clk) then
+        if ( rising_edge(clk) and enable ='1' ) then
             wb_out <= wb_in;
             mem_out <= mem_in;
             alu_out_1_out <= alu_out_1_in;
