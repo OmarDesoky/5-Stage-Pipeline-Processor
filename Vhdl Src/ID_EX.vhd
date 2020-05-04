@@ -8,7 +8,7 @@ port (
     clk: in std_logic;
     rst_async: in std_logic;
     buffer_enable: in std_logic;
-    ea_imm_enable: in std_logic;
+    imm_reg_enable: in std_logic;
     wb_in: in std_logic_vector(3 downto 0);
     mem_in: in std_logic_vector(3 downto 0);
     alu_op_in: in std_logic_vector(3 downto 0);
@@ -41,7 +41,7 @@ architecture id_ex_buffer of id_ex is
 
 begin
 
-process(clk,rst_async,ea_imm_enable,buffer_enable)
+process(clk,rst_async,imm_reg_enable,buffer_enable)
 begin
     if rst_async = '1' then
         wb_out <= (others => '0');
@@ -58,20 +58,21 @@ begin
     
     else
         if rising_edge(clk) then
-            if(ea_imm_enable = '1') then
+            if imm_reg_enable = '1' then
                 ea_imm_out <= ea_imm_in;
-            elsif buffer_enable = '1' then
-                wb_out <= wb_in;
-                mem_out <= mem_in;
-                alu_op_out <= alu_op_in;
-                ex_out <= ex_in;
+                pc_out <= pc_in;
+            end if;
+            if buffer_enable = '1' then
                 data_1_out <= data_1_in;
                 data_2_out <= data_2_in;
                 src_1_out <= src_1_in;
                 src_2_out <= src_2_in;
-                pc_out <= pc_in;
                 dst_out <= dst_in;
-            end if;    
+            end if;
+            wb_out <= wb_in;
+            mem_out <= mem_in;
+            alu_op_out <= alu_op_in;
+            ex_out <= ex_in;
 
         end if;
     end if;
