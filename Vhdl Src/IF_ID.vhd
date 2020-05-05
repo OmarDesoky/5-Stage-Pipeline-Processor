@@ -10,11 +10,13 @@ port (
     enable: in std_logic;
     last_taken_in : in std_logic;
     next_stall_in : in std_logic;
+    int_in : in std_logic;
     instruction_in: in std_logic_vector(16 downto 0);
     pc_in: in std_logic_vector(31 downto 0);
 
     last_taken_out : out std_logic;
     next_stall_out : out std_logic;
+    int_out : out std_logic;
     instruction_out: out std_logic_vector(16 downto 0);
     pc_out: out std_logic_vector(31 downto 0)
 );
@@ -30,6 +32,7 @@ begin
     if rst_async = '1' then
         last_taken_out <= '0';
         next_stall_out <= '0';
+        int_out <= '0';
         instruction_out <= (others => '0');
         pc_out <= (others => '0');
     
@@ -37,6 +40,7 @@ begin
         if ( rising_edge(clk) and enable ='1' ) then
             last_taken_out <= last_taken_in;
             next_stall_out <= next_stall_in;
+            int_out <= int_in;
             instruction_out <= instruction_in;
             pc_out <= pc_in;
         end if;
