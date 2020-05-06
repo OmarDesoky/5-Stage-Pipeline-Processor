@@ -5,8 +5,9 @@ use ieee.numeric_std.all;
 entity control_unit is 
 
 port (
-    op : in std_logic_vector(4 downto 0);
+    clk : in std_logic;
     int : in std_logic;
+    op : in std_logic_vector(4 downto 0);
     write_enable: out std_logic;
     pc_wb: out std_logic;
     mem_or_reg: out std_logic;
@@ -24,7 +25,8 @@ port (
     imm_reg_enb: out std_logic;
     reg_enb: out std_logic;
     mid_imm: out std_logic;
-    any_jmp: out std_logic
+    any_jmp: out std_logic;
+    stall_int: out std_logic
 );
 end control_unit ;
 
@@ -59,10 +61,13 @@ constant CALL : std_logic_vector(4 downto 0) := "11010";
 constant RET : std_logic_vector(4 downto 0) := "11110";
 constant RTI : std_logic_vector(4 downto 0) := "11111";
 
-
+signal counter : integer range 0 to 1;
+signal counter2 : integer range 0 to 4;
+signal last_op: std_logic_vector(4 downto 0);
+signal last_op2: std_logic_vector(4 downto 0);
 begin
 
-    process(op, int)
+    process(clk,op, int)
     begin
         write_enable<='0';
         pc_wb<='0';
@@ -74,7 +79,7 @@ begin
 
         int_rti_dntuse<= (others => '0');
         alu_op<= (others => '0');
-        sp_enb<= (others => '0');
+        sp_enb<= (others => '1');
 
         alu_source<='0';
         io_enable<='0';
@@ -84,47 +89,114 @@ begin
         reg_enb<='0';
         mid_imm<='0';
         any_jmp<='0';
-        if (op = ADD) or (op = SUB) or (op = ANDD) or (op = ORR) or (op = INC) or (op = DEC) or (op =NOTT) then
-            write_enable<='1';
-            -- alu_op <= ;
-        elsif (op = INN) then
-            write_enable<='1';
-        elsif (op = OUTT) then
-            io_enable<='1';
-        elsif (op = PUSH) then
-            write_enable<='1';
-            sp_enb<="01";
-            -- alu_op <= NOOP ;
-        elsif (op = POP) then
-            mem_read<='1';
-            mem_or_reg<='1';
-            sp_enb<="00";
-            write_enable<='1';
-            -- alu_op <= NOOP ;
-        elsif (op = JZ) then
-            jz_upt_fsm<='1';
-            -- alu_op <= NOOP ;
-            any_jmp<='1';
-        elsif (op = JMP) then
-            -- alu_op <= NOOP ;
-            any_jmp<='1';
-        elsif (op = CALL) then
-            sp_enb<="01";
-            mem_write<='1';
-            any_jmp<='1';
-            int_rti_dntuse<="011";
-        elsif (op = SWAPP) then
-            -- alu_op <= NOOP ;
-            swap<='1';
-            write_enable<='1';
-        -- elsif (op = int) or (op = RTI) then
-            -- 
-        -- elsif(op= (IADD/SHL/SHR || LDD || LDI ||STD) )
-            -- 
+        stall_int<='0';
+        if(rising_edge(clk)) then
+            if counter > 0 then
+                if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) then
+                    write_enable<='1';
+                    -- alu_op<= ;
+                    alu_source <='1';
+                elsif last_op = LDM then
+                    -- alu_op<= NOOP ;
+                    mem_read<='1';
+                    write_enable<='1';
+                    mem_or_reg<='1';
+                elsif last_op = LDD then
+                    -- alu_op<= NOOP ;
+                    mem_read<='1';
+                    imm_ea<='1';
+                    write_enable<='1';
+                    mem_or_reg<='1';
+                elsif last_op = STD then
+                    -- alu_op<= NOOP ;
+                    mem_write<='1';
+                    imm_ea<='1';
+                end if;
+                reg_enb<='1';
+                counter<=0;
+                    
+            elsif counter2 > 0 then
+                if last_op2 = RTI then
+                    stall_int<='1';
+                    if counter2 = 4 then 
+                        counter2<=0;
+                    else
+                        counter2<=counter2+1;
+                    end if;
+                else
+                    stall_int<='1';
+                    if counter2 = 2 then 
+                        counter2<=0;
+                    else
+                        counter2<=counter2+1;
+                    end if;                
+                end if;
+    
+            elsif (op=IADD) or (op = SHL) or (op = SHR) or (op = LDD) or (op = LDM) or (op = STD) then
+                mid_imm <= '1';
+                imm_reg_enb <= '1';
+                counter <= counter +1;
+                last_op <= op;
+    
+            elsif (op = RTI) then
+                mem_read<='1';
+                sp_enb<="00";
+                pc_wb<= '1';
+                any_jmp<='1';
+                int_rti_dntuse<="101";
+                counter2 <= counter2 +1;
+                last_op2 <= op;
+            elsif (int='1') then
+                -- alu_op<= ;
+                sp_enb <="01";
+                mem_write <='1';
+                int_rti_dntuse<= "100";
+                counter2 <= counter2 +1;
+    
+            elsif (op = ADD) or (op = SUB) or (op = ANDD) or (op = ORR) or (op = INC) or (op = DEC) or (op =NOTT) then
+                write_enable<='1';
+                -- alu_op <= ;
+            elsif (op = INN) then
+                write_enable<='1';
+            elsif (op = OUTT) then
+                io_enable<='1';
+            elsif (op = PUSH) then
+                write_enable<='1';
+                sp_enb<="01";
+                -- alu_op <= NOOP ;
+            elsif (op = POP) then
+                mem_read<='1';
+                mem_or_reg<='1';
+                sp_enb<="00";
+                write_enable<='1';
+                -- alu_op <= NOOP ;
+            elsif (op = JZ) then
+                jz_upt_fsm<='1';
+                -- alu_op <= NOOP ;
+                any_jmp<='1';
+            elsif (op = JMP) then
+                -- alu_op <= NOOP ;
+                any_jmp<='1';
+            elsif (op = CALL) then
+                sp_enb<="01";
+                mem_write<='1';
+                any_jmp<='1';
+                int_rti_dntuse<="010";
+            elsif (op = RET) then
+                pc_wb<='1';
+                sp_enb<="00";
+                mem_read<='1';
+                any_jmp<='1';
+                int_rti_dntuse<="011";
+            elsif (op = SWAPP) then
+                -- alu_op <= NOOP ;
+                swap<='1';
+                write_enable<='1';
+    
+            end if;
 
         end if;
 
     end process; 
-
 
 end control;
