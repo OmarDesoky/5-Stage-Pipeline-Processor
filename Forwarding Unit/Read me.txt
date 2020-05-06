@@ -1,0 +1,14 @@
+***************************************************************
+output		*stage		*mux selector	*note
+***************************************************************
+1-Ordinary out	from ID/EX		000 
+
+2- ALU out 	from EX/MEM		001	DST
+
+3- ALU out2	from EX/MEM		010	src1
+
+4- AlU out2	from MEM/WB		011	src1
+
+5- MEM out 	from MEM/WB		100	DST
+
+6- ALU out	from MEM/WB		101	DST
