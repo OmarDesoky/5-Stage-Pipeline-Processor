@@ -74,7 +74,7 @@ constant ADD_ALU : std_logic_vector(3 downto 0) := "0110";
 constant NOT_ALU : std_logic_vector(3 downto 0) := "0111";
 constant INC_ALU : std_logic_vector(3 downto 0) := "1000";
 constant DEC_ALU : std_logic_vector(3 downto 0) := "1001";
-constant SWAP_ALU : std_logic_vector(3 downto 0) := "1001";
+constant SWAP_ALU : std_logic_vector(3 downto 0) := "1010";
 
 
 signal counter : integer range 0 to 1;
