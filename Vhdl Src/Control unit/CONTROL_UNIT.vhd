@@ -61,6 +61,22 @@ constant CALL : std_logic_vector(4 downto 0) := "11010";
 constant RET : std_logic_vector(4 downto 0) := "11110";
 constant RTI : std_logic_vector(4 downto 0) := "11111";
 
+
+
+--  ALU Operations
+constant NOP_ALU : std_logic_vector(3 downto 0) := "0000";
+constant SUB_ALU : std_logic_vector(3 downto 0) := "0001";
+constant AND_ALU : std_logic_vector(3 downto 0) := "0010";
+constant OR_ALU : std_logic_vector(3 downto 0) := "0011";
+constant SHL_ALU : std_logic_vector(3 downto 0) := "0100";
+constant SHR_ALU : std_logic_vector(3 downto 0) := "0101";
+constant ADD_ALU : std_logic_vector(3 downto 0) := "0110";
+constant NOT_ALU : std_logic_vector(3 downto 0) := "0111";
+constant INC_ALU : std_logic_vector(3 downto 0) := "1000";
+constant DEC_ALU : std_logic_vector(3 downto 0) := "1001";
+constant SWAP_ALU : std_logic_vector(3 downto 0) := "1001";
+
+
 signal counter : integer range 0 to 1;
 signal counter2 : integer range 0 to 4;
 signal last_op: std_logic_vector(4 downto 0);
@@ -94,21 +110,24 @@ begin
             if counter > 0 then
                 if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) then
                     write_enable<='1';
-                    -- alu_op<= ;
+                    if(last_op=IADD) then
+                        alu_op<= ADD_ALU;
+                    elsif(last_op=SHL) then
+                        alu_op<=SHL_ALU;
+                    else
+                        alu_op<=SHR_ALU;
+                    end if;
                     alu_source <='1';
                 elsif last_op = LDM then
-                    -- alu_op<= NOOP ;
                     mem_read<='1';
                     write_enable<='1';
                     mem_or_reg<='1';
                 elsif last_op = LDD then
-                    -- alu_op<= NOOP ;
                     mem_read<='1';
                     imm_ea<='1';
                     write_enable<='1';
                     mem_or_reg<='1';
                 elsif last_op = STD then
-                    -- alu_op<= NOOP ;
                     mem_write<='1';
                     imm_ea<='1';
                 end if;
@@ -147,7 +166,6 @@ begin
                 counter2 <= counter2 +1;
                 last_op2 <= op;
             elsif (int='1') then
-                -- alu_op<= ;
                 sp_enb <="01";
                 mem_write <='1';
                 int_rti_dntuse<= "100";
@@ -155,7 +173,19 @@ begin
     
             elsif (op = ADD) or (op = SUB) or (op = ANDD) or (op = ORR) or (op = INC) or (op = DEC) or (op =NOTT) then
                 write_enable<='1';
-                -- alu_op <= ;
+                if op = ADD then
+                    alu_op <= ADD_ALU;
+                elsif (op = SUB) then
+                    alu_op <= SUB_ALU;
+                elsif (op = ORR) then
+                    alu_op <= OR_ALU;                
+                elsif (op = INC) then
+                    alu_op <= INC_ALU;                    
+                elsif (op = DEC) then
+                    alu_op <= DEC_ALU;
+                elsif (op =NOTT) then
+                    alu_op <= NOT_ALU;
+                end if;
             elsif (op = INN) then
                 write_enable<='1';
             elsif (op = OUTT) then
@@ -163,19 +193,15 @@ begin
             elsif (op = PUSH) then
                 write_enable<='1';
                 sp_enb<="01";
-                -- alu_op <= NOOP ;
             elsif (op = POP) then
                 mem_read<='1';
                 mem_or_reg<='1';
                 sp_enb<="00";
                 write_enable<='1';
-                -- alu_op <= NOOP ;
             elsif (op = JZ) then
                 jz_upt_fsm<='1';
-                -- alu_op <= NOOP ;
                 any_jmp<='1';
             elsif (op = JMP) then
-                -- alu_op <= NOOP ;
                 any_jmp<='1';
             elsif (op = CALL) then
                 sp_enb<="01";
@@ -189,7 +215,7 @@ begin
                 any_jmp<='1';
                 int_rti_dntuse<="011";
             elsif (op = SWAPP) then
-                -- alu_op <= NOOP ;
+                alu_op <= SWAP_ALU ;
                 swap<='1';
                 write_enable<='1';
     
