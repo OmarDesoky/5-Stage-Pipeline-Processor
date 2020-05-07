@@ -7,7 +7,9 @@ entity testbench is
 end entity testbench;
 
 architecture BENCH of testbench is
-  signal clock, reset, flip, int, int_1st, int_2nd ,int_before, PC_enb : STD_LOGIC;
+  signal clock, reset : STD_LOGIC;
+  signal if_int : std_logic_vector(2 downto 0);
+  signal wb_in,wb_out : std_logic_vector(4 downto 0);
   signal Stop : BOOLEAN;
 begin
   Clock_gen: process
@@ -29,35 +31,33 @@ begin
       wait for 10 NS;
       -----------------------------------------------------
       reset<='0';
-      int<='1';
-      report "int is up case";
+      if_int<="111";
+      wb_in<="11001";
+      report "not RTI case";
 
       wait for 10 NS;
       ------------------------------------------------------
-      int<='0';
-      flip<='0'; -- no flip yet
-      report "no flip case";
+      if_int<="101";
+      report "clock 2 case";
 
       wait for 10 NS;
       -------------------------------------------------------
-      flip<='1'; 
-      report "flip raised case";
+      report "clock 3 case";
 
       wait for 10 NS;
       -------------------------------------------------------
-      report "counter =2 case";
+      report "clock 4 case";
+      if_int<="000";
+      wb_in<="01011";
+
 
       wait for 10 NS;
       -------------------------------------------------------
-      report "counter =3 case";
+      report "clock 5 case";
 
       wait for 10 NS;
       -------------------------------------------------------
-      report "counter =4 case";
-
-      wait for 10 NS;
-      -------------------------------------------------------
-      report "all done case";
+      report "clock 6 case";
 
       wait for 10 NS;
       -------------------------------------------------------
@@ -66,7 +66,7 @@ begin
     wait;
   end process Stim;
 
-  DUT : entity work.handler
-    port map(clock, reset, flip, int, int_1st, int_2nd ,int_before, PC_enb);
+  DUT : entity work.buffer_holder2
+    port map(clock, reset,  if_int, wb_in,wb_out);
 
 end architecture BENCH;

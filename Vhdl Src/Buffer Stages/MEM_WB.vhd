@@ -8,7 +8,7 @@ port (
     clk: in std_logic;
     rst_async: in std_logic;
     enable: in std_logic;
-    wb_in: in std_logic_vector(3 downto 0);
+    wb_in: in std_logic_vector(4 downto 0);
     mem_out_in: in std_logic_vector(31 downto 0);
     alu_out_1_in: in std_logic_vector(31 downto 0);
     alu_out_2_in: in std_logic_vector(31 downto 0);
