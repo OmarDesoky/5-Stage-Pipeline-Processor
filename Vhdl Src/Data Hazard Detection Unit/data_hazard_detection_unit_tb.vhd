@@ -1,0 +1,88 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY data_hazard_detection_unit_tb IS
+-- No ports
+END data_hazard_detection_unit_tb;
+ARCHITECTURE data_hazard_detection_unit_tb_architecture OF data_hazard_detection_unit_tb IS
+ -- Component declaration of the tested unit 
+
+COMPONENT data_hazard_detection_unit IS  
+PORT (
+	SRC1, SRC2, DST:IN std_logic_vector(2 downto 0);
+	MEM_READ_ID_EX, STALL_FOR_JUMP_PREDECTION, STALL_FOR_INT:IN std_logic;
+	INSERT_BUBBLE, PC_ENB, IF_ID_ENB:OUT  std_logic);    
+END COMPONENT;
+
+--SIGNALS 
+
+SIGNAL SRC1_TEST, SRC2_TEST, DST_TEST : std_logic_vector(2 downto 0);
+SIGNAL MEM_READ_ID_EX_TEST, STALL_FOR_JUMP_PREDECTION_TEST, STALL_FOR_INT_TEST, INSERT_BUBBLE_TEST, PC_ENB_TEST, IF_ID_ENB_TEST :std_logic;
+
+BEGIN
+-- port map 
+DHDU : data_hazard_detection_unit PORT MAP (SRC1=>SRC1_TEST, SRC2=>SRC2_TEST, DST=>DST_TEST, MEM_READ_ID_EX=>MEM_READ_ID_EX_TEST, 
+						STALL_FOR_JUMP_PREDECTION=>STALL_FOR_JUMP_PREDECTION_TEST, STALL_FOR_INT=>STALL_FOR_INT_TEST,
+						INSERT_BUBBLE=>INSERT_BUBBLE_TEST, PC_ENB=>PC_ENB_TEST, IF_ID_ENB=>IF_ID_ENB_TEST);
+PROCESS 
+BEGIN 
+-- LDD R4, EA
+-- ADD R5, R4, R1
+SRC1_TEST<="001";
+SRC2_TEST<="100";
+DST_TEST<="100";
+MEM_READ_ID_EX_TEST<='1';
+STALL_FOR_JUMP_PREDECTION_TEST<='0';
+STALL_FOR_INT_TEST<='0';
+wait for 0.1 ns;
+if INSERT_BUBBLE_TEST = '1' AND PC_ENB_TEST = '0' AND IF_ID_ENB_TEST = '0' then 
+report "test case # 1 passed succesfully";
+else 
+report "INSERT_BUBBLE_TEST MUST BE 1 AND PC_ENB_TEST MUST BE 0 AND IF_ID_ENB_TEST MUST BE 0"SEVERITY ERROR;
+end if;
+
+-- LDD R5, EA
+-- ADD R5, R4, R1
+SRC1_TEST<="001";
+SRC2_TEST<="100";
+DST_TEST<="101";
+MEM_READ_ID_EX_TEST<='1';
+STALL_FOR_JUMP_PREDECTION_TEST<='0';
+STALL_FOR_INT_TEST<='0';
+wait for 0.1 ns;
+if INSERT_BUBBLE_TEST = '0' AND PC_ENB_TEST = '1' AND IF_ID_ENB_TEST = '1' then 
+report "test case # 2 passed succesfully";
+else 
+report "INSERT_BUBBLE_TEST MUST BE 0 AND PC_ENB_TEST MUST BE 1 AND IF_ID_ENB_TEST MUST BE 1"SEVERITY ERROR;
+end if;
+
+-- STALL FOR INT 
+SRC1_TEST<="000";
+SRC2_TEST<="000";
+DST_TEST<="000";
+MEM_READ_ID_EX_TEST<='0';
+STALL_FOR_JUMP_PREDECTION_TEST<='0';
+STALL_FOR_INT_TEST<='1';
+wait for 0.1 ns;
+if INSERT_BUBBLE_TEST = '1' AND PC_ENB_TEST = '0' AND IF_ID_ENB_TEST = '0' then 
+report "test case # 3 passed succesfully";
+else 
+report "INSERT_BUBBLE_TEST MUST BE 1 AND PC_ENB_TEST MUST BE 0 AND IF_ID_ENB_TEST MUST BE 0"SEVERITY ERROR;
+end if;
+
+-- STALL FOR JUMP PREDECTION 
+SRC1_TEST<="000";
+SRC2_TEST<="000";
+DST_TEST<="000";
+MEM_READ_ID_EX_TEST<='0';
+STALL_FOR_JUMP_PREDECTION_TEST<='1';
+STALL_FOR_INT_TEST<='0';
+wait for 0.1 ns;
+if INSERT_BUBBLE_TEST = '1' AND PC_ENB_TEST = '0' AND IF_ID_ENB_TEST = '0' then 
+report "test case # 4 passed succesfully";
+else 
+report "INSERT_BUBBLE_TEST MUST BE 1 AND PC_ENB_TEST MUST BE 0 AND IF_ID_ENB_TEST MUST BE 0"SEVERITY ERROR;
+end if;
+wait;
+END PROCESS;
+END data_hazard_detection_unit_tb_architecture;
