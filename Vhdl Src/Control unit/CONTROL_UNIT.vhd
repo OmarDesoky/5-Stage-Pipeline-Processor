@@ -68,13 +68,13 @@ constant NOP_ALU : std_logic_vector(3 downto 0) := "0000";
 constant SUB_ALU : std_logic_vector(3 downto 0) := "0001";
 constant AND_ALU : std_logic_vector(3 downto 0) := "0010";
 constant OR_ALU : std_logic_vector(3 downto 0) := "0011";
-constant SHL_ALU : std_logic_vector(3 downto 0) := "0100";
-constant SHR_ALU : std_logic_vector(3 downto 0) := "0101";
-constant ADD_ALU : std_logic_vector(3 downto 0) := "0110";
-constant NOT_ALU : std_logic_vector(3 downto 0) := "0111";
-constant INC_ALU : std_logic_vector(3 downto 0) := "1000";
-constant DEC_ALU : std_logic_vector(3 downto 0) := "1001";
-constant SWAP_ALU : std_logic_vector(3 downto 0) := "1010";
+constant SWAP_ALU : std_logic_vector(3 downto 0) := "0100";
+constant SHL_ALU : std_logic_vector(3 downto 0) := "0101";
+constant SHR_ALU : std_logic_vector(3 downto 0) := "0110";
+constant ADD_ALU : std_logic_vector(3 downto 0) := "0111";
+constant NOT_ALU : std_logic_vector(3 downto 0) := "1000";
+constant INC_ALU : std_logic_vector(3 downto 0) := "1001";
+constant DEC_ALU : std_logic_vector(3 downto 0) := "1010";
 
 
 signal counter : integer range 0 to 1;
