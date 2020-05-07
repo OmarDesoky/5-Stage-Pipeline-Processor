@@ -58,11 +58,11 @@ begin
     
     else
         if rising_edge(clk) then
-            if imm_reg_enable = '1' then
+            if imm_reg_enable = '0' then
                 ea_imm_out <= ea_imm_in;
                 pc_out <= pc_in;
             end if;
-            if buffer_enable = '1' then
+            if buffer_enable = '0' then
                 data_1_out <= data_1_in;
                 data_2_out <= data_2_in;
                 src_1_out <= src_1_in;
@@ -80,3 +80,8 @@ begin
 end process;    
 
 end id_ex_buffer;
+
+
+
+
+-- enables works in an inverted way.
