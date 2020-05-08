@@ -95,7 +95,7 @@ begin
 
         int_rti_dntuse<= (others => '0');
         alu_op<= (others => '0');
-        sp_enb<= (others => '1');
+        sp_enb<= (others => '0');
 
         alu_source<='0';
         io_enable<='0';
@@ -159,14 +159,14 @@ begin
     
             elsif (op = RTI) then
                 mem_read<='1';
-                sp_enb<="00";
+                sp_enb<="01";
                 pc_wb<= '1';
                 any_jmp<='1';
                 int_rti_dntuse<="101";
                 counter2 <= counter2 +1;
                 last_op2 <= op;
             elsif (int='1') then
-                sp_enb <="01";
+                sp_enb <="11";
                 mem_write <='1';
                 int_rti_dntuse<= "100";
                 counter2 <= counter2 +1;
@@ -192,11 +192,11 @@ begin
                 io_enable<='1';
             elsif (op = PUSH) then
                 write_enable<='1';
-                sp_enb<="01";
+                sp_enb<="11";
             elsif (op = POP) then
                 mem_read<='1';
                 mem_or_reg<='1';
-                sp_enb<="00";
+                sp_enb<="10";
                 write_enable<='1';
             elsif (op = JZ) then
                 jz_upt_fsm<='1';
@@ -204,13 +204,13 @@ begin
             elsif (op = JMP) then
                 any_jmp<='1';
             elsif (op = CALL) then
-                sp_enb<="01";
+                sp_enb<="11";
                 mem_write<='1';
                 any_jmp<='1';
                 int_rti_dntuse<="010";
             elsif (op = RET) then
                 pc_wb<='1';
-                sp_enb<="00";
+                sp_enb<="10";
                 mem_read<='1';
                 any_jmp<='1';
                 int_rti_dntuse<="011";
