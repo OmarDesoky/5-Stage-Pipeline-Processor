@@ -23,7 +23,7 @@ architecture pc_select of pc_selector is
 
 begin
 
-process(rst_async,int, pc_wb,take_jmp_addr)
+process(rst_async,int, pc_wb,take_jmp_addr, pc_updated, calc_jmp_addr, pc_frm_wb)
 begin
     if rst_async = '1' then
         pc_out <= (others => '0');
