@@ -242,10 +242,10 @@ contents = readInput()
 parsedContent = parseInstructions(contents)
 
 # output in ram
-ram_file = "..\Vhdl Src\Memory\inst_memory.txt"
+ram_file = "..\Vhdl Src\Memory\inst_memory.mem"
 f= open(ram_file,"w")
 f.write("// memory data file (do not edit the following line - required for mem load use)\r")
-# f.write("// instance=/demomain/ram1/MEM")
+f.write("// instance=/data_ram/ram\r")
 f.write("// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1\r")
 
 i = 0
