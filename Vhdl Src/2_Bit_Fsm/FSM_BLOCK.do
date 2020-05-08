@@ -16,7 +16,7 @@ force -freeze sim:/fsm_block/decision_alwaystaken 1 0
 run
 
 
-force -freeze sim:/fsm_block/decision_alwaystaken 1 0
+force -freeze sim:/fsm_block/decision_alwaystaken 0 0
 force -freeze sim:/fsm_block/ifjz_updt_fsm 1 0
 force -freeze sim:/fsm_block/addr_executed 00000000000000000000000000000000 0
 run

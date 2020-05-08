@@ -8,9 +8,9 @@ port (
     rst_async: in std_logic;
     enb : in std_logic;
     input : in std_logic;
-    current_state: in integer;
+    current_state: in std_logic_vector(1 downto 0) ;
     output : out std_logic;
-    output_state : out  integer
+    output_state : out  std_logic_vector(1 downto 0) 
 );  
 
 end fsm_2_bits;
@@ -21,12 +21,12 @@ end fsm_2_bits;
 -- 2 WEAK_TAKEN
 -- 3 STRONG_TAKEN
 architecture fsm_2_bit of fsm_2_bits is
-    constant STRONG_NOT_TAKEN : integer := 0;
-    constant WEAK_NOT_TAKEN : integer := 1;
-    constant WEAK_TAKEN : integer := 2;
-    constant STRONG_TAKEN : integer := 3;
+    constant STRONG_NOT_TAKEN : std_logic_vector(1 downto 0)  := "00";
+    constant WEAK_NOT_TAKEN : std_logic_vector(1 downto 0)  := "01";
+    constant WEAK_TAKEN : std_logic_vector(1 downto 0)  := "10";
+    constant STRONG_TAKEN : std_logic_vector(1 downto 0)  := "11";
 
-    signal states : integer := 2;
+    signal states : std_logic_vector(1 downto 0)  := "10";
 begin
 
 process (clk,rst_async,enb)
