@@ -198,43 +198,47 @@ def convertInstruction(listString):
         return convertRt(listString)
 
 def convertAdd(listString):
-    return mapOp(listString[0]) + mapReg(listString[3]) + mapReg(listString[1]) +mapReg(listString[2]) + "000000000000000000"
+    return [mapOp(listString[0]) + mapReg(listString[3]) + mapReg(listString[1]) +mapReg(listString[2]) + "00"]
 
 def convertSwap(listString):
-    return mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) +mapReg(listString[1]) + "000000000000000000"
-
+    return [mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) +mapReg(listString[1]) + "00"]
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def convertIadd(listString):
-    return mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) + "00000" + hex2bin(listString[3],16)
-
+    return [mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) + "00000" , hex2bin(listString[3],16)]
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def convertSh(listString):
-    return mapOp(listString[0]) + mapReg(listString[1]) + mapReg(listString[1]) + "00000" + hex2bin(listString[2],16)
+    return [mapOp(listString[0]) + mapReg(listString[1]) + mapReg(listString[1]) + "00000" , hex2bin(listString[2],16)]
 
 def convertNop(listString):
-    return mapOp(listString[0]) + "000000000000000000000000000"
+    return [mapOp(listString[0]) + "00000000000"]
 
 def convertOneOp(listString):
-    return mapOp(listString[0]) + mapReg(listString[1]) + mapReg(listString[1]) + "000000000000000000000" 
+    return [mapOp(listString[0]) + mapReg(listString[1]) + mapReg(listString[1]) + "00000"]
 
 def convertPush(listString):
-    return mapOp(listString[0]) + "000" + mapReg(listString[1]) + "000000000000000000000"
+    return [mapOp(listString[0]) + "000" + mapReg(listString[1]) + "00000"]
 
 def convertPop(listString):
-    return mapOp(listString[0]) + mapReg(listString[1]) + "000000000000000000000000"
-
+    return [mapOp(listString[0]) + mapReg(listString[1]) + "00000000"]
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def convertLdm(listString):
-    return mapOp(listString[0]) + mapReg(listString[1]) + "00000000" + hex2bin(listString[2],16)
-
+    return [mapOp(listString[0]) + mapReg(listString[1]) + "00000000" , hex2bin(listString[2],16)]
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def convertLdd(listString):
-    return mapOp(listString[0]) + mapReg(listString[1]) + "0000" + hex2bin(listString[2],20)
-
+    totalString = mapOp(listString[0]) + mapReg(listString[1]) + "0000" + hex2bin(listString[2],20)
+    firstPart, secondPart = totalString[:int(len(totalString)/2)], totalString[int(len(totalString)/2):]
+    return [firstPart,secondPart]
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def convertStd(listString):
-    return mapOp(listString[0]) + "000" + mapReg(listString[1]) + "0" + hex2bin(listString[2],20)
+    totalString = mapOp(listString[0]) + "000" + mapReg(listString[1]) + "0" + hex2bin(listString[2],20)
+    firstPart, secondPart = totalString[:int(len(totalString)/2)], totalString[int(len(totalString)/2):]
+    return [firstPart,secondPart]
 
 def convertJmp(listString):
-    return mapOp(listString[0]) + "000" + mapReg(listString[1]) + "000000000000000000000"
+    return [mapOp(listString[0]) + "000" + mapReg(listString[1]) + "00000"]
 
 def convertRt(listString):
-    return mapOp(listString[0]) + "000000000000000000000000000"
+    return [mapOp(listString[0]) + "00000000000"]
 
 
 
@@ -242,10 +246,10 @@ contents = readInput()
 parsedContent = parseInstructions(contents)
 
 # output in ram
-ram_file = "..\Vhdl Src\Memory\inst_memory.mem"
-f= open(ram_file,"w")
+# ram_file = "..\Vhdl Src\Memory\inst_memory.mem"
+f= open("ram.mem","w")
 f.write("// memory data file (do not edit the following line - required for mem load use)\r")
-f.write("// instance=/data_ram/ram\r")
+# f.write("// instance=/data_ram/ram\r")
 f.write("// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1\r")
 
 i = 0
@@ -254,13 +258,16 @@ while(i< len(parsedContent)):
     if(parsedContent[i][0] == ".org"):
         cursor = int(str(parsedContent[i][1]),16)
         if(parsedContent[i+1][0].isnumeric()):
-            f.write("@"+hex(cursor)[2:]+" "+hex2bin(parsedContent[i+1][0],32)+"\r")
+            f.write("@"+hex(cursor)[2:]+" "+hex2bin(parsedContent[i+1][0],16)+"\r")
+            cursor+=1
         else:
-            f.write("@"+hex(cursor)[2:]+" "+convertInstruction(parsedContent[i+1]) +"\r")
+            for j in range(len(convertInstruction(parsedContent[i+1]))):
+                f.write("@"+hex(cursor)[2:]+" "+convertInstruction(parsedContent[i+1])[j] +"\r")
+                cursor+=1
         i+=2
     else:
-        f.write("@"+hex(cursor)[2:]+" "+convertInstruction(parsedContent[i])+"\r")
+        for j in range(len(convertInstruction(parsedContent[i]))):
+            f.write("@"+hex(cursor)[2:]+" "+convertInstruction(parsedContent[i])[j] +"\r")    
+            cursor+=1        
         i+=1
-    cursor+=1
-
 f.close()
