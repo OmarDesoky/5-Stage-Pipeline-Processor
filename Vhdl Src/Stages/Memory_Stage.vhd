@@ -6,7 +6,7 @@ ENTITY Memory_Stage IS
 PORT (
     clk:                in std_logic;
     rst_async_test:     in std_logic;
-    wb_in:              in std_logic_vector(4 downto 0);
+    wb_in:              in std_logic_vector(4 downto 0); 
     mem_in:            in std_logic_vector(6 downto 0);
     alu_out_1_in:      in std_logic_vector(31 downto 0);
     ea_imm_in:         in std_logic_vector(31 downto 0);
