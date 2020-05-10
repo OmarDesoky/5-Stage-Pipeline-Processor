@@ -28,18 +28,20 @@ signal SP_current:                      std_logic_vector(31 downto 0);
 signal MEM_read,MEM_write:              std_logic;
 signal INT_RTI_call_RET_Dontuse_sig:    std_logic_vector(2 downto 0);
 signal SP_enb:                          std_logic_vector(1 downto 0);
+signal sp_reg_enable:                   std_logic;
 
 BEGIN    
  MEM_write                      <= mem_in(0);
  MEM_read                       <= mem_in(1);
  INT_RTI_call_RET_Dontuse_sig   <= mem_in(4 downto 2);
  SP_enb                         <= mem_in(6 downto 5);
+ sp_reg_enable<= not SP_enb(0);
 
  DATA_Memory :      entity work.data_ram
     port map(clk, wr=>MEM_write, rd=>MEM_read, address=>INT_Controller_Address_out
      ,datain=>INT_Controller_Data_out, dataout=>Mem_out);
 
- takeSP_Decision :  entity work.mux_2to_1 generic map(32)
+ takeSP_Decision1 :  entity work.mux_2to_1 generic map(32)
     port map(a=>ea_imm_in, b=>SP_chosen, sel=>SP_enb(0), y=>EA_IMM_OR_SP);
 
  INT_Controller :   entity work.controller
@@ -48,9 +50,9 @@ BEGIN
     ,DATA_IN=>INT_Controller_Data_out);
 
  SP_REG :           entity work.n_bit_register
-    port map(clk, rst_async=>rst_async_test, write_enb=>(not SP_enb(0)), d=>ADDER_out, q=>SP_current);
+    port map(clk, rst_async=>rst_async_test, write_enb=>(sp_reg_enable), d=>ADDER_out, q=>SP_current);
 
- takeSP_Decision :  entity work.mux_2to_1 generic map(32)
+ takeSP_Decision2 :  entity work.mux_2to_1 generic map(32)
     port map(a=>SP_current, b=>ADDER_out, sel=>SP_enb(1), y=>SP_chosen);
 
  ADD_SUB :          entity work.add_sub generic map(32)
