@@ -8,18 +8,24 @@ port (
     clk : in std_logic;
     int : in std_logic;
     op : in std_logic_vector(4 downto 0);
+    --wb signals
     write_enable: out std_logic;
     pc_wb: out std_logic;
     mem_or_reg: out std_logic;
     swap : out std_logic;
     flag_register_wb : out std_logic;
+    -- mem signals
     mem_write: out std_logic;
     mem_read: out std_logic;
     int_rti_dntuse: out std_logic_vector(2 downto 0);
-    alu_op: out std_logic_vector(3 downto 0);
     sp_enb: out std_logic_vector(1 downto 0);
+    -- alu op
+    alu_op: out std_logic_vector(3 downto 0);
+    -- execute signals
     alu_source: out std_logic;
     io_enable: out std_logic;
+
+    -- used in decode and fetch signals
     imm_ea: out std_logic;
     jz_upt_fsm: out std_logic;
     imm_reg_enb: out std_logic;

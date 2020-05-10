@@ -8,8 +8,8 @@ port (
     clk: in std_logic;
     rst_async: in std_logic;
     enable: in std_logic;
-    wb_in: in std_logic_vector(3 downto 0);
-    mem_in: in std_logic_vector(3 downto 0);
+    wb_in: in std_logic_vector(4 downto 0); --edited 10/5
+    mem_in: in std_logic_vector(6 downto 0); --edited 10/5
     alu_out_1_in: in std_logic_vector(31 downto 0);
     alu_out_2_in: in std_logic_vector(31 downto 0);
     ea_imm_in: in std_logic_vector(31 downto 0);
@@ -18,7 +18,7 @@ port (
     dst_in: in std_logic_vector(2 downto 0);
 
 
-    wb_out: out std_logic_vector(3 downto 0);
+    wb_out: out std_logic_vector(4 downto 0);
     mem_out: out std_logic_vector(3 downto 0);
     alu_out_1_out: out std_logic_vector(31 downto 0);
     alu_out_2_out: out std_logic_vector(31 downto 0);

@@ -9,8 +9,8 @@ port (
     rst_async: in std_logic;
     buffer_enable: in std_logic;
     imm_reg_enable: in std_logic;
-    wb_in: in std_logic_vector(3 downto 0);
-    mem_in: in std_logic_vector(3 downto 0);
+    wb_in: in std_logic_vector(4 downto 0); --edited 10/5
+    mem_in: in std_logic_vector(6 downto 0); --edited 10/5
     alu_op_in: in std_logic_vector(3 downto 0);
     ex_in: in std_logic_vector(2 downto 0);
     data_1_in: in std_logic_vector(31 downto 0);
@@ -22,8 +22,8 @@ port (
     dst_in: in std_logic_vector(2 downto 0);
 
 
-    wb_out: out std_logic_vector(3 downto 0);
-    mem_out: out std_logic_vector(3 downto 0);
+    wb_out: out std_logic_vector(4 downto 0); --edited 10/5
+    mem_out: out std_logic_vector(6 downto 0); --edited 10/5
     alu_op_out: out std_logic_vector(3 downto 0);
     ex_out: out std_logic_vector(2 downto 0);
     data_1_out: out std_logic_vector(31 downto 0);
