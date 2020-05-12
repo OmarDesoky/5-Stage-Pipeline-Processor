@@ -15,6 +15,8 @@ end comparator;
 architecture COMP_ARCH of comparator is
 
 begin
+    process( zero_flag,last_taken,if_JZ )
+    begin    
     if(if_JZ ='0') then
         flush <= '0';
     else
@@ -24,4 +26,6 @@ begin
             flush <= '1';
         end if ;
     end if;
+    end process ; 
+
 end COMP_ARCH;
