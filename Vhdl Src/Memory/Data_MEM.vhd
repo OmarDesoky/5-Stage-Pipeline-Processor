@@ -15,7 +15,7 @@ ENTITY data_ram IS
 END ENTITY data_ram;
 
 ARCHITECTURE syncram OF data_ram IS
-	TYPE ram_type IS ARRAY(0 TO (4096) - 1) OF std_logic_vector(31 DOWNTO 0);
+	TYPE ram_type IS ARRAY(0 TO (4095) - 1) OF std_logic_vector(31 DOWNTO 0);
 
 	SIGNAL ram : ram_type;
 	BEGIN

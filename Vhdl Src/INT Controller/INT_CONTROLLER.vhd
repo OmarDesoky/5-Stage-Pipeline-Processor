@@ -20,7 +20,7 @@ entity controller is
     signal counter : integer range 0 to 1;
 begin
   
-    process( clk,rst_async )
+    process( clk,rst_async,EA_IMM_SP,ALU_out )
     begin
             if rst_async = '1' then
 
@@ -28,7 +28,7 @@ begin
                 DATA_IN <= (others => '0');
                 counter <= 0;
 
-            elsif (rising_edge(clk)) then
+            elsif falling_edge(clk) then
                 if(INT_RTI_call_RET_Dontuse = "100" ) then --INT
                     if counter = 0 then
                         ADDRESS_IN <= EA_IMM_SP;
