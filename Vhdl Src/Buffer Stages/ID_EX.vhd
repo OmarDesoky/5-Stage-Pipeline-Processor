@@ -12,7 +12,7 @@ port (
     wb_in: in std_logic_vector(4 downto 0); --edited 10/5
     mem_in: in std_logic_vector(6 downto 0); --edited 10/5
     alu_op_in: in std_logic_vector(3 downto 0);
-    ex_in: in std_logic_vector(2 downto 0);
+    ex_in: in std_logic_vector(1 downto 0);
     data_1_in: in std_logic_vector(31 downto 0);
     data_2_in: in std_logic_vector(31 downto 0);
     src_1_in: in std_logic_vector(2 downto 0);
@@ -25,7 +25,7 @@ port (
     wb_out: out std_logic_vector(4 downto 0); --edited 10/5
     mem_out: out std_logic_vector(6 downto 0); --edited 10/5
     alu_op_out: out std_logic_vector(3 downto 0);
-    ex_out: out std_logic_vector(2 downto 0);
+    ex_out: out std_logic_vector(1 downto 0);
     data_1_out: out std_logic_vector(31 downto 0);
     data_2_out: out std_logic_vector(31 downto 0);
     src_1_out: out std_logic_vector(2 downto 0);

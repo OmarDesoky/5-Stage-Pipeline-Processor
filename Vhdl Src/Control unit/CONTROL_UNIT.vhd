@@ -33,7 +33,7 @@ port (
     mid_imm: out std_logic;
     any_jmp: out std_logic;
     stall_int: out std_logic;
-    reg_eng_1st_4:out std_logic
+    flush_Decode : out std_logic
 );
 end control_unit ;
 
@@ -103,7 +103,6 @@ begin
         int_rti_dntuse<= (others => '0');
         alu_op<= (others => '0');
         sp_enb<= (others => '0');
-        reg_eng_1st_4 <='0';
         alu_source<='0';
         io_enable<='0';
         imm_ea<='0';
@@ -113,6 +112,7 @@ begin
         mid_imm<='0';
         any_jmp<='0';
         stall_int<='0';
+	flush_Decode <= '0';
         if(falling_edge(clk)) then
             if counter > 0 then
                 if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) then
@@ -142,36 +142,35 @@ begin
                 counter<=0;
                     
             elsif counter2 > 0 then
-                if last_op2 = RTI then
-                    stall_int<='1';
-                    if counter2 = 4 then 
-                        counter2<=0;
-                    else
-                        counter2<=counter2+1;
-                    end if;
-                else
-                    stall_int<='1';
-                    if counter2 = 2 then 
-                        counter2<=0;
-                    else
-                        counter2<=counter2+1;
-                    end if;                
-                end if;
+                --if last_op2 = RTI then
+                    --stall_int<='1';
+                    --if counter2 = 4 then 
+                        --counter2<=0;
+                    --else
+                        --counter2<=counter2+1;
+                    --end if;
+                --else
+                stall_int<='1';
+                    --if counter2 = 2 then 
+                 counter2<=0;
+                    --else
+                    --    counter2<=counter2+1;
+                    --end if;                
+                --end if;
     
             elsif (op=IADD) or (op = SHL) or (op = SHR) or (op = LDD) or (op = LDM) or (op = STD) then
                 mid_imm <= '1';
                 imm_reg_enb <= '1';
                 counter <= counter +1;
                 last_op <= op;
-                reg_eng_1st_4 <= '1';
             elsif (op = RTI) then
                 mem_read<='1';
                 sp_enb<="01";
                 pc_wb<= '1';
                 any_jmp<='1';
                 int_rti_dntuse<="101";
-                counter2 <= counter2 +1;
-                last_op2 <= op;
+                --counter2 <= counter2 +1;
+                --last_op2 <= op;
             elsif (int='1') then
                 sp_enb <="11";
                 mem_write <='1';
@@ -210,10 +209,12 @@ begin
                 any_jmp<='1';
             elsif (op = JMP) then
                 any_jmp<='1';
+		flush_Decode<='1';
             elsif (op = CALL) then
                 sp_enb<="11";
                 mem_write<='1';
                 any_jmp<='1';
+		flush_Decode<='1';
                 int_rti_dntuse<="010";
             elsif (op = RET) then
                 pc_wb<='1';
@@ -221,6 +222,7 @@ begin
                 mem_read<='1';
                 any_jmp<='1';
                 int_rti_dntuse<="011";
+		flush_Decode<='1';
             elsif (op = SWAPP) then
                 alu_op <= SWAP_ALU ;
                 swap<='1';
