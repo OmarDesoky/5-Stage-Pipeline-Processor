@@ -32,7 +32,8 @@ port (
     reg_enb: out std_logic;
     mid_imm: out std_logic;
     any_jmp: out std_logic;
-    stall_int: out std_logic
+    stall_int: out std_logic;
+    reg_eng_1st_4:out std_logic
 );
 end control_unit ;
 
@@ -102,7 +103,7 @@ begin
         int_rti_dntuse<= (others => '0');
         alu_op<= (others => '0');
         sp_enb<= (others => '0');
-
+        reg_eng_1st_4 <='0';
         alu_source<='0';
         io_enable<='0';
         imm_ea<='0';
@@ -112,7 +113,7 @@ begin
         mid_imm<='0';
         any_jmp<='0';
         stall_int<='0';
-        if(rising_edge(clk)) then
+        if(falling_edge(clk)) then
             if counter > 0 then
                 if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) then
                     write_enable<='1';
@@ -162,7 +163,7 @@ begin
                 imm_reg_enb <= '1';
                 counter <= counter +1;
                 last_op <= op;
-    
+                reg_eng_1st_4 <= '1';
             elsif (op = RTI) then
                 mem_read<='1';
                 sp_enb<="01";

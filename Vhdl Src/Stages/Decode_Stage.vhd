@@ -12,7 +12,7 @@ port (
     int : in std_logic;
     stall_next : in std_logic;
     last_taken : in std_logic;
-    instruction : in std_logic_vector(31 downto 0);
+    instruction : in std_logic_vector(15 downto 0);
     dest_mem_wb : in std_logic_vector(2 downto 0);
     data_out_wb: in std_logic_vector(31 downto 0);
     data_swp_wb : in std_logic_vector(31 downto 0);
@@ -47,27 +47,28 @@ end decode_stage;
 architecture flow of decode_stage IS
 
 
-signal flags_out : out std_logic_vector(31 downto 0);
-signal read_data_1: out std_logic_vector(31 downto 0);
+signal flags_out : std_logic_vector(31 downto 0);
+signal read_data_1: std_logic_vector(31 downto 0);
 
 --wb signals
-signal _write_enable: out std_logic;
-signal _pc_wb: out std_logic;
-signal _mem_or_reg: out std_logic;
-signal _swap : out std_logic;
-signal _flag_register_wb : out std_logic;
+signal write_enable_sig: std_logic;
+signal pc_wb_sig: std_logic;
+signal mem_or_reg_sig: std_logic;
+signal swap_sig : std_logic;
+signal flag_register_wb_sig : std_logic;
 -- mem signals
-signal _mem_write: out std_logic;
-signal _mem_read: out std_logic;
-signal _int_rti_dntuse: out std_logic_vector(2 downto 0);
-signal _sp_enb: out std_logic_vector(1 downto 0);
+signal mem_write_sig: std_logic;
+signal mem_read_sig: std_logic;
+signal int_rti_dntuse_sig: std_logic_vector(2 downto 0);
+signal sp_enb_sig: std_logic_vector(1 downto 0);
 -- alu op
-signal _alu_op: out std_logic_vector(3 downto 0);
+signal alu_op_sig: std_logic_vector(3 downto 0);
 -- execute signals
-signal _alu_source: out std_logic;
-signal _io_enable: out std_logic;
+signal alu_source_sig: std_logic;
+signal io_enable_sig: std_logic;
 -- used in decode and fetch signals
-signal _imm_ea: out std_logic;
+signal imm_ea_sig: std_logic;
+signal reg_eng_1st_4: std_logic;
 
 
 signal sign_extend1 : std_logic_vector(15 downto 0):=(others => '0');
@@ -88,30 +89,27 @@ port map(clk,rst_async,write_enb_wb,swap_wb,flag_enb_wb,carry_flg,zero_flg,neg_f
 instruction (4 downto 2),dest_mem_wb,data_out_wb,reg_swap_mem_wb,data_swp_wb,flags_out,read_data_1,data2_out);
 
 Control : entity work.control_unit
-port map(clk,int,instruction(15 downto 11),_write_enable,_pc_wb,_mem_or_reg,_swap,_flag_register_wb
-,_mem_write,_mem_read,_int_rti_dntuse,_sp_enb,_alu_op,_alu_source,_io_enable,_imm_ea,
-ifjmp_upd_fsm,imm_reg_enb_out,reg_enb_out,inmiddleofimm,ifanyjmp,stall_for_int);
+port map(clk,int,instruction(15 downto 11),write_enable_sig,pc_wb_sig,mem_or_reg_sig,swap_sig,flag_register_wb_sig
+,mem_write_sig,mem_read_sig,int_rti_dntuse_sig,sp_enb_sig,alu_op_sig,alu_source_sig,io_enable_sig,imm_ea_sig,
+ifjmp_upd_fsm,imm_reg_enb_out,reg_enb_out,inmiddleofimm,ifanyjmp,stall_for_int,reg_eng_1st_4);
 
                                 -------------- NEEDS MODIFICATIONS (REARRANGE BITS) --------------
-wb_out <= _write_enable&_pc_wb&_mem_or_reg&_swap&_flag_register_wb  when insert_bubble='0' else (others => '0');    
-mem_out <= _mem_write&_mem_read&_int_rti_dntuse&_sp_enb when insert_bubble='0' else (others => '0');
-execute <= _alu_source&_io_enable when insert_bubble='0' else (others => '0');
+wb_out <= write_enable_sig&pc_wb_sig&mem_or_reg_sig&swap_sig&flag_register_wb_sig  when insert_bubble='0' else (others => '0');    
+mem_out <= mem_write_sig&mem_read_sig&int_rti_dntuse_sig&sp_enb_sig when insert_bubble='0' else (others => '0');
+execute <= alu_source_sig&io_enable_sig when insert_bubble='0' else (others => '0');
                                 -------------------------------------------------------------------
-alu_op <= _alu_op  when insert_bubble='0' else (others => '0');
+alu_op <= alu_op_sig  when insert_bubble='0' else (others => '0');
 
 
 --  when _imm_ea is 1 we select effecive address 
 --  when _imm_ea is 0 we select immediate address 
 first4 : entity work.n_bit_register generic map(4)
-port map(clk, rst_async,/*inmiddleofimm*/,instruction(3 downto 0),out_first4);
+port map(clk, rst_async,reg_eng_1st_4,instruction(3 downto 0),out_first4);
 
-em_imm_out <= (sign_extend1 & instruction)  when _imm_ea ='0' else (sign_extend2 & out_first4 & instruction);
-
-
-
+em_imm_out <= (sign_extend1 & instruction)  when imm_ea_sig ='0' else (sign_extend2 & out_first4 & instruction);
 
 -- SELECTORRRRRRRRRRRRRRRRRRRRRRRRRR => we have to change op codes to select between (ordinary, flag , IN/OUT)
-data1_decision :  entity work.mux_4to1 generic map(32)
-port map(read_data_1,flags_out,io_data,X"00000000",SELECTORRRRRRRRRRRRRRRRRRRRRRRRRR,data1_out);
+data1_Selector :  entity work.Data1_Decision
+port map(int,instruction(15 downto 11),read_data_1,flags_out,io_data,data1_out);
 
 end flow; 

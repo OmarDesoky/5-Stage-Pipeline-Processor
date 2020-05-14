@@ -68,14 +68,15 @@ signal flag_bits:std_logic_vector(2 downto 0);
 signal chosen_data_flags: std_logic_vector(2 downto 0);
 signal out_data_flags: std_logic_vector(2 downto 0);
 signal sign_extend : std_logic_vector(28 downto 0);
+signal negated_clk :std_logic;
 begin
-
+    negated_clk <= not(clk);
     genCompReg:for i in 0 to 7 generate
         check_wb(i) <= '1' when (to_integer(unsigned(write_reg)) = i ) else '0';
         check_wb_swap(i) <= '1' when (to_integer(unsigned(write_reg_swap)) = i ) else '0';
         mux_reg: mux_2to_1 generic map(size=>32) port map(write_data,write_data_swap,check_wb_swap(i),chosen_data(i));
         final_check(i)<=  ( check_wb(i) or check_wb_swap(i)  ) and write_enb;
-        r: n_bit_register generic map(size=>32) port map (clk,rst_async, final_check(i),chosen_data(i),out_data(i));
+        r: n_bit_register generic map(size=>32) port map (negated_clk,rst_async, final_check(i),chosen_data(i),out_data(i));
 
     end generate genCompReg;
     read_data_1 <=out_data( to_integer(unsigned(read_reg_1)) );
@@ -83,7 +84,7 @@ begin
 
     flag_bits<=carry&zero&neg;
     mux_flags: mux_2to_1 generic map(size=>3) port map (flag_bits,write_data(2 downto 0),flag_enb,chosen_data_flags);
-    flags: n_bit_register generic map(size=>3) port map (clk,rst_async,'1',chosen_data_flags,out_data_flags);
+    flags: n_bit_register generic map(size=>3) port map (negated_clk,rst_async,'1',chosen_data_flags,out_data_flags);
 
     sign_extend <= (others => '0');
     flags_out <= sign_extend & out_data_flags;
