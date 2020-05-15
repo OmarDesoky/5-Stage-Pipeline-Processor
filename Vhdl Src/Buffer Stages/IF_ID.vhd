@@ -33,7 +33,7 @@ begin
         last_taken_out <= '0';
         next_stall_out <= '0';
         int_out <= '0';
-        instruction_out <= (others => '0');
+        instruction_out <= "0111100000000000";
         pc_out <= (others => '0');
     
     else

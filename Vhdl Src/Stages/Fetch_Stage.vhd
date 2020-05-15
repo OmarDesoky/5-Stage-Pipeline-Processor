@@ -30,9 +30,13 @@ signal negateCLK : std_logic;
 signal PC_WB2:std_logic;
 BEGIN   
 
- process(pc_out_memory_in, CLK) 
+ process(pc_out_memory_in, CLK,rst_async_test) 
  begin 
- pc_updated_test <= pc_out_memory_in +1;
+ if rst_async_test = '1' then 
+ 	pc_updated_test<= (others => '0');
+ else
+ 	pc_updated_test <= pc_out_memory_in +1;
+ end if;
  end process;
 
  negateCLK <= not(CLK);
@@ -45,17 +49,17 @@ BEGIN
  write_enb_test <= (write_enb_from_INT and PC_ENB_DATAHAZARD and (not int_test));
 
  pc_REG : entity work.n_bit_register
-    port map(negateCLK, rst_async=>rst_async_test, write_enb=>write_enb_test, d=>pc_selected, q=>pc_out_memory_in);
+    port map(CLK, rst_async=>rst_async_test, write_enb=>write_enb_test, d=>pc_selected, q=>pc_out_memory_in);
 
  INT_Handel : entity work.handler
-    port map(negateCLK, rst_async=>rst_async_test, flip_next_cycle_INT=>flip_next_cycle_INT_test, INT_sig=>int_test
+    port map(CLK, rst_async=>rst_async_test, flip_next_cycle_INT=>flip_next_cycle_INT_test, INT_sig=>int_test
 , INT_1st_cycle=>INT_First_Cycle,INT_2nd_cycle=>INT_2nd_cycle_test, INT_raised_before=>INT_raised_before_test, PC_enb_from_INT=>write_enb_from_INT );
 
  INS_Memory : entity work.inst_ram
-    port map(negateCLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_2_3_test);
+    port map(CLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_2_3_test);
 
  PC_SAVE_DET : entity work.PC_Save_Determine
-    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,negateCLK,PC_Saved);
+    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,CLK,PC_Saved);
 
  Flush_Decision : entity work.mux_2to_1 generic map(16)
     port map(a=>dataout_Memory, b=>X"0000", sel=>Flush, y=>instruction);

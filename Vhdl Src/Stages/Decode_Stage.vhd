@@ -117,7 +117,7 @@ alu_op <= alu_op_sig  when insert_bubble='0' else (others => '0');
 --  when _imm_ea is 1 we select effecive address 
 --  when _imm_ea is 0 we select immediate address 
 first4 : entity work.n_bit_register generic map(4)
-port map(negated_clk, rst_async,negated_reg_enb_sig,instruction(3 downto 0),out_first4);
+port map(clk, rst_async,negated_reg_enb_sig,instruction(3 downto 0),out_first4);
 
 em_imm_out <= (sign_extend1 & instruction)  when imm_ea_sig ='0' else (sign_extend2 & out_first4 & instruction);
 
