@@ -24,6 +24,7 @@ signal INT_2nd_cycle_test:std_logic;
 signal INT_raised_before_test:std_logic; 
 
 signal dataout_Memory :std_logic_vector(15 DOWNTO 0);
+signal negateCLK : std_logic; 
 
 --signal PC_OUT_SAVE_Determine :std_logic_vector(31 DOWNTO 0);
 signal PC_WB2:std_logic;
@@ -33,7 +34,9 @@ BEGIN
  begin 
  pc_updated_test <= pc_out_memory_in +1;
  end process;
- 
+
+ negateCLK <= not(CLK);
+
  PC_WB2 <= pc_wb and (not(INT_raised_before_test));
  pc_Select : entity work.pc_selector
     port map(rst_async=>rst_async_test, int=>INT_2nd_cycle_test, pc_wb=>PC_WB2, take_jmp_addr=> take_jmp_addr_test, mem_loc_2_3=>mem_loc_2_3_test
@@ -42,17 +45,17 @@ BEGIN
  write_enb_test <= (write_enb_from_INT and PC_ENB_DATAHAZARD and (not int_test));
 
  pc_REG : entity work.n_bit_register
-    port map(CLK, rst_async=>rst_async_test, write_enb=>write_enb_test, d=>pc_selected, q=>pc_out_memory_in);
+    port map(negateCLK, rst_async=>rst_async_test, write_enb=>write_enb_test, d=>pc_selected, q=>pc_out_memory_in);
 
  INT_Handel : entity work.handler
-    port map(CLK, rst_async=>rst_async_test, flip_next_cycle_INT=>flip_next_cycle_INT_test, INT_sig=>int_test
+    port map(negateCLK, rst_async=>rst_async_test, flip_next_cycle_INT=>flip_next_cycle_INT_test, INT_sig=>int_test
 , INT_1st_cycle=>INT_First_Cycle,INT_2nd_cycle=>INT_2nd_cycle_test, INT_raised_before=>INT_raised_before_test, PC_enb_from_INT=>write_enb_from_INT );
 
  INS_Memory : entity work.inst_ram
-    port map(CLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_2_3_test);
+    port map(negateCLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_2_3_test);
 
  PC_SAVE_DET : entity work.PC_Save_Determine
-    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,PC_Saved);
+    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,negateCLK,PC_Saved);
 
  Flush_Decision : entity work.mux_2to_1 generic map(16)
     port map(a=>dataout_Memory, b=>X"0000", sel=>Flush, y=>instruction);
