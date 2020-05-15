@@ -11,13 +11,13 @@ port (
     last_taken_in : in std_logic;
     next_stall_in : in std_logic;
     int_in : in std_logic;
-    instruction_in: in std_logic_vector(16 downto 0);
+    instruction_in: in std_logic_vector(15 downto 0);
     pc_in: in std_logic_vector(31 downto 0);
 
     last_taken_out : out std_logic;
     next_stall_out : out std_logic;
     int_out : out std_logic;
-    instruction_out: out std_logic_vector(16 downto 0);
+    instruction_out: out std_logic_vector(15 downto 0);
     pc_out: out std_logic_vector(31 downto 0)
 );
 end if_id ;

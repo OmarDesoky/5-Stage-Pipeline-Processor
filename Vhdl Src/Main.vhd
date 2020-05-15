@@ -70,7 +70,7 @@ begin
         port map(rst_async_test=>RST,int_test=>INT, pc_wb =>pc_wb_FROM_WB
         ,take_jmp_addr_test=>take_jmp_addr_FROM_prediction
         ,IN_MIDDLE_OF_IMM=>IN_MIDDLE_OF_IMM_FROM_decode,IF_ANY_JUMP=>IF_ANY_JUMP_FROM_decode
-        ,CLK,flip_next_cycle_INT_test=>IF_ID_ENB
+        ,CLK=>CLK,flip_next_cycle_INT_test=>IF_ID_ENB
         ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>Flush_FROM_decode
         ,pc_frm_wb_test=>DATA_FROM_WB,calc_jmp_addr_test=>PC_FROM_prediction
         --outputs
@@ -96,10 +96,11 @@ begin
         ,insert_bubble=>insert_bubble_FROM_DATAHAZARD,io_data=>DATA_fromIO
         --outputs
         ,wb_outt=>wb_out_TO_execute,mem_outt=>mem_out_TO_execute,alu_op_outt=>alu_op_out_TO_execute
-        ,ex_outt=>ex_out_TO_execute,data_1_out_TO_execute,data_2_out_TO_execute
-        src_1_out_TO_execute,src_2_out_TO_execute, ea_imm_out_TO_execute, pc_out_TO_execute,dst_out_TO_execute
+        ,ex_outt=>ex_out_TO_execute,data_1_outt=>data_1_out_TO_execute,data_2_outt=>data_2_out_TO_execute
+        ,src_1_outt=>src_1_out_TO_execute,src_2_outt=>src_2_out_TO_execute, ea_imm_outt=> ea_imm_out_TO_execute,
+        pc_outt=>pc_out_TO_execute,dst_outt=>dst_out_TO_execute
         ,stall_for_int=>stall_for_INT_FROM_DATAHAZARD,stall_for_jmp_pred=>stall_for_jump_prediction_FROM_DATAHAZARD
-        ,ifjmp_upd_fsm=>ifJZ_FROM_decode,zero_flag_compare=>zero_flag_FROM_decode
+        ,ifjmp_upd_fsm=>ifJZ_FROM_decode,zero_flag_compara=>zero_flag_FROM_decode
         ,last_taken_compara=>last_taken_FROM_decode,inmiddleofimm=>IN_MIDDLE_OF_IMM_FROM_decode
         ,ifanyjmp=>IF_ANY_JUMP_FROM_decode);
 

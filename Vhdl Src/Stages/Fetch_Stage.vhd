@@ -52,7 +52,7 @@ BEGIN
     port map(CLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_2_3_test);
 
  PC_SAVE_DET : entity work.PC_Save_Determine
-    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,PC_Saved);
+    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,CLK,PC_Saved);
 
  Flush_Decision : entity work.mux_2to_1 generic map(16)
     port map(a=>dataout_Memory, b=>X"0000", sel=>Flush, y=>instruction);
