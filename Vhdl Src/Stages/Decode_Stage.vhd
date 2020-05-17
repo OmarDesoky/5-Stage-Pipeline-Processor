@@ -107,8 +107,8 @@ port map(clk,int,instruction(15 downto 11),write_enable_sig,pc_wb_sig,mem_or_reg
 ifjmp_upd_fsm,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int);
 
                                 -------------- NEEDS MODIFICATIONS (REARRANGE BITS) --------------
-wb_out <= write_enable_sig&pc_wb_sig&mem_or_reg_sig&swap_sig&flag_register_wb_sig  when insert_bubble='0' else (others => '0');    
-mem_out <= mem_read_sig&int_rti_dntuse_sig&sp_enb_sig&mem_write_sig when insert_bubble='0' else (others => '0');
+wb_out <=  flag_register_wb_sig&swap_sig&mem_or_reg_sig&pc_wb_sig&write_enable_sig  when insert_bubble='0' else (others => '0');    
+mem_out <= sp_enb_sig&int_rti_dntuse_sig&mem_read_sig&mem_write_sig when insert_bubble='0' else (others => '0');
 execute <= alu_source_sig&io_enable_sig when insert_bubble='0' else (others => '0');
                                 -------------------------------------------------------------------
 alu_op <= alu_op_sig  when insert_bubble='0' else (others => '0');

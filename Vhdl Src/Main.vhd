@@ -84,7 +84,7 @@ architecture Arch of processor is
     signal IF_ID_ENB                                  : std_logic := '1' ;
 
     -- from forwarding unit "to be used later"
-    signal enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux_FROM_FW_UNIT: std_logic_vector(2downto 0) := "00";
+    signal enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux_FROM_FW_UNIT: std_logic_vector(2 downto 0) := "000";
 
 
 
@@ -144,7 +144,7 @@ begin
     Buffer_Holder_Part :entity work.buffer_holder1
       port map(CLK,RST
       --TODO :: need revision
-      ,mem_out_FROM_execute(3)
+      ,mem_out_FROM_execute(4)
       --outputs
       ,ENB_Buffer=>ENB_Buffer_EX_MEM);
     
@@ -179,7 +179,7 @@ begin
       flag_wb_FROM_WB<= wb_sigs_FROM_WB(4);
 
     Output_Chooser :entity work.mux_2to_1
-      port map(Mem_out_FROM_WB,ALUout1_FROM_WB
+      port map(ALUout1_FROM_WB,Mem_out_FROM_WB
       --TODO :: need revision
       ,wb_sigs_FROM_WB(2)
       --outputs

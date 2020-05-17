@@ -13,7 +13,7 @@ PORT (
 	-- src2 will be used when we put the forwarding unit soon
 	src1, src2, dst :in std_logic_vector (2 downto 0);
     	ea_imm_in, pc_in:         in std_logic_vector(31 downto 0);
-  	enb_1st_mux, enb_2nd_mux:in std_logic_vector(2downto 0);
+  	enb_1st_mux, enb_2nd_mux:in std_logic_vector(2 downto 0);
 
     	Mem_out :           out std_logic_vector(6 downto 0);
     	wb_out:             out std_logic_vector(4 downto 0);
@@ -44,7 +44,7 @@ choose_2nd_operand :  entity work.mux_6to1 generic map(32)
 -- 	if (ALU Source  = '0')
 --		will select => REG_DATA2
 --	else
---		will select => EA/IMMM
+--		will select => EA/IMM
 select_REGData2_or_EA_IMM:  entity work.mux_2to_1 generic map(32)
     port map(a=> reg2_data, b=>ea_imm_in, sel=>ex_in(0), y=>mux_choice);
 -- what is carry in ???!

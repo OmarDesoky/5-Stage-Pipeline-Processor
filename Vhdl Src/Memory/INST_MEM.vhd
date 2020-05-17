@@ -18,17 +18,23 @@ END ENTITY inst_ram;
 ARCHITECTURE syncram OF inst_ram IS
 	TYPE ram_type IS ARRAY(0 TO 4095) OF std_logic_vector(15 DOWNTO 0);
 -- INC R2,R2	
+-- INC R3,R3	
+-- DEC R4,R4	
 -- ADD R1,R5,R2
--- STD R1,12
--- POP R0
+-- STD R2,12
+-- NOT R4
+-- PUSH R1
 	--SIGNAL ram : ram_type;
 	SIGNAL ram : ram_type := (
 	0=> "0100101001000000",
- 	1=> "0010000110101000",
- 	2=> "1010000000101111",
- 	3=> "0000000000001100",
-	4=> "1000100000000000",
- 	others=>X"0000"
+	1=> "0100101101100000",
+	2=> "0101010010000000",
+ 	3=> "0010000110101000",
+ 	4=> "1010000001001111",
+ 	5=> "0000000000001100",
+	6=> "0100010010000000",
+	7=> "1000000000100000",
+ 	others=>"0111100000000000"
 	);
 	signal mem_loc_2 :std_logic_vector(31 DOWNTO 0);
 	signal mem_loc_3 :std_logic_vector(31 DOWNTO 0);

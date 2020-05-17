@@ -19,7 +19,7 @@ port (
 
 
     wb_out: out std_logic_vector(4 downto 0);
-    mem_out: out std_logic_vector(3 downto 0);
+    mem_out: out std_logic_vector(6 downto 0);
     alu_out_1_out: out std_logic_vector(31 downto 0);
     alu_out_2_out: out std_logic_vector(31 downto 0);
     ea_imm_out: out std_logic_vector(31 downto 0);
