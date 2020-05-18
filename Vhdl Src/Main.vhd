@@ -175,7 +175,8 @@ begin
       flag_wb_FROM_WB<= wb_sigs_FROM_WB(4);
 
     Output_Chooser :entity work.mux_2to_1
-      port map(ALUout1_FROM_WB,Mem_out_FROM_WB,wb_sigs_FROM_WB(2)
+      port map(ALUout1_FROM_WB,Mem_out_FROM_WB,
+      wb_sigs_FROM_WB(2)
       --outputs
       ,DATA_FROM_WB);
 
