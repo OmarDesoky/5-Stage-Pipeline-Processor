@@ -258,7 +258,11 @@ while(i< len(parsedContent)):
     if(parsedContent[i][0] == ".org"):
         cursor = int(str(parsedContent[i][1]),16)
         if(parsedContent[i+1][0].isnumeric()):
-            f.write("@"+hex(cursor)[2:]+" "+hex2bin(parsedContent[i+1][0],16)+"\r")
+            totalString = hex2bin(parsedContent[i+1][0],32)
+            secondPart, firstPart = totalString[:int(len(totalString)/2)], totalString[int(len(totalString)/2):]
+            f.write("@"+hex(cursor)[2:]+" "+ firstPart +"\r")
+            cursor+=1
+            f.write("@"+hex(cursor)[2:]+" "+ secondPart +"\r")
             cursor+=1
         else:
             for j in range(len(convertInstruction(parsedContent[i+1]))):
