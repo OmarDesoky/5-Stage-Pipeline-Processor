@@ -9,7 +9,6 @@
 100
 
 .ORG 10
-<<<<<<< HEAD
 in   R1       #add 5 in R1
 in   R2       #add 19 in R2
 in   R3       #FFFD
@@ -23,14 +22,4 @@ SHL  R2,2     #R2=64  , C--> 0, N -->0 , Z -->0
 SHR  R2,3     #R2=0C  , C -->1, N-->0 , Z-->0
 SWAP R2,R5    #R5=0C ,R2=FFFF  ,no change for flags
 ADD  R5,R2,R2    #R2= 1000B (C,N,Z= 0)
-=======
-inc R1	       #R1 =00000000 , C --> 1 , N --> 0 , Z --> 1
-inc R1
-inc R2	       #R2= FFFFFFEF, C--> no change, N -->1,Z-->0
-inc R2         #R1= 6, C --> 0, N -->0, Z-->0
-inc R2         #R2= FFEE,C-->1 , N-->1, Z-->0
-add r1,r2,r4
-sub r4,r2,r5
-swap r4,r5
-not r5
->>>>>>> 44187ec444d1867e575b429a07e4b2f2c6356c6e
+
