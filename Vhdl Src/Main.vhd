@@ -142,9 +142,7 @@ begin
       ,zero_flag=>zero_FROM_ALU, carry_flag=>carry_FROM_ALU, neg_flag=>neg_FROM_ALU);
     
     Buffer_Holder_Part :entity work.buffer_holder1
-      port map(CLK,RST
-      --TODO :: need revision
-      ,mem_out_FROM_execute(4)
+      port map(CLK,RST,mem_out_FROM_execute(4)
       --outputs
       ,ENB_Buffer=>ENB_Buffer_EX_MEM);
     
@@ -172,16 +170,25 @@ begin
       ,wb_out=>wb_sigs_FROM_WB,mem_out_out=>Mem_out_FROM_WB,alu_out_1_out=>ALUout1_FROM_WB
       ,alu_out_2_out=>ALUout2_FROM_WB,src_1_out=>SRC1_FROM_WB,dst_out=>dst_FROM_WB);
 
-      --TODO :: need revision
       pc_wb_FROM_WB<=   wb_sigs_FROM_WB(1);
       swap_wb_FROM_WB<= wb_sigs_FROM_WB(3);
       reg_wb_FROM_WB<=  wb_sigs_FROM_WB(0);
       flag_wb_FROM_WB<= wb_sigs_FROM_WB(4);
 
     Output_Chooser :entity work.mux_2to_1
-      port map(ALUout1_FROM_WB,Mem_out_FROM_WB
-      --TODO :: need revision
-      ,wb_sigs_FROM_WB(2)
+      port map(ALUout1_FROM_WB,Mem_out_FROM_WB,wb_sigs_FROM_WB(2)
       --outputs
       ,DATA_FROM_WB);
+
+---------------------------------------------adding forwarding unit---------------------------------------------
+
+    FW_Unit :entity work.ForwardingUnit
+    port map(SRC1=>src_1_out_TO_execute,SRC2=>src_2_out_TO_execute,DST_MEM_WB=>dst_FROM_WB
+    ,DST_EX_MEM=>DST_out_TO_Memory,DST2_EX_MEM=>src1_out_TO_Memory,DST2_MEM_WB=>SRC1_FROM_WB
+    ,SWAP_SIGNAL_EX_MEM=>wb_out_TO_Memory(3),SWAP_SIGNAL_MEM_WB=>swap_wb_FROM_WB
+    ,WB_MEM_WB=>reg_wb_FROM_WB,WB_EX_MEM=>wb_out_TO_Memory(0)
+    --outputs
+    ,ENABLE_1ST_MUX=>enb_1st_mux_FROM_FW_UNIT, ENABLE_2ND_MUX=>enb_2nd_mux_FROM_FW_UNIT);
+
+
 end Arch ; -- Arch
