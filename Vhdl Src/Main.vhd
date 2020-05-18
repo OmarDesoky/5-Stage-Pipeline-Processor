@@ -57,9 +57,8 @@ architecture Arch of processor is
     signal dst_FROM_WB,SRC1_FROM_WB :                                     std_logic_vector(2 downto 0);
 
     --from memory
-    signal ALUout1_FROM_Memory,ALUout2_FROM_Memory,Memout_FROM_Memory : std_logic_vector(31 downto 0);
+    signal Memout_FROM_Memory :                                         std_logic_vector(31 downto 0);
     signal wb_out_FROM_Memory:                                          std_logic_vector(4 downto 0); 
-    signal mem_out_FROM_Memory:                                         std_logic_vector(6 downto 0);
 
     -- to memory
     signal wb_out_TO_Memory:                          std_logic_vector(4 downto 0); 
@@ -131,8 +130,8 @@ begin
       port map(wb_in=>wb_out_TO_execute,mem_in=>mem_out_TO_execute,alu_op=>alu_op_out_TO_execute
       ,ex_in=>ex_out_TO_execute,reg1_data=>data_1_out_TO_execute, reg2_data=>data_2_out_TO_execute
       ,alu_out2_MEM_WB=>ALUout2_FROM_WB, alu_out_MEM_WB=>ALUout1_FROM_WB
-      ,alu_out_EX_MEM=>ALUout1_FROM_Memory, alu_out2_EX_MEM=>ALUout2_FROM_Memory
-      ,mem_out_MEM_WB=>Memout_FROM_Memory,src1=>src_1_out_TO_execute, src2=>src_2_out_TO_execute
+      ,alu_out_EX_MEM=>alu_out1_TO_Memory, alu_out2_EX_MEM=>alu_out2_TO_Memory
+      ,mem_out_MEM_WB=>Mem_out_FROM_WB,src1=>src_1_out_TO_execute, src2=>src_2_out_TO_execute
       ,dst=>dst_out_TO_execute,ea_imm_in=>ea_imm_out_TO_execute, pc_in=>pc_out_TO_execute
       ,enb_1st_mux=>enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux=>enb_2nd_mux_FROM_FW_UNIT
       --outputs
