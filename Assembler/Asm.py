@@ -201,7 +201,7 @@ def convertAdd(listString):
     return [mapOp(listString[0]) + mapReg(listString[3]) + mapReg(listString[1]) +mapReg(listString[2]) + "00"]
 
 def convertSwap(listString):
-    return [mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) +mapReg(listString[1]) + "00"]
+    return [mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) +mapReg(listString[2]) + "00"]
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def convertIadd(listString):
     return [mapOp(listString[0]) + mapReg(listString[2]) + mapReg(listString[1]) + "00000" , hex2bin(listString[3],16)]
