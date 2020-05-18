@@ -26,7 +26,7 @@ z1 <= F_i(31 downto 0);
 
 process (a,b,sel) is
 begin
-z2 <= a;
+z2 <= b;
 case sel is	
 	when "0000" =>
 		F_i <= '0' & (a);
@@ -36,8 +36,8 @@ case sel is
 		F_i <= '0' & (a and b);
 	when "0011" =>
 		F_i <= '0' & (a or b);
-	when "0100" =>
-		F_i <= '0' & (b);
+	-- when "0100" =>
+	-- 	F_i <= '0' & (b);
 	when "0101" =>
 		F_i <= std_logic_vector( resize(signed(a), 33) sll to_integer(unsigned(b)));
 	when "0110" =>
