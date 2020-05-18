@@ -39,9 +39,9 @@ case sel is
 	when "0100" =>
 		F_i <= '0' & (b);
 	when "0101" =>
-		F_i <= std_logic_vector(unsigned(('0' & a)) sll to_integer(unsigned(b)));
+		F_i <= std_logic_vector( resize(signed(a), 33) sll to_integer(unsigned(b)));
 	when "0110" =>
-		F_i <= std_logic_vector(unsigned((a & '0')) srl to_integer(unsigned(b)));
+		F_i <= std_logic_vector( resize(signed(a), 33)  srl to_integer(signed(b)));
 	when "0111" =>
 		F_i <= ('0' & a) + ('0' & b);
 	when "1000" =>
