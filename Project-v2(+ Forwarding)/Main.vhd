@@ -78,9 +78,9 @@ architecture Arch of processor is
     -- from data hazard "to be used later"
     signal PC_ENB_FROM_DATAHAZARD                     : std_logic := '1' ;
     signal insert_bubble_FROM_DATAHAZARD              : std_logic := '0' ;
-    signal stall_for_INT_TO_DATAHAZARD                : std_logic        ;
-    signal stall_for_jump_prediction_TO_DATAHAZARD    : std_logic        ;
-    signal IF_ID_ENB_FROM_DATAHAZARD                  : std_logic := '1' ;
+    signal stall_for_INT_FROM_DATAHAZARD              : std_logic        ;
+    signal stall_for_jump_prediction_FROM_DATAHAZARD  : std_logic        ;
+    signal IF_ID_ENB                                  : std_logic := '1' ;
 
     -- from forwarding unit "to be used later"
     signal enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux_FROM_FW_UNIT: std_logic_vector(2 downto 0) := "000";
@@ -92,7 +92,7 @@ begin
         port map(rst_async_test=>RST,int_test=>INT, pc_wb =>pc_wb_FROM_WB
         ,take_jmp_addr_test=>take_jmp_addr_FROM_prediction
         ,IN_MIDDLE_OF_IMM=>IN_MIDDLE_OF_IMM_FROM_decode,IF_ANY_JUMP=>IF_ANY_JUMP_FROM_decode
-        ,CLK=>CLK,flip_next_cycle_INT_test=>IF_ID_ENB_FROM_DATAHAZARD
+        ,CLK=>CLK,flip_next_cycle_INT_test=>IF_ID_ENB
         ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>Flush_FROM_decode
         ,pc_frm_wb_test=>DATA_FROM_WB,calc_jmp_addr_test=>PC_FROM_prediction
         --outputs
@@ -100,7 +100,7 @@ begin
         ,INT_First_Cycle=>INT_FROM_fetch);
 
     IF_ID : entity work.if_id
-        port map(CLK,RST,enable=>IF_ID_ENB_FROM_DATAHAZARD,last_taken_in=>last_taken_FROM_prediction
+        port map(CLK,RST,enable=>IF_ID_ENB,last_taken_in=>last_taken_FROM_prediction
         ,next_stall_in=>next_stall_FROM_prediction
         ,int_in=>INT_FROM_fetch,instruction_in=>instruction_fetched
         ,pc_in=>PC_FROM_fetch
@@ -121,7 +121,7 @@ begin
         ,ex_outt=>ex_out_TO_execute,data_1_outt=>data_1_out_TO_execute,data_2_outt=>data_2_out_TO_execute
         ,src_1_outt=>src_1_out_TO_execute,src_2_outt=>src_2_out_TO_execute, ea_imm_outt=> ea_imm_out_TO_execute
         ,pc_outt=>pc_out_TO_execute,dst_outt=>dst_out_TO_execute
-        ,stall_for_int=>stall_for_INT_TO_DATAHAZARD,stall_for_jmp_pred=>stall_for_jump_prediction_TO_DATAHAZARD
+        ,stall_for_int=>stall_for_INT_FROM_DATAHAZARD,stall_for_jmp_pred=>stall_for_jump_prediction_FROM_DATAHAZARD
         ,ifjmp_upd_fsm=>ifJZ_FROM_decode,zero_flag_compara=>zero_flag_FROM_decode
         ,last_taken_compara=>last_taken_FROM_decode,inmiddleofimm=>IN_MIDDLE_OF_IMM_FROM_decode
         ,ifanyjmp=>IF_ANY_JUMP_FROM_decode);
@@ -190,14 +190,5 @@ begin
     --outputs
     ,ENABLE_1ST_MUX=>enb_1st_mux_FROM_FW_UNIT, ENABLE_2ND_MUX=>enb_2nd_mux_FROM_FW_UNIT);
 
-------------------------------------------adding hazard detection unit--------------------------------------------
-
-    Hazard_detect :entity work.data_hazard_detection_unit
-    port map(SRC1=>instruction_TO_decode(7 downto 5), SRC2=>instruction_TO_decode(4 downto 2)
-    ,DST=> dst_out_TO_execute,MEM_READ_ID_EX=>mem_out_TO_execute(1)
-    ,STALL_FOR_JUMP_PREDECTION=>stall_for_jump_prediction_TO_DATAHAZARD,STALL_FOR_INT=>stall_for_INT_TO_DATAHAZARD
-    --outputs
-    ,INSERT_BUBBLE=>insert_bubble_FROM_DATAHAZARD,PC_ENB=>PC_ENB_FROM_DATAHAZARD
-    ,IF_ID_ENB=>IF_ID_ENB_FROM_DATAHAZARD);
 
 end Arch ; -- Arch
