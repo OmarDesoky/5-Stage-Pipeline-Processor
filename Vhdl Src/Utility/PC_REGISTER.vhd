@@ -1,9 +1,8 @@
 library IEEE;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.std_logic_arith.all;
 
-entity shift_out_register is 
+entity PC_REGISTER is 
 
 generic (size : integer := 32);
 
@@ -12,22 +11,23 @@ port (
     rst_async: in std_logic;
     write_enb: in std_logic;
     d : in std_logic_vector(size-1 downto 0);
-    q : inout std_logic_vector(63 downto 0)
+    mem_loc_0_1 : in std_logic_vector(size-1 downto 0);
+    q : out std_logic_vector(size-1 downto 0)
 );
-end shift_out_register ;
+end PC_REGISTER ;
 
 
-architecture general_register of shift_out_register is
+architecture general_register of PC_REGISTER is
+
 begin
 
-process(clk,rst_async,write_enb)
+process(clk,rst_async,write_enb,mem_loc_0_1)
 begin
     if rst_async = '1' then
-        q <= (others => '0');
+        q <= mem_loc_0_1;
     else
         if ( rising_edge(clk) and write_enb ='1' ) then
-		q(63 downto 32) <= q(31 downto 0);
-		q(31 downto 0) <= d;
+            q <= d;
         end if;
     end if;
 

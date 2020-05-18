@@ -12,6 +12,7 @@ ENTITY inst_ram IS
 		address : IN  std_logic_vector(31 DOWNTO 0);
 		datain  : IN  std_logic_vector(15 DOWNTO 0);
 		dataout : OUT std_logic_vector(15 DOWNTO 0);
+		mem_loc_0_1 : OUT std_logic_vector(31 DOWNTO 0);
 		mem_loc_2_3 : OUT std_logic_vector(31 DOWNTO 0));
 END ENTITY inst_ram;
 
@@ -36,6 +37,10 @@ ARCHITECTURE syncram OF inst_ram IS
 	7=> "1000000000100000",
  	others=>"0111100000000000"
 	);
+	-- reset
+	signal mem_loc_0 :std_logic_vector(31 DOWNTO 0);
+	signal mem_loc_1 :std_logic_vector(31 DOWNTO 0);
+	-- int
 	signal mem_loc_2 :std_logic_vector(31 DOWNTO 0);
 	signal mem_loc_3 :std_logic_vector(31 DOWNTO 0);
 	BEGIN
@@ -47,8 +52,13 @@ ARCHITECTURE syncram OF inst_ram IS
 					END IF;
 				END IF;
 		END PROCESS;
+		mem_loc_0 <= "00000000000000000000000000000000";
+		mem_loc_1 <= "00000000000000000000000000000001";
+
 		mem_loc_2 <= "00000000000000000000000000000010";
 		mem_loc_3 <= "00000000000000000000000000000011";
+
 		dataout <= ram(to_integer(unsigned(address(11 downto 0)))) when (rd = '1');
-		mem_loc_2_3 <= ram(to_integer(unsigned(mem_loc_2)))& ram(to_integer(unsigned(mem_loc_3)));
+		mem_loc_0_1 <= ram(to_integer(unsigned(mem_loc_1)))& ram(to_integer(unsigned(mem_loc_0)));
+		mem_loc_2_3 <= ram(to_integer(unsigned(mem_loc_3)))& ram(to_integer(unsigned(mem_loc_2)));
 END syncram;

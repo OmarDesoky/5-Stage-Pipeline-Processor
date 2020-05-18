@@ -197,7 +197,8 @@ begin
             elsif (op = OUTT) then
                 io_enable<='1';
             elsif (op = PUSH) then
-                write_enable<='1';
+                --write_enable<='1';
+		mem_write <='1';
                 sp_enb<="11";
             elsif (op = POP) then
                 mem_read<='1';

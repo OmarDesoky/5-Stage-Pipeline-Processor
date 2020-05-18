@@ -63,6 +63,7 @@ signal out_data : array_reg ;
 signal check_wb : std_logic_vector(7 downto 0);
 signal check_wb_swap : std_logic_vector(7 downto 0);
 signal final_check :std_logic_vector(7 downto 0);
+signal selctor_mux_reg :std_logic_vector(7 downto 0);
 
 signal flag_bits:std_logic_vector(2 downto 0);
 signal chosen_data_flags: std_logic_vector(2 downto 0);
@@ -74,8 +75,11 @@ begin
     genCompReg:for i in 0 to 7 generate
         check_wb(i) <= '1' when (to_integer(unsigned(write_reg)) = i ) else '0';
         check_wb_swap(i) <= '1' when (to_integer(unsigned(write_reg_swap)) = i ) else '0';
-        mux_reg: mux_2to_1 generic map(size=>32) port map(write_data,write_data_swap,check_wb_swap(i),chosen_data(i));
-        final_check(i)<=  ( check_wb(i) or check_wb_swap(i)  ) and write_enb;
+	selctor_mux_reg(i)<= (check_wb_swap(i) and swap);
+        --mux_reg: mux_2to_1 generic map(size=>32) port map(write_data,write_data_swap,check_wb_swap(i) and swap,chosen_data(i));
+        --final_check(i)<=  ( check_wb(i) or check_wb_swap(i)  ) and write_enb;
+	mux_reg: mux_2to_1 generic map(size=>32) port map(write_data,write_data_swap,selctor_mux_reg(i),chosen_data(i));
+        final_check(i)<=  ( check_wb(i) and write_enb  ) or (check_wb_swap(i) and swap )  ;
         r: n_bit_register generic map(size=>32) port map (negated_clk,rst_async, final_check(i),chosen_data(i),out_data(i));
 
     end generate genCompReg;

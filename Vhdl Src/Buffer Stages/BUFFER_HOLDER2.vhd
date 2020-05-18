@@ -23,14 +23,14 @@ architecture BFH2 of buffer_holder2 is
     signal counter : integer range 0 to 1;
 begin
   
-    process( clk,rst_async )
+    process( clk,rst_async,WB_signals_in )
     begin
             if rst_async = '1' then
 
                 WB_signals_out <= "00000";
                 counter <= 0;
 
-            elsif (rising_edge(clk)) then
+            elsif (falling_edge(clk)) then
                 if(INT_RTI_call_RET_Dontuse = "101" ) then --RTI
                     if counter = 0 then
                         WB_signals_out <=  WB_signals_in;

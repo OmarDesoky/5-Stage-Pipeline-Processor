@@ -12,6 +12,7 @@ PORT (
 END Fetch_Stage;
 
 ARCHITECTURE flow OF Fetch_Stage IS
+signal mem_loc_0_1_test: std_logic_vector(31 downto 0);
 signal mem_loc_2_3_test: std_logic_vector(31 downto 0);
 signal pc_updated_test :std_logic_vector(31 downto 0);
 signal pc_selected :std_logic_vector(31 downto 0);
@@ -33,7 +34,7 @@ BEGIN
  process(pc_out_memory_in, CLK,rst_async_test) 
  begin 
  if rst_async_test = '1' then 
- 	pc_updated_test<= (others => '0');
+ 	pc_updated_test<= mem_loc_0_1_test;
  else
  	pc_updated_test <= pc_out_memory_in +1;
  end if;
@@ -43,20 +44,20 @@ BEGIN
 
  PC_WB2 <= pc_wb and (not(INT_raised_before_test));
  pc_Select : entity work.pc_selector
-    port map(rst_async=>rst_async_test, int=>INT_2nd_cycle_test, pc_wb=>PC_WB2, take_jmp_addr=> take_jmp_addr_test, mem_loc_2_3=>mem_loc_2_3_test
+    port map(rst_async=>rst_async_test, int=>INT_2nd_cycle_test, pc_wb=>PC_WB2, take_jmp_addr=> take_jmp_addr_test, mem_loc_0_1=>mem_loc_0_1_test,mem_loc_2_3=>mem_loc_2_3_test
 , pc_frm_wb=>pc_frm_wb_test ,calc_jmp_addr=>calc_jmp_addr_test, pc_updated=>pc_updated_test, pc_out=>pc_selected);
 
  write_enb_test <= (write_enb_from_INT and PC_ENB_DATAHAZARD and (not int_test));
 
- pc_REG : entity work.n_bit_register
-    port map(CLK, rst_async=>rst_async_test, write_enb=>write_enb_test, d=>pc_selected, q=>pc_out_memory_in);
+ pc_REG : entity work.PC_REGISTER
+    port map(CLK, rst_async=>rst_async_test, write_enb=>write_enb_test, d=>pc_selected, mem_loc_0_1=>mem_loc_0_1_test,q=>pc_out_memory_in);
 
  INT_Handel : entity work.handler
     port map(CLK, rst_async=>rst_async_test, flip_next_cycle_INT=>flip_next_cycle_INT_test, INT_sig=>int_test
 , INT_1st_cycle=>INT_First_Cycle,INT_2nd_cycle=>INT_2nd_cycle_test, INT_raised_before=>INT_raised_before_test, PC_enb_from_INT=>write_enb_from_INT );
 
  INS_Memory : entity work.inst_ram
-    port map(CLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_2_3_test);
+    port map(CLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_0_1_test, mem_loc_2_3_test);
 
  PC_SAVE_DET : entity work.PC_Save_Determine
     port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,CLK,PC_Saved);
