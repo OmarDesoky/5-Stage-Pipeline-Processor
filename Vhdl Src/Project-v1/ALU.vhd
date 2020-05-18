@@ -8,7 +8,6 @@ entity alu is
  b : in STD_LOGIC_VECTOR (31 downto 0);
  z1 : out STD_LOGIC_VECTOR (31 downto 0);
  z2 : out STD_LOGIC_VECTOR (31 downto 0);
- carryin: in std_logic;
  zero: out std_logic;
  carry: out std_logic;
  neg: out std_logic;
@@ -20,7 +19,7 @@ architecture Behavioral of alu is
 signal F_i : std_logic_vector(32 downto 0) := "000000000000000000000000000000000";
 begin
 
-neg <= not F_i(31);
+neg <= F_i(31);
 zero <= '1' when F_i(31 downto 0) = "00000000000000000000000000000000" else '0';
 carry <= F_i(32);
 z1 <= F_i(31 downto 0);
@@ -32,9 +31,7 @@ case sel is
 	when "0000" =>
 		F_i <= '0' & (a);
 	when "0001" =>
-		if carryin = '1' then 	F_i <= ('0' & a) - ('0' & b);
-		else					F_i <= ('0' & a) - ('0' & b) + 1;
-		end if;
+		F_i <= std_logic_vector(resize(signed(a), 33) - resize(signed(b), 33));
 	when "0010" =>
 		F_i <= '0' & (a and b);
 	when "0011" =>
@@ -42,13 +39,11 @@ case sel is
 	when "0100" =>
 		F_i <= '0' & (b);
 	when "0101" =>
-		F_i <= a(31) & a(30 downto 0) & '0';
+		F_i <= std_logic_vector(unsigned(('0' & a)) sll to_integer(unsigned(b)));
 	when "0110" =>
-		F_i <= a(0) & '0' & a(31 downto 1) ;
+		F_i <= std_logic_vector(unsigned((a & '0')) srl to_integer(unsigned(b)));
 	when "0111" =>
-		if carryin = '1' then 	F_i <= ('0' & a) + ('0' & b) + 1;
-		else			F_i <= ('0' & a) + ('0' & b);
-		end if;
+		F_i <= ('0' & a) + ('0' & b);
 	when "1000" =>
 		F_i <= '0' & (not a);
 	when "1001" =>
