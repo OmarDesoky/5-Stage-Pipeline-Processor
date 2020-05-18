@@ -46,9 +46,9 @@ choose_2nd_operand :  entity work.mux_6to1 generic map(32)
 --	else
 --		will select => EA/IMM
 select_REGData2_or_EA_IMM:  entity work.mux_2to_1 generic map(32)
-    port map(a=> reg2_data, b=>ea_imm_in, sel=>ex_in(0), y=>mux_choice);
+    port map(a=> reg2_data, b=>ea_imm_in, sel=>ex_in(1), y=>mux_choice);
 -- what is carry in ???!
 execution_unit:  entity work.alu
     port map(a=> first_operand_for_ALU, b=>second_operand_for_ALU, z1=>alu_out1, z2=>alu_out2, zero=>zero_flag, carry=>carry_flag, neg=>neg_flag, sel=>alu_op);
 
-END flow; 
+END flow;
