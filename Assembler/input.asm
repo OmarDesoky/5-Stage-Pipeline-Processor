@@ -9,23 +9,16 @@
 100
 
 .ORG 10
-#setC           #C --> 1
-NOP            #No change
-#ClRC           #C --> 0
-NOT R1         #R1 =FFFFFFFF , C--> no change, N --> 1, Z --> 0
-inc R1	       #R1 =00000000 , C --> 1 , N --> 0 , Z --> 1
-in R1	       #R1= 5,add 5 on the in port,flags no change	
-in R2          #R2= 10,add 10 on the in port, flags no change
-NOT R2	       #R2= FFFFFFEF, C--> no change, N -->1,Z-->0
-inc R1         #R1= 6, C --> 0, N -->0, Z-->0
-Dec R2         #R2= FFEE,C-->1 , N-->1, Z-->0
-add r1,r2,r3
-sub r2,r3, r7
-not r5
-and r3,r4,r5
-out R1
-out R2
-ldm R2,100
-ldd r2,100
-std r1,50
-shr r5,100
+in   R1       #add 5 in R1
+in   R2       #add 19 in R2
+in   R3       #FFFD
+in   R4       #F320
+IADD R3,R5,2  #R5 = FFFF , flags no change
+ADD  R1,R4,R4    #R4= F325 , C-->0, N-->0, Z-->0
+SUB  R5,R4,R6    #R4= 0CDA , C-->1, N-->0,Z-->0
+AND  R7,R6,R6    #R6= 00000000 , C-->no change, N-->0, Z-->1
+OR   R2,R1,R1    #R1=1D  , C--> no change, N-->0, Z--> 0
+SHL  R2,2     #R2=64  , C--> 0, N -->0 , Z -->0
+SHR  R2,3     #R2=0C  , C -->1, N-->0 , Z-->0
+SWAP R2,R5    #R5=0C ,R2=FFFF  ,no change for flags
+ADD  R5,R2,R2    #R2= 1000B (C,N,Z= 0)
