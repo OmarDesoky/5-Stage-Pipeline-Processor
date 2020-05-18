@@ -186,7 +186,7 @@ begin
     port map(SRC1=>src_1_out_TO_execute,SRC2=>src_2_out_TO_execute,DST_MEM_WB=>dst_FROM_WB
     ,DST_EX_MEM=>DST_out_TO_Memory,DST2_EX_MEM=>src1_out_TO_Memory,DST2_MEM_WB=>SRC1_FROM_WB
     ,SWAP_SIGNAL_EX_MEM=>wb_out_TO_Memory(3),SWAP_SIGNAL_MEM_WB=>swap_wb_FROM_WB
-    ,WB_MEM_WB=>reg_wb_FROM_WB,WB_EX_MEM=>wb_out_TO_Memory(0)
+    ,WB_MEM_WB=>reg_wb_FROM_WB,WB_EX_MEM=>wb_out_TO_Memory(0),MEM_OR_REG_MEM_WB=>wb_sigs_FROM_WB(2)
     --outputs
     ,ENABLE_1ST_MUX=>enb_1st_mux_FROM_FW_UNIT, ENABLE_2ND_MUX=>enb_2nd_mux_FROM_FW_UNIT);
 

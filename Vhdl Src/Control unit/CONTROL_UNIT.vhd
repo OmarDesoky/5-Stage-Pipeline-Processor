@@ -225,7 +225,7 @@ begin
                 int_rti_dntuse<="011";
 		flush_Decode<='1';
             elsif (op = SWAPP) then
-                alu_op <= SWAP_ALU ;
+                alu_op <= NOP_ALU ;
                 swap<='1';
                 write_enable<='1';
     
