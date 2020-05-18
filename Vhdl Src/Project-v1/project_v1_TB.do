@@ -86,11 +86,11 @@ add wave -position insertpoint sim:/processor/decode/RegisterFile/*
 add wave -position insertpoint sim:/processor/decode/Control/*
 add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
 add wave -position insertpoint sim:/processor/fetch/*
-mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/Project/test.mem} /processor/fetch/INS_Memory/ram
+mem load -i {C:/Users/DELL/Desktop/Arch/project/Local_version/5-Stage-Pipeline-Processor/Vhdl Src/Project-v1/test.mem} /processor/Memory/DATA_Memory/ram
 force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/processor/RST 1 0
 force -freeze sim:/processor/INT 0 0
-force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000101 0
 run
 force -freeze sim:/processor/RST 0 0
 run
