@@ -9,18 +9,19 @@
 100
 
 .ORG 10
-NOT R1         #R1 =FFFFFFFF , C--> no change, N --> 1, Z --> 0
-NOP            #No change
-NOP
-inc R1	       #R1 =00000000 , C --> 1 , N --> 0 , Z --> 1
-in R1	       #R1= 5,add 5 on the in port,flags no change	
-in R2          #R2= 10,add 10 on the in port, flags no change
+in R2        #R2=0CDAFE19 add 0CDAFE19 in R2
+in R3        #R3=FFFF
+in R4        #R4=F320
+LDM R1,F5    #R1=F5
 NOP
 NOP
-NOT R2	       #R2= FFFFFFEF, C--> no change, N -->1,Z-->0
-inc R1         #R1= 6, C --> 0, N -->0, Z-->0
+PUSH R1      #SP=7FC, M[7FE, 7FF] = F5
+PUSH R2      #SP=7FA,M[7FC, 7FD]=0CDAFE19
+POP R1       #SP=7FC,R1=0CDAFE19
+POP R2       #SP=7FE,R2=F5
 NOP
-Dec R2         #R2= FFFFFFEE,C-->1 , N-->1, Z-->0
 NOP
-out R1
-out R2
+STD R2,200   #M[200, 201]=F5
+STD R1,202   #M[202, 203]=0CDAFE19
+LDD R3,202   #R3=0CDAFE19
+LDD R4,200   #R4=5
