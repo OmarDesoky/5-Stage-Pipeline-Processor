@@ -138,7 +138,7 @@ begin
       --outputs
       ,Mem_out=>mem_out_FROM_execute,wb_out=>wb_out_FROM_execute,alu_out1=>alu_out1_FROM_execute 
       ,alu_out2=>alu_out2_FROM_execute, EA_IMM_out=>EA_IMM_out_FROM_execute, pc_out=>pc_out_FROM_execute
-      ,src1_out=>src1_out_FROM_execute, DST_out=>DST_out_FROM_execute
+      ,src1_out=>src1_out_FROM_execute, DST_out=>DST_out_FROM_execute, IO_out=>DATA_toIO
       ,zero_flag=>zero_FROM_ALU, carry_flag=>carry_FROM_ALU, neg_flag=>neg_FROM_ALU);
     
     Buffer_Holder_Part :entity work.buffer_holder1
