@@ -20,6 +20,8 @@ port (
     ea_imm_in: in std_logic_vector(31 downto 0);
     pc_in: in std_logic_vector(31 downto 0);
     dst_in: in std_logic_vector(2 downto 0);
+    prediction_result_in: in std_logic; --edited 20/5/2020 
+
 
 
     wb_out: out std_logic_vector(4 downto 0); --edited 10/5
@@ -32,7 +34,8 @@ port (
     src_2_out: out std_logic_vector(2 downto 0);
     ea_imm_out: out std_logic_vector(31 downto 0);
     pc_out: out std_logic_vector(31 downto 0);
-    dst_out: out std_logic_vector(2 downto 0)
+    dst_out: out std_logic_vector(2 downto 0);
+    prediction_result_out: in std_logic --edited 20/5/2020 
 );
 end id_ex ;
 
@@ -55,6 +58,7 @@ begin
         ea_imm_out <= (others => '0');
         pc_out <= (others => '0');
         dst_out <= (others => '0');
+        prediction_result_out <= '0'; --edited 20/5/2020 
     
     else
         if rising_edge(clk) then
@@ -73,6 +77,7 @@ begin
             mem_out <= mem_in;
             alu_op_out <= alu_op_in;
             ex_out <= ex_in;
+            prediction_result_out<=prediction_result_in; --edited 20/5/2020
 
         end if;
     end if;
