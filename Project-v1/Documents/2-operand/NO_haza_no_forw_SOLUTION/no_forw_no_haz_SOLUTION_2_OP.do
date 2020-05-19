@@ -11,7 +11,7 @@ add wave -position insertpoint sim:/processor/DATA_toIO
 add wave -position insertpoint sim:/processor/fetch/pc_selected
 add wave -position insertpoint sim:/processor/decode/RegisterFile/out_data
 
-add wave -position insertpoint sim:/processor/Memory/SP_current
+add wave -position insertpoint sim:/processor/Memory/SP_chosen
 
 add wave -position insertpoint sim:/processor/carry_flag
 add wave -position insertpoint sim:/processor/neg_flag
