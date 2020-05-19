@@ -19,6 +19,7 @@ PORT (
     	wb_out:             out std_logic_vector(4 downto 0);
 	alu_out1, alu_out2, EA_IMM_out, pc_out:out std_logic_vector(31 downto 0);
 	src1_out, DST_out:out std_logic_vector (2 downto 0);
+	IO_out : out std_logic_vector(31 downto 0);
 	zero_flag, carry_flag, neg_flag:out std_logic);
 END Execution_Stage;
 
@@ -50,5 +51,12 @@ select_REGData2_or_EA_IMM:  entity work.mux_2to_1 generic map(32)
 -- what is carry in ???!
 execution_unit:  entity work.alu
     port map(a=> first_operand_for_ALU, b=>second_operand_for_ALU, z1=>alu_out1, z2=>alu_out2, zero=>zero_flag, carry=>carry_flag, neg=>neg_flag, sel=>alu_op);
-
+process(first_operand_for_ALU)
+begin
+	if (ex_in(0) = '1') then
+		IO_out <= first_operand_for_ALU;
+	else
+		IO_out <= "00000000000000000000000000000000";
+	end if;
+end process;
 END flow;

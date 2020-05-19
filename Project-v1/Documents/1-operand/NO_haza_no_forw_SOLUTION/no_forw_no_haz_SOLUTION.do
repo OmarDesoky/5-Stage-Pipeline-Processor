@@ -1,5 +1,5 @@
 vsim -gui work.processor
-mem load -i {C:/Users/user/Desktop/5-Stage-Pipeline-Processor/Vhdl Src/Project-v1/mem.mem} /processor/fetch/INS_Memory/ram
+mem load -i {C:\Users\DELL\Desktop\Arch\project\5-Stage-Pipeline-Processor\Project-v1\test.mem} /processor/fetch/INS_Memory/ram
 
 add wave -position insertpoint sim:/processor/CLK
 add wave -position insertpoint sim:/processor/RST
@@ -27,39 +27,26 @@ force -freeze sim:/processor/RST 0 0
 run
 
 // 1st decode
-force -freeze sim:/processor/DATA_fromIO 16#00000005 0
 run
 
 // 2nd decode
-force -freeze sim:/processor/DATA_fromIO 16#00000019 0
 run
 
 // 3rd decode
-force -freeze sim:/processor/DATA_fromIO 16#0000fffd 0
 run
 
 // 4th decode
-force -freeze sim:/processor/DATA_fromIO 16#0000f320 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000101 0
 run
 
+// 5th decode
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000010000 0
 run
+
+// 6th decode
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
+
+// Rest
 run
 run
 run

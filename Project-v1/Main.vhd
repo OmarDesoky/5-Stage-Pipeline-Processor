@@ -56,9 +56,9 @@ architecture Arch of processor is
     signal DATA_FROM_WB,ALUout1_FROM_WB,ALUout2_FROM_WB,Mem_out_FROM_WB :              std_logic_vector(31 downto 0);
     signal dst_FROM_WB,SRC1_FROM_WB :                                     std_logic_vector(2 downto 0);
     -- for printing flags 
-    signal carry_flag:                             std_logic;
-    signal zero_flag:                              std_logic;
-    signal neg_flag:                               std_logic;
+    signal carry_flag_final:                             std_logic;
+    signal zero_flag_final:                              std_logic;
+    signal neg_flag_final:                               std_logic;
 
     --from memory
     signal ALUout1_FROM_Memory,ALUout2_FROM_Memory,Memout_FROM_Memory : std_logic_vector(31 downto 0);
@@ -182,7 +182,7 @@ begin
       --outputs
       ,wb_out=>wb_sigs_FROM_WB,mem_out_out=>Mem_out_FROM_WB,alu_out_1_out=>ALUout1_FROM_WB
       ,alu_out_2_out=>ALUout2_FROM_WB,src_1_out=>SRC1_FROM_WB,dst_out=>dst_FROM_WB,
-      carry_out=>carry_flag,zero_out=>zero_flag,neg_out=>neg_flag);
+      carry_out=>carry_flag_final,zero_out=>zero_flag_final,neg_out=>neg_flag_final);
 
       --TODO :: need revision
       pc_wb_FROM_WB<=   wb_sigs_FROM_WB(1);

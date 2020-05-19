@@ -40,7 +40,7 @@ force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000101 0
 run
 
 // 5th decode
-force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000001010 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000010000 0
 run
 
 // 6th decode

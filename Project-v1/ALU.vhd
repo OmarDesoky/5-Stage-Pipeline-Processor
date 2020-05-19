@@ -92,6 +92,10 @@ case sel is
 			flags(1) <= '0';
 		end if;
 		flags(0) <= F_i(32);
+		
+		neg <= flags(2);
+		zero <= flags(1);
+		carry <= flags(0);
 	when "1001" =>
 		F_i <= ('0' & a) + 1;
 		flags(2) <= F_i(31);
@@ -110,11 +114,12 @@ case sel is
 			flags(1) <= '0';
 		end if;
 		flags(0) <= F_i(32);
+		
 	when others =>
 		F_i <= '0' & a;
+		neg <= flags(2);
+		zero <= flags(1);
+		carry <= flags(0);
 end case;
-	neg <= flags(2);
-	zero <= flags(1);
-	carry <= flags(0);
 end process;
 end Behavioral;
