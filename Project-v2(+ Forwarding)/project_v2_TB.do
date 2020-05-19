@@ -99,17 +99,13 @@ force -freeze sim:/processor/RST 0 0
 run
 
 // 1st decode
-force -freeze sim:/processor/DATA_fromIO 16#5 0
+force -freeze sim:/processor/DATA_fromIO 16#0CDAFE19 0
 run                                         
 
 // 2nd decode
-force -freeze sim:/processor/DATA_fromIO 16#19 0
+force -freeze sim:/processor/DATA_fromIO 16#0000FFFF 0
 run
 
 // 3rd decode
-force -freeze sim:/processor/DATA_fromIO 16#FFFD 0
-run
-
-// 4rd decode
-force -freeze sim:/processor/DATA_fromIO 16#F320 0
+force -freeze sim:/processor/DATA_fromIO 16#0000F320 0
 run
