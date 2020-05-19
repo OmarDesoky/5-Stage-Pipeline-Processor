@@ -4,7 +4,7 @@ USE IEEE.std_logic_1164.all;
 ENTITY ForwardingUnit IS  
 PORT (
 	SRC1, SRC2, DST_MEM_WB, DST_EX_MEM, DST2_EX_MEM, DST2_MEM_WB:IN std_logic_vector(2 downto 0);
-	SWAP_SIGNAL_EX_MEM, SWAP_SIGNAL_MEM_WB, WB_MEM_WB, WB_EX_MEM:IN std_logic;
+	SWAP_SIGNAL_EX_MEM, SWAP_SIGNAL_MEM_WB, WB_MEM_WB, WB_EX_MEM,MEM_OR_REG_MEM_WB:IN std_logic;
 	ENABLE_1ST_MUX, ENABLE_2ND_MUX:OUT  std_logic_vector(2 downto 0));    
 END ENTITY ForwardingUnit;
 
@@ -19,8 +19,11 @@ if ((SRC1 = DST_EX_MEM) and (WB_EX_MEM = '1')) then
 elsif ((SRC1 = DST2_EX_MEM) and (WB_EX_MEM = '1') and (SWAP_SIGNAL_EX_MEM = '1')) then
 	ENABLE_1ST_MUX <= "010"; -- ALU OUT 2 FROM EX/MEM
 
-elsif ((SRC1 = DST_MEM_WB) and (WB_MEM_WB = '1') and (SWAP_SIGNAL_MEM_WB = '0')) then
+elsif ((SRC1 = DST_MEM_WB) and (WB_MEM_WB = '1') and (MEM_OR_REG_MEM_WB = '1') and (SWAP_SIGNAL_MEM_WB = '0')) then
 	ENABLE_1ST_MUX <= "100"; -- MEM OUT FROM MEM/WB
+
+elsif ((SRC1 = DST_MEM_WB) and (WB_MEM_WB = '1') and (MEM_OR_REG_MEM_WB = '0') and (SWAP_SIGNAL_MEM_WB = '0')) then
+	ENABLE_1ST_MUX <= "101"; -- MEM OUT FROM MEM/WB
 
 elsif ((SRC1 = DST_MEM_WB) and (WB_MEM_WB = '1') and (SWAP_SIGNAL_MEM_WB = '1')) then
 	ENABLE_1ST_MUX <= "101"; -- ALU OUT 1 FROM MEM/WB
@@ -38,8 +41,11 @@ if ((SRC2 = DST_EX_MEM) and (WB_EX_MEM = '1')) then
 elsif ((SRC2 = DST2_EX_MEM) and (WB_EX_MEM = '1') and (SWAP_SIGNAL_EX_MEM = '1')) then
 	ENABLE_2ND_MUX <= "010"; -- ALU OUT 2 FROM EX/MEM
 
-elsif ((SRC2 = DST_MEM_WB) and (WB_MEM_WB = '1') and (SWAP_SIGNAL_MEM_WB = '0')) then
+elsif ((SRC2 = DST_MEM_WB) and (WB_MEM_WB = '1') and (MEM_OR_REG_MEM_WB = '1') and (SWAP_SIGNAL_MEM_WB = '0')) then
 	ENABLE_2ND_MUX <= "100"; -- MEM OUT FROM MEM/WB
+
+elsif ((SRC2 = DST_MEM_WB) and (WB_MEM_WB = '1') and (MEM_OR_REG_MEM_WB = '0') and (SWAP_SIGNAL_MEM_WB = '0')) then
+	ENABLE_2ND_MUX <= "101"; -- ALU OUT 1 FROM MEM/WB
 
 elsif ((SRC2 = DST_MEM_WB) and (WB_MEM_WB = '1') and (SWAP_SIGNAL_MEM_WB = '1')) then
 	ENABLE_2ND_MUX <= "101"; -- ALU OUT 1 FROM MEM/WB

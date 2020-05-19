@@ -94,7 +94,7 @@ mem load -i {C:/Users/user/Desktop/5-Stage-Pipeline-Processor/Vhdl Src/Project-v
 force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/processor/RST 1 0
 force -freeze sim:/processor/INT 0 0
-force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000101 0
 run
 
 
