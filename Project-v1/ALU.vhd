@@ -36,8 +36,9 @@ case sel is
 		F_i <= '0' & (a and b);
 	when "0011" =>
 		F_i <= '0' & (a or b);
-	-- when "0100" =>
-	-- 	F_i <= '0' & (b);
+	when "0100" =>
+		F_i <= '0' & (b);
+		z2 <= a;
 	when "0101" =>
 		F_i <= std_logic_vector( resize(signed(a), 33) sll to_integer(unsigned(b)));
 	when "0110" =>
