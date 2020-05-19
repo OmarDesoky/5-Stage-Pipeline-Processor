@@ -53,6 +53,9 @@ case sel is
 			flags(1) <= '0';
 		end if;
 		flags(0) <= F_i(32);
+	when "0100" =>
+		F_i <= '0' & (b);
+		z2 <= a;
 	when "0101" =>
 		F_i <= std_logic_vector( resize(signed(a), 33) sll to_integer(unsigned(b)));
 		flags(2) <= F_i(31);

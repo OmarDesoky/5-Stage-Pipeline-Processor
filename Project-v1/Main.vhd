@@ -55,6 +55,10 @@ architecture Arch of processor is
     signal wb_sigs_FROM_WB:                                               std_logic_vector(4 downto 0);
     signal DATA_FROM_WB,ALUout1_FROM_WB,ALUout2_FROM_WB,Mem_out_FROM_WB :              std_logic_vector(31 downto 0);
     signal dst_FROM_WB,SRC1_FROM_WB :                                     std_logic_vector(2 downto 0);
+    -- for printing flags 
+    signal carry_flag:                             std_logic;
+    signal zero_flag:                              std_logic;
+    signal neg_flag:                               std_logic;
 
     --from memory
     signal ALUout1_FROM_Memory,ALUout2_FROM_Memory,Memout_FROM_Memory : std_logic_vector(31 downto 0);
@@ -67,6 +71,10 @@ architecture Arch of processor is
     signal alu_out1_TO_Memory, alu_out2_TO_Memory:    std_logic_vector(31 downto 0);
     signal EA_IMM_out_TO_Memory, pc_out_TO_Memory:    std_logic_vector(31 downto 0);
     signal src1_out_TO_Memory, DST_out_TO_Memory:     std_logic_vector (2 downto 0);
+    -- for printing flags 
+    signal carry_out_TO_Memory:                       std_logic;
+    signal zero_out_TO_Memory:                        std_logic;
+    signal neg_out_TO_Memory:                         std_logic;
 
     --from fetch
     signal instruction_fetched :std_logic_vector(15 downto 0);
@@ -151,11 +159,13 @@ begin
     EX_MEM_Buffer :  entity work.ex_mem
       port map(CLK,RST,ENB_Buffer_EX_MEM,wb_in=>wb_out_FROM_execute,mem_in=>mem_out_FROM_execute
       ,alu_out_1_in=>alu_out1_FROM_execute,alu_out_2_in=>alu_out2_FROM_execute,ea_imm_in=>EA_IMM_out_FROM_execute
-      ,src_1_in=>src1_out_FROM_execute,pc_in=>pc_out_FROM_execute,dst_in=>DST_out_FROM_execute
+      ,src_1_in=>src1_out_FROM_execute,pc_in=>pc_out_FROM_execute,dst_in=>DST_out_FROM_execute,
+      carry_in=>carry_FROM_ALU,zero_in=>zero_FROM_ALU,neg_in=>neg_FROM_ALU
       --outputs
       ,wb_out=>wb_out_TO_Memory,mem_out=>mem_out_TO_Memory,alu_out_1_out=>alu_out1_TO_Memory
       ,alu_out_2_out=>alu_out2_TO_Memory,ea_imm_out=>EA_IMM_out_TO_Memory
-      ,src_1_out=>src1_out_TO_Memory,pc_out=>pc_out_TO_Memory,dst_out=>DST_out_TO_Memory);
+      ,src_1_out=>src1_out_TO_Memory,pc_out=>pc_out_TO_Memory,dst_out=>DST_out_TO_Memory,
+      carry_out=>carry_out_TO_Memory,zero_out=>zero_out_TO_Memory,neg_out=>neg_out_TO_Memory);
     
     Memory :entity work.Memory_Stage
       port map(CLK,RST,wb_in=>wb_out_TO_Memory,mem_in=>mem_out_TO_Memory
@@ -167,10 +177,12 @@ begin
     MEM_WB_Buffer :  entity work.mem_wb
       port map(CLK,RST,enable=>'1',wb_in=>wb_out_FROM_Memory
       ,mem_out_in=>Memout_FROM_Memory,alu_out_1_in=>alu_out1_TO_Memory
-      ,alu_out_2_in=>alu_out2_TO_Memory,src_1_in=>src1_out_TO_Memory,dst_in=>DST_out_TO_Memory
+      ,alu_out_2_in=>alu_out2_TO_Memory,src_1_in=>src1_out_TO_Memory,dst_in=>DST_out_TO_Memory,
+      carry_in=>carry_out_TO_Memory,zero_in=>zero_out_TO_Memory,neg_in=>neg_out_TO_Memory
       --outputs
       ,wb_out=>wb_sigs_FROM_WB,mem_out_out=>Mem_out_FROM_WB,alu_out_1_out=>ALUout1_FROM_WB
-      ,alu_out_2_out=>ALUout2_FROM_WB,src_1_out=>SRC1_FROM_WB,dst_out=>dst_FROM_WB);
+      ,alu_out_2_out=>ALUout2_FROM_WB,src_1_out=>SRC1_FROM_WB,dst_out=>dst_FROM_WB,
+      carry_out=>carry_flag,zero_out=>zero_flag,neg_out=>neg_flag);
 
       --TODO :: need revision
       pc_wb_FROM_WB<=   wb_sigs_FROM_WB(1);
