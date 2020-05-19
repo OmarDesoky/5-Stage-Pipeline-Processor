@@ -210,7 +210,7 @@ begin
                 any_jmp<='1';
             elsif (op = JMP) then
                 any_jmp<='1';
-		flush_Decode<='1';
+		-- flush_Decode<='1';                      
             elsif (op = CALL) then
                 sp_enb<="11";
                 mem_write<='1';
