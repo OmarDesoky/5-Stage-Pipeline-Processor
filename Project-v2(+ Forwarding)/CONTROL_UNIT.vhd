@@ -115,20 +115,22 @@ begin
 	flush_Decode <= '0';
         if(falling_edge(clk)) then
             if counter > 0 then
-                if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) then
+                if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) or (last_op = LDM) then
                     write_enable<='1';
                     if(last_op=IADD) then
                         alu_op<= ADD_ALU;
                     elsif(last_op=SHL) then
                         alu_op<=SHL_ALU;
-                    else
+                    elsif(last_op=SHR) then 
                         alu_op<=SHR_ALU;
+                    else
+                        alu_op<=SWAP_ALU;
                     end if;
                     alu_source <='1';
-                elsif last_op = LDM then
-                    mem_read<='1';
-                    write_enable<='1';
-                    mem_or_reg<='1';
+                -- elsif last_op = LDM then    ~changed 5/19 OMAR
+                --      mem_read<='1';               
+                --     write_enable<='1';
+                --     mem_or_reg<='1';
                 elsif last_op = LDD then
                     mem_read<='1';
                     imm_ea<='1';
@@ -210,7 +212,7 @@ begin
                 any_jmp<='1';
             elsif (op = JMP) then
                 any_jmp<='1';
-		flush_Decode<='1';
+		-- flush_Decode<='1';                      
             elsif (op = CALL) then
                 sp_enb<="11";
                 mem_write<='1';

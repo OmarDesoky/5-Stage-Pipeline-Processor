@@ -17,41 +17,109 @@ end alu;
 architecture Behavioral of alu is
 
 signal F_i : std_logic_vector(32 downto 0) := "000000000000000000000000000000000";
+signal flags : std_logic_vector(2 downto 0) := "000";
 begin
 
-neg <= F_i(31);
-zero <= '1' when F_i(31 downto 0) = "00000000000000000000000000000000" else '0';
-carry <= F_i(32);
 z1 <= F_i(31 downto 0);
 
 process (a,b,sel) is
 begin
 z2 <= b;
 case sel is	
-	when "0000" =>
-		F_i <= '0' & (a);
 	when "0001" =>
 		F_i <= std_logic_vector(resize(signed(a), 33) - resize(signed(b), 33));
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
 	when "0010" =>
 		F_i <= '0' & (a and b);
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
 	when "0011" =>
 		F_i <= '0' & (a or b);
-	-- when "0100" =>
-	-- 	F_i <= '0' & (b);
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
+	when "0100" =>
+		F_i <= '0' & (b);
+		z2 <= a;
 	when "0101" =>
 		F_i <= std_logic_vector( resize(signed(a), 33) sll to_integer(unsigned(b)));
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
 	when "0110" =>
 		F_i <= std_logic_vector( resize(signed(a), 33)  srl to_integer(signed(b)));
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
 	when "0111" =>
 		F_i <= ('0' & a) + ('0' & b);
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
 	when "1000" =>
 		F_i <= '0' & (not a);
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
+		
+		neg <= flags(2);
+		zero <= flags(1);
+		carry <= flags(0);
 	when "1001" =>
 		F_i <= ('0' & a) + 1;
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
 	when "1010" =>
 		F_i <= ('0' & a) - 1;
+		flags(2) <= F_i(31);
+		if (F_i(31 downto 0) = "00000000000000000000000000000000") then
+			flags(1) <= '1';
+		else
+			flags(1) <= '0';
+		end if;
+		flags(0) <= F_i(32);
+		
 	when others =>
 		F_i <= '0' & a;
+		neg <= flags(2);
+		zero <= flags(1);
+		carry <= flags(0);
 end case;
 end process;
 end Behavioral;

@@ -18,6 +18,12 @@ port (
     dst_in: in std_logic_vector(2 downto 0);
 
 
+    -- for printing flags 
+    carry_in: in std_logic;
+    zero_in: in std_logic;
+    neg_in: in std_logic;
+    ----------------------
+
     wb_out: out std_logic_vector(4 downto 0);
     mem_out: out std_logic_vector(6 downto 0);
     alu_out_1_out: out std_logic_vector(31 downto 0);
@@ -25,7 +31,13 @@ port (
     ea_imm_out: out std_logic_vector(31 downto 0);
     src_1_out: out std_logic_vector(2 downto 0);
     pc_out: out std_logic_vector(31 downto 0);
-    dst_out: out std_logic_vector(2 downto 0)
+    dst_out: out std_logic_vector(2 downto 0);
+
+    -- for printing flags 
+    carry_out: out std_logic;
+    zero_out: out std_logic;
+    neg_out: out std_logic
+    --------------------
 );
 end ex_mem ;
 
@@ -45,6 +57,12 @@ begin
         src_1_out <= (others => '0');
         pc_out <= (others => '0');
         dst_out <= (others => '0');
+
+        -- for printing flags 
+        carry_out <= '0';
+        zero_out <= '0';
+        neg_out <= '0';
+        ----------------
     
     else
         if ( rising_edge(clk) and enable ='1' ) then
@@ -56,6 +74,13 @@ begin
             src_1_out <= src_1_in;
             pc_out <= pc_in;
             dst_out <= dst_in;
+
+            -- for printing flags 
+            carry_out <= carry_in;
+            zero_out <= zero_in;
+            neg_out <= neg_in;
+            ----------------
+
         end if;
     end if;
 
