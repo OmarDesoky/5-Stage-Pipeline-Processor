@@ -63,12 +63,12 @@ begin
                 pc_out <= pc_in;
             end if;
             if buffer_enable = '0' then
+                data_1_out <= data_1_in;
+                data_2_out <= data_2_in;
                 src_1_out <= src_1_in;
                 src_2_out <= src_2_in;
                 dst_out <= dst_in;
             end if;
-            data_1_out <= data_1_in;
-            data_2_out <= data_2_in;
             wb_out <= wb_in;
             mem_out <= mem_in;
             alu_op_out <= alu_op_in;
