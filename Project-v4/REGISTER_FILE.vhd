@@ -26,7 +26,9 @@ port (
 
     flags_out : out std_logic_vector(31 downto 0);
     read_data_1: out std_logic_vector(31 downto 0);
-    read_data_2: out std_logic_vector(31 downto 0)
+    read_data_2: out std_logic_vector(31 downto 0);
+
+    R0,R1,R2,R3,R4,R5,R6,R7: out std_logic_vector(31 downto 0)
 
 );
 end registers ;
@@ -92,5 +94,14 @@ begin
 
     sign_extend <= (others => '0');
     flags_out <= sign_extend & out_data_flags;
+
+    R0 <= out_data(0);
+    R1 <= out_data(1);
+    R2 <= out_data(2);
+    R3 <= out_data(3);
+    R4 <= out_data(4);
+    R5 <= out_data(5);
+    R6 <= out_data(6);
+    R7 <= out_data(7);
 
 end registers_file;
