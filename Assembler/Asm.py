@@ -132,11 +132,13 @@ def parseInstructions(contents):
         line = " "
         newContents.append(line.join(contents[i]))
 
+    # remove empty elements  => ''
+    while("" in newContents) : 
+        newContents.remove("")
 
     contents = []
     for line in newContents:
         contents.append(list(line.split(" ")))
-
 
     finalResult = []
     for i in range(len(contents)):
@@ -148,7 +150,6 @@ def parseInstructions(contents):
             oneInstruction += words.join(contents[i][1:]).split(',')
 
         finalResult.append(oneInstruction)
-
 
     for i in range(len(finalResult)):
         for j in range(len(finalResult[i])):
