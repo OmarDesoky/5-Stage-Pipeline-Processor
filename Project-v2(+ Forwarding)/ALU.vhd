@@ -21,173 +21,148 @@ signal carry_reg: std_logic := '0';
 signal zero_reg: std_logic := '0';
 signal neg_reg: std_logic := '0';
 
--- signal flags : std_logic_vector(2 downto 0) := "000";
 begin
 
 z1 <= F_i(31 downto 0);
 
-process (a,b,sel,F_i,carry_reg,neg_reg,zero_reg) is
+process (a,b,sel,F_i) is
 begin
 z2 <= b;
-case sel is	
-	when "0001" =>																			-- SUB
+	if sel = "0001" then																		-- SUB
 		F_i <= std_logic_vector(resize(signed(a), 33) - resize(signed(b), 33));
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
+
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "0010" =>																			-- AND
+
+	elsif sel = "0010" then																		-- AND
 		F_i <= '0' & (a and b);
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "0011" =>																			-- OR
+	elsif sel = "0011" then																			-- OR
 		F_i <= '0' & (a or b);
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "0100" =>																			-- SWAP
+	elsif sel = "0100" then																			-- SWAP
 		F_i <= '0' & (b);
 		z2 <= a;
 
-		neg <=  neg_reg;
-		zero <= zero_reg;
-		carry <= carry_reg;
-	when "0101" =>																			-- SHL
+	elsif sel = "0101" then																			-- SHL
 		F_i <= std_logic_vector( resize(signed(a), 33) sll to_integer(unsigned(b)));
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "0110" =>																			-- SHR
+	elsif sel = "0110" then																			-- SHR
 		F_i(31 downto 0)  <= std_logic_vector(shift_right(signed(a), to_integer(unsigned(b)) ) );
 		F_i(32) <= '0';																
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "0111" =>																			-- ADD
+	elsif sel = "0111" then 																		-- ADD
 		F_i <= ('0' & a) + ('0' & b);
+		-- F_i <= std_logic_vector(resize(signed(a), 33) + resize(signed(b), 33));
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "1000" =>																			-- NOT
+	elsif sel = "1000" then																			-- NOT
 		F_i <= '0' & (not a);
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "1001" =>																			-- INC
+	elsif sel = "1001" then																			-- INC
 		F_i <= ('0' & a) + 1;
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
 		-----------------------------------------------------------------
-	when "1010" =>																			-- DEC
+	elsif sel = "1010" then																			-- DEC
 		F_i <= ('0' & a) - 1;
 		------------------------------Carry FLAG-------------------------
 		carry_reg <= F_i(32);
-		carry <= carry_reg ;
+
 		------------------------------Zero FLAG-------------------------
 		if F_i = (F_i'range => '0') then
 			zero_reg <= '1';
 		else
 			zero_reg <= '0';
 		end if;
-		zero <= zero_reg;
+
 		------------------------------neg FLAG-------------------------
 		neg_reg <= F_i(31);
-		neg<= neg_reg;
-		-----------------------------------------------------------------
-	when others =>																			-- NOP
-		F_i <= '0' & a;
 
-		neg <=  neg_reg;
-		zero <= zero_reg;
-		carry <= carry_reg;
-end case;
+		-----------------------------------------------------------------
+	else																						-- NOP																						-- NOP
+		F_i <= '0' & a;
+	end if;
 end process;
+
+neg <=  neg_reg;
+carry <= carry_reg;
+zero <= zero_reg;
+
 end Behavioral;

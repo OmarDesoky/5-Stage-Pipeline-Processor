@@ -186,7 +186,9 @@ begin
                 elsif (op = SUB) then
                     alu_op <= SUB_ALU;
                 elsif (op = ORR) then
-                    alu_op <= OR_ALU;                
+                    alu_op <= OR_ALU;
+                elsif (op = ANDD) then
+                    alu_op <= AND_ALU;               
                 elsif (op = INC) then
                     alu_op <= INC_ALU;                    
                 elsif (op = DEC) then

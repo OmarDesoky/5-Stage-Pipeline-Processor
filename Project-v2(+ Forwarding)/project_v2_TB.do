@@ -88,6 +88,7 @@ add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
 add wave -position insertpoint sim:/processor/fetch/*
 add wave -position insertpoint sim:/processor/Execution/*
 add wave -position insertpoint sim:/processor/decode/Control/*
+add wave -position insertpoint sim:/processor/Execution/execution_unit/*
 add wave -position insertpoint sim:/processor/decode/RegisterFile/out_data
 mem load -i {C:\Users\user\Desktop\5-Stage-Pipeline-Processor\Project-v2(+ Forwarding)/ram.mem} /processor/fetch/INS_Memory/ram
 force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
@@ -99,13 +100,33 @@ force -freeze sim:/processor/RST 0 0
 run
 
 // 1st decode
-force -freeze sim:/processor/DATA_fromIO 16#0CDAFE19 0
-run                                         
+force -freeze sim:/processor/DATA_fromIO 16#00000005 0
+run
 
 // 2nd decode
-force -freeze sim:/processor/DATA_fromIO 16#0000FFFF 0
+force -freeze sim:/processor/DATA_fromIO 16#00000019 0
 run
 
 // 3rd decode
-force -freeze sim:/processor/DATA_fromIO 16#0000F320 0
+force -freeze sim:/processor/DATA_fromIO 16#0000fffd 0
+run
+
+// 4th decode
+force -freeze sim:/processor/DATA_fromIO 16#0000f320 0
+run
+
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 run
