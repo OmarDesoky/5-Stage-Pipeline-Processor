@@ -6,6 +6,7 @@ entity decode_stage IS
 port (
     clk:in std_logic;
     rst_async : in std_logic;
+    prediction_result : in std_logic;
     swap_wb : in std_logic;
     write_enb_wb: in std_logic;
     flag_enb_wb : in std_logic;
@@ -36,6 +37,7 @@ port (
     ea_imm_outt: out std_logic_vector(31 downto 0);
     pc_outt: out std_logic_vector(31 downto 0);
     dst_outt: out std_logic_vector(2 downto 0);
+    prediction_result_outt : out std_logic;
 
     stall_for_int : out std_logic;                              ----------------------------------
     stall_for_jmp_pred: out std_logic;                          ----------------------------------
@@ -138,11 +140,14 @@ em_imm_out <= (sign_extend1 & instruction)  when imm_ea_sig ='0' else (sign_exte
 data1_Selector :  entity work.Data1_Decision
 port map(int,instruction(15 downto 11),read_data_1,flags_out,io_data,data1_out);
 
-Buffer_ID_EX :  entity work.id_ex
+Buffer_ID_EX :  entity work.id_ex 
+--edited 20/5/2020 
 port map(clk,rst_async,reg_enb_sig,imm_reg_enb_out, wb_out, mem_out, alu_op, execute, data1_out, 
 data2_out, src1_out,src2_out, em_imm_out, pc_out
-,dst_out, wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, sig_src_1_outt ,sig_src_2_outt,
- ea_imm_outt ,pc_outt,dst_outt);
+,dst_out,prediction_result
+--outputs
+,wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, sig_src_1_outt ,sig_src_2_outt,
+ ea_imm_outt ,pc_outt,dst_outt,prediction_result_outt);
 
 
 end flow; 

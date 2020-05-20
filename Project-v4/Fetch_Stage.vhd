@@ -4,11 +4,12 @@ use IEEE.std_logic_unsigned.all;
 use IEEE.numeric_STD.ALL;
 ENTITY Fetch_Stage IS  
 PORT (
-	rst_async_test, int_test, pc_wb, take_jmp_addr_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP, CLK, flip_next_cycle_INT_test, PC_ENB_DATAHAZARD, Flush: in std_logic;
-	pc_frm_wb_test, calc_jmp_addr_test: in std_logic_vector(31 downto 0);
-	instruction :out std_logic_vector(15 downto 0);
-	PC_Saved :out std_logic_vector(31 downto 0);
-	INT_First_Cycle: out std_logic);
+	rst_async_test, int_test, pc_wb, take_jmp_addr_test,take_correct_jmp_addr_test : 			in std_logic; 
+	IN_MIDDLE_OF_IMM,IF_ANY_JUMP, CLK, flip_next_cycle_INT_test, PC_ENB_DATAHAZARD, Flush: 		in std_logic;
+	pc_frm_wb_test, calc_jmp_addr_test,pc_forwarded_test: 										in std_logic_vector(31 downto 0);
+	instruction :																				out std_logic_vector(15 downto 0);
+	PC_Saved :																					out std_logic_vector(31 downto 0);
+	INT_First_Cycle: 																			out std_logic);
 END Fetch_Stage;
 
 ARCHITECTURE flow OF Fetch_Stage IS
@@ -44,8 +45,11 @@ BEGIN
 
  PC_WB2 <= pc_wb and (not(INT_raised_before_test));
  pc_Select : entity work.pc_selector
-    port map(rst_async=>rst_async_test, int=>INT_2nd_cycle_test, pc_wb=>PC_WB2, take_jmp_addr=> take_jmp_addr_test, mem_loc_0_1=>mem_loc_0_1_test,mem_loc_2_3=>mem_loc_2_3_test
-, pc_frm_wb=>pc_frm_wb_test ,calc_jmp_addr=>calc_jmp_addr_test, pc_updated=>pc_updated_test, pc_out=>pc_selected);
+	port map(rst_async=>rst_async_test, int=>INT_2nd_cycle_test, pc_wb=>PC_WB2, take_jmp_addr=> take_jmp_addr_test
+	,take_jmp_correct_addr=>take_correct_jmp_addr_test, mem_loc_0_1=>mem_loc_0_1_test,mem_loc_2_3=>mem_loc_2_3_test
+	,pc_frm_wb=>pc_frm_wb_test ,forwarded_pc=>pc_forwarded_test,calc_jmp_addr=>calc_jmp_addr_test, pc_updated=>pc_updated_test 
+	--output
+	,pc_out=>pc_selected);
 
  write_enb_test <= (write_enb_from_INT and PC_ENB_DATAHAZARD and (not int_test));
 
@@ -54,7 +58,7 @@ BEGIN
 
  INT_Handel : entity work.handler
     port map(CLK, rst_async=>rst_async_test, flip_next_cycle_INT=>flip_next_cycle_INT_test, INT_sig=>int_test
-, INT_1st_cycle=>INT_First_Cycle,INT_2nd_cycle=>INT_2nd_cycle_test, INT_raised_before=>INT_raised_before_test, PC_enb_from_INT=>write_enb_from_INT );
+	, INT_1st_cycle=>INT_First_Cycle,INT_2nd_cycle=>INT_2nd_cycle_test, INT_raised_before=>INT_raised_before_test, PC_enb_from_INT=>write_enb_from_INT );
 
  INS_Memory : entity work.inst_ram
     port map(CLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_0_1_test, mem_loc_2_3_test);

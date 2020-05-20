@@ -4,29 +4,29 @@ use IEEE.std_logic_unsigned.all;
 use IEEE.numeric_STD.ALL;
 ENTITY Execution_Stage IS  
 PORT (
-    	wb_in:in std_logic_vector(4 downto 0); -- input from ID/EX Buffer
-    	mem_in:in std_logic_vector(6 downto 0); -- input from ID/EX Buffer
-    	alu_op:in std_logic_vector(3 downto 0); -- input from ID/EX Buffer
-    	-- will use bit 0 as (ALU Source) && bit 1 as I/O Enable
-	ex_in:in std_logic_vector(1 downto 0); -- input from ID/EX Buffer
+    	wb_in:									in std_logic_vector(4 downto 0); -- input from ID/EX Buffer
+    	mem_in:									in std_logic_vector(6 downto 0); -- input from ID/EX Buffer
+    	alu_op:									in std_logic_vector(3 downto 0); -- input from ID/EX Buffer
+-- will use bit 0 as (ALU Source) && bit 1 as I/O Enable
+		ex_in:									in std_logic_vector(1 downto 0); -- input from ID/EX Buffer
     	reg1_data, reg2_data, alu_out2_MEM_WB, alu_out_MEM_WB, alu_out_EX_MEM, alu_out2_EX_MEM, mem_out_MEM_WB:in std_logic_vector(31 downto 0);
-	-- src2 will be used when we put the forwarding unit soon
-	src1, src2, dst :in std_logic_vector (2 downto 0);
-    	ea_imm_in, pc_in:         in std_logic_vector(31 downto 0);
-  	enb_1st_mux, enb_2nd_mux:in std_logic_vector(2 downto 0);
+-- src2 will be used when we put the forwarding unit soon
+		src1, src2, dst :						in std_logic_vector (2 downto 0);
+    	ea_imm_in, pc_in:         				in std_logic_vector(31 downto 0);
+  		enb_1st_mux, enb_2nd_mux:				in std_logic_vector(2 downto 0);
 
-    	Mem_out :           out std_logic_vector(6 downto 0);
-    	wb_out:             out std_logic_vector(4 downto 0);
-	alu_out1, alu_out2, EA_IMM_out, pc_out:out std_logic_vector(31 downto 0);
-	src1_out, DST_out:out std_logic_vector (2 downto 0);
-	IO_out : out std_logic_vector(31 downto 0);
-	zero_flag, carry_flag, neg_flag:out std_logic);
+    	Mem_out :           					out std_logic_vector(6 downto 0);
+    	wb_out:             					out std_logic_vector(4 downto 0);
+		alu_out1, alu_out2, EA_IMM_out, pc_out:	out std_logic_vector(31 downto 0);
+		src1_out, DST_out:						out std_logic_vector (2 downto 0);
+		IO_out,forwarded_jmp_addr : 			out std_logic_vector(31 downto 0); --edited 20/5/2020
+		zero_flag, carry_flag, neg_flag:		out std_logic);
 END Execution_Stage;
 
 ARCHITECTURE flow OF Execution_Stage IS
-signal first_operand_for_ALU:std_logic_vector(31 downto 0);
-signal second_operand_for_ALU:std_logic_vector(31 downto 0);
-signal mux_choice:std_logic_vector(31 downto 0);
+signal first_operand_for_ALU:		std_logic_vector(31 downto 0);
+signal second_operand_for_ALU:		std_logic_vector(31 downto 0);
+signal mux_choice:					std_logic_vector(31 downto 0);
 BEGIN   
 Mem_out <= mem_in;
 wb_out <= wb_in;
@@ -48,10 +48,13 @@ choose_2nd_operand :  entity work.mux_6to1 generic map(32)
 --		will select => EA/IMM
 select_REGData2_or_EA_IMM:  entity work.mux_2to_1 generic map(32)
     port map(a=> reg2_data, b=>ea_imm_in, sel=>ex_in(1), y=>mux_choice);
--- what is carry in ???!
+
+forwarded_jmp_addr<=first_operand_for_ALU; --edited 20/5/2020
+
 execution_unit:  entity work.alu
     port map(a=> first_operand_for_ALU, b=>second_operand_for_ALU, z1=>alu_out1, z2=>alu_out2, zero=>zero_flag, carry=>carry_flag, neg=>neg_flag, sel=>alu_op);
-process(first_operand_for_ALU)
+
+	process(first_operand_for_ALU)
 begin
 	if (ex_in(0) = '1') then
 		IO_out <= first_operand_for_ALU;
