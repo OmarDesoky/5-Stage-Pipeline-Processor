@@ -86,8 +86,10 @@ constant DEC_ALU : std_logic_vector(3 downto 0) := "1010";
 
 signal counter : integer range 0 to 1;
 signal counter2 : integer range 0 to 4;
+signal counter3 : integer range 0 to 3;
 signal last_op: std_logic_vector(4 downto 0);
 signal last_op2: std_logic_vector(4 downto 0);
+
 begin
 
     process(clk,op, int)
@@ -144,6 +146,7 @@ begin
                 counter<=0;
                     
             elsif counter2 > 0 then
+
                 --if last_op2 = RTI then
                     --stall_int<='1';
                     --if counter2 = 4 then 
@@ -159,6 +162,12 @@ begin
                     --    counter2<=counter2+1;
                     --end if;                
                 --end if;
+            elsif counter3 = 2 then
+                stall_int <= '1';
+                counter3 <= '0';
+            elsif counter3 = 1 then
+                stall_int <= '1';
+                counter3 <= counter3+1;
     
             elsif (op=IADD) or (op = SHL) or (op = SHR) or (op = LDD) or (op = LDM) or (op = STD) then
                 mid_imm <= '1';
@@ -173,11 +182,18 @@ begin
                 int_rti_dntuse<="101";
                 --counter2 <= counter2 +1;
                 --last_op2 <= op;
+
+                flush_Decode <= '1';
+                counter3 <= counter3+1;
+
             elsif (int='1') then
                 sp_enb <="11";
                 mem_write <='1';
                 int_rti_dntuse<= "100";
                 counter2 <= counter2 +1;
+
+                flush_Decode <= '1';
+                counter3 <= counter3+1;
     
             elsif (op = ADD) or (op = SUB) or (op = ANDD) or (op = ORR) or (op = INC) or (op = DEC) or (op =NOTT) then
                 write_enable<='1';
@@ -227,6 +243,9 @@ begin
                 mem_read<='1';
                 any_jmp<='1';
                 int_rti_dntuse<="011";
+                
+                flush_Decode <= '1';
+                counter3 <= counter3+1;
 		flush_Decode<='1';
             elsif (op = SWAPP) then
                 alu_op <= NOP_ALU ;
