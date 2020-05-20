@@ -1,5 +1,5 @@
 vsim -gui work.processor
-mem load -i {C:\Users\DELL\Desktop\Arch\project\5-Stage-Pipeline-Processor\Project-v1\test.mem} /processor/fetch/INS_Memory/ram
+mem load -i {C:\Users\DELL\Desktop\Arch\project\5-Stage-Pipeline-Processor\Project-v2(+ Forwarding)\ram.mem} /processor/fetch/INS_Memory/ram
 
 add wave -position insertpoint sim:/processor/CLK
 add wave -position insertpoint sim:/processor/RST
@@ -47,12 +47,6 @@ run
 run
 
 // Rest
-run
-run
-run
-run
-run
-run
 run
 run
 run
