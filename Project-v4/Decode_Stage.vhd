@@ -44,14 +44,17 @@ port (
     ifjmp_upd_fsm : out std_logic;                              ----------------------------------
     zero_flag_compara : out std_logic;                          ----------------------------------
     last_taken_compara : out std_logic;                         ----------------------------------
-    inmiddleofimm: out std_logic;                            ----------------------------------
-    ifanyjmp: out std_logic                                     ----------------------------------
+    inmiddleofimm: out std_logic;                               ----------------------------------
+    ifanyjmp: out std_logic;                                     ----------------------------------
+    swap_before_buffer,wb_enb_before_buffer,mem_read_before_buffer: out std_logic; ----------------------------------
+
+    R0,R1,R2,R3,R4,R5,R6,R7: out std_logic_vector(31 downto 0) ----------------------------------
 
     );
 end decode_stage;
 
 architecture flow of decode_stage IS
-signal dst_out, src1_out, src2_out : std_logic_vector(2 downto 0);     ------------------------
+signal dst_out, src1_out, src2_out : std_logic_vector(2 downto 0);     
 signal pc_out,em_imm_out,data1_out,data2_out  : std_logic_vector(31 downto 0);
 
 signal flags_out : std_logic_vector(31 downto 0);
@@ -114,7 +117,9 @@ src_2_chosen <= sig_src_2_outt  when ( reg_enb_sig ='1') else instruction (4 dow
 
 RegisterFile : entity work.registers
 port map(clk,rst_async,write_enb_wb,swap_wb,flag_enb_wb,carry_flg,zero_flg,neg_flg,src_1_chosen,
-src_2_chosen,dest_mem_wb,data_out_wb,reg_swap_mem_wb,data_swp_wb,flags_out,read_data_1,data2_out);
+src_2_chosen,dest_mem_wb,data_out_wb,reg_swap_mem_wb,data_swp_wb
+--outputs
+,flags_out,read_data_1,data2_out,R0,R1,R2,R3,R4,R5,R6,R7);
 
 Control : entity work.control_unit
 port map(clk,int,instruction(15 downto 11),write_enable_sig,pc_wb_sig,mem_or_reg_sig,swap_sig,flag_register_wb_sig
@@ -139,6 +144,10 @@ em_imm_out <= (sign_extend1 & instruction)  when imm_ea_sig ='0' else (sign_exte
 -- SELECTORRRRRRRRRRRRRRRRRRRRRRRRRR => we have to change op codes to select between (ordinary, flag , IN/OUT)
 data1_Selector :  entity work.Data1_Decision
 port map(int,instruction(15 downto 11),read_data_1,flags_out,io_data,data1_out);
+
+swap_before_buffer<=swap_sig;
+wb_enb_before_buffer<=write_enable_sig;
+mem_read_before_buffer<=mem_read_sig;
 
 Buffer_ID_EX :  entity work.id_ex 
 --edited 20/5/2020 

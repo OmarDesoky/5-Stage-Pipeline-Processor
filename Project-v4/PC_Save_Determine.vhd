@@ -5,7 +5,9 @@ ENTITY PC_Save_Determine IS
 PORT (
 	CURRENT_PC, UPDATED_PC :IN std_logic_vector(31 downto 0);
 	IN_MIDDLE_OF_IMM, IF_ANY_JUMP, CLK:IN std_logic;
-	PC_OUT :OUT  std_logic_vector(31 downto 0));    
+	PC_OUT 			:OUT  std_logic_vector(31 downto 0);
+	old_executed 	:OUT  std_logic_vector(31 downto 0)
+	);    
 END ENTITY PC_Save_Determine;
 
 
@@ -28,6 +30,7 @@ end if;
 q2_SIG(63 downto 32) := q2_SIG(31 downto 0);
 q2_SIG(31 downto 0) := CURRENT_PC;
 q1_SIG := UPDATED_PC;
+old_executed <=q2_SIG(63 downto 32);
 end process;
 
 

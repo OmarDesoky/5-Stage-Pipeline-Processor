@@ -6,9 +6,10 @@ ENTITY Fetch_Stage IS
 PORT (
 	rst_async_test, int_test, pc_wb, take_jmp_addr_test,take_correct_jmp_addr_test : 			in std_logic; 
 	IN_MIDDLE_OF_IMM,IF_ANY_JUMP, CLK, flip_next_cycle_INT_test, PC_ENB_DATAHAZARD, Flush: 		in std_logic;
-	pc_frm_wb_test, calc_jmp_addr_test,pc_forwarded_test: 										in std_logic_vector(31 downto 0);
+	pc_frm_wb_test, calc_jmp_addr_test,pc_forwarded_test: 										in 	std_logic_vector(31 downto 0);
 	instruction :																				out std_logic_vector(15 downto 0);
 	PC_Saved :																					out std_logic_vector(31 downto 0);
+	address_executed,address_fetched 	:														out std_logic_vector(31 downto 0);
 	INT_First_Cycle: 																			out std_logic);
 END Fetch_Stage;
 
@@ -63,8 +64,10 @@ BEGIN
  INS_Memory : entity work.inst_ram
     port map(CLK, '0', '1', pc_out_memory_in, "0000000000000000",dataout_Memory, mem_loc_0_1_test, mem_loc_2_3_test);
 
+ address_fetched<=pc_out_memory_in;
+
  PC_SAVE_DET : entity work.PC_Save_Determine
-    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,CLK,PC_Saved);
+    port map(pc_out_memory_in, pc_updated_test, IN_MIDDLE_OF_IMM, IF_ANY_JUMP,CLK,PC_Saved,address_executed);
 
  Flush_Decision : entity work.mux_2to_1 generic map(16)
     port map(a=>dataout_Memory, b=>X"0000", sel=>Flush, y=>instruction);

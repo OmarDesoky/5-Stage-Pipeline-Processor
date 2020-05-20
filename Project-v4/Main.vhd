@@ -21,8 +21,12 @@ architecture Arch of processor is
     signal pc_TO_decode :                                           std_logic_vector(31 downto 0);
 
     --from decode
-    signal IF_ANY_JUMP_FROM_decode,Flush_FROM_decode,IN_MIDDLE_OF_IMM_FROM_decode : std_logic;
+    signal IF_ANY_JUMP_FROM_decode,IN_MIDDLE_OF_IMM_FROM_decode : std_logic;
     signal ifJZ_FROM_decode,zero_flag_FROM_decode,last_taken_FROM_decode :          std_logic;
+    signal R0_FROM_decode,R1_FROM_decode,R2_FROM_decode,R3_FROM_decode:             std_logic_vector(31 downto 0);
+    signal R4_FROM_decode,R5_FROM_decode,R6_FROM_decode,R7_FROM_decode:             std_logic_vector(31 downto 0);
+    signal swap_before_buffer_FROM_decode,wb_enb_before_buffer_FROM_decode:         std_logic;
+    signal mem_read_before_buffer_FROM_decode:                                      std_logic;
 
     --to execute
     signal wb_out_TO_execute:       std_logic_vector(4 downto 0); 
@@ -48,12 +52,15 @@ architecture Arch of processor is
     --from prediction
     signal take_jmp_addr_FROM_prediction,last_taken_FROM_prediction,next_stall_FROM_prediction :std_logic;
     signal PC_FROM_prediction :                                                                 std_logic_vector(31 downto 0);
-
     
+    --to prediction
+    signal PC_fetched_TO_prediction,PC_executed_TO_prediction:                      std_logic_vector(31 downto 0);
+    signal PC_correct_forwarded_TO_prediction:                                      std_logic_vector(31 downto 0);          
+
     --from WB
     signal pc_wb_FROM_WB,swap_wb_FROM_WB,reg_wb_FROM_WB,flag_wb_FROM_WB : std_logic;
     signal wb_sigs_FROM_WB:                                               std_logic_vector(4 downto 0);
-    signal DATA_FROM_WB,ALUout1_FROM_WB,ALUout2_FROM_WB,Mem_out_FROM_WB :              std_logic_vector(31 downto 0);
+    signal DATA_FROM_WB,ALUout1_FROM_WB,ALUout2_FROM_WB,Mem_out_FROM_WB : std_logic_vector(31 downto 0);
     signal dst_FROM_WB,SRC1_FROM_WB :                                     std_logic_vector(2 downto 0);
 
     -- for printing flags 
@@ -95,18 +102,23 @@ architecture Arch of processor is
     -- from forwarding unit "to be used later"
     signal enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux_FROM_FW_UNIT: std_logic_vector(2 downto 0) := "000";
 
+    --from comparator
+    signal prediction_result_FROM_comparator          : std_logic        ;
+    signal prediction_result_FROM_decode              : std_logic        ;
 
 
 begin
     fetch : entity work.Fetch_Stage
         port map(rst_async_test=>RST,int_test=>INT, pc_wb =>pc_wb_FROM_WB
-        ,take_jmp_addr_test=>take_jmp_addr_FROM_prediction
+        ,take_jmp_addr_test=>take_jmp_addr_FROM_prediction,take_correct_jmp_addr_test=>prediction_result_FROM_decode
         ,IN_MIDDLE_OF_IMM=>IN_MIDDLE_OF_IMM_FROM_decode,IF_ANY_JUMP=>IF_ANY_JUMP_FROM_decode
         ,CLK=>CLK,flip_next_cycle_INT_test=>IF_ID_ENB_FROM_DATAHAZARD
-        ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>Flush_FROM_decode
+        ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>prediction_result_FROM_comparator
         ,pc_frm_wb_test=>DATA_FROM_WB,calc_jmp_addr_test=>PC_FROM_prediction
+        ,pc_forwarded_test=>PC_correct_forwarded_TO_prediction
         --outputs
         ,instruction=>instruction_fetched,PC_Saved=>PC_FROM_fetch
+        ,address_fetched=>PC_fetched_TO_prediction,address_executed=>PC_executed_TO_prediction
         ,INT_First_Cycle=>INT_FROM_fetch);
 
     IF_ID : entity work.if_id
@@ -120,7 +132,7 @@ begin
         ,instruction_out=>instruction_TO_decode,pc_out=>pc_TO_decode);
 
     decode : entity work.decode_stage
-        port map(CLK,RST,swap_wb=>swap_wb_FROM_WB,write_enb_wb=>reg_wb_FROM_WB,flag_enb_wb=>flag_wb_FROM_WB
+        port map(CLK,RST,prediction_result=>prediction_result_FROM_comparator,swap_wb=>swap_wb_FROM_WB,write_enb_wb=>reg_wb_FROM_WB,flag_enb_wb=>flag_wb_FROM_WB
         ,int=>int_TO_decode,stall_next=>next_stall_TO_decode,last_taken=>last_taken_TO_decode
         ,instruction=>instruction_TO_decode,dest_mem_wb=>dst_FROM_WB,data_out_wb=>DATA_FROM_WB
         ,data_swp_wb=>ALUout2_FROM_WB,reg_swap_mem_wb=>SRC1_FROM_WB,pc_in=>pc_TO_decode
@@ -130,11 +142,15 @@ begin
         ,wb_outt=>wb_out_TO_execute,mem_outt=>mem_out_TO_execute,alu_op_outt=>alu_op_out_TO_execute
         ,ex_outt=>ex_out_TO_execute,data_1_outt=>data_1_out_TO_execute,data_2_outt=>data_2_out_TO_execute
         ,src_1_outt=>src_1_out_TO_execute,src_2_outt=>src_2_out_TO_execute, ea_imm_outt=> ea_imm_out_TO_execute
-        ,pc_outt=>pc_out_TO_execute,dst_outt=>dst_out_TO_execute
+        ,pc_outt=>pc_out_TO_execute,dst_outt=>dst_out_TO_execute,prediction_result_outt=>prediction_result_FROM_decode
         ,stall_for_int=>stall_for_INT_TO_DATAHAZARD,stall_for_jmp_pred=>stall_for_jump_prediction_TO_DATAHAZARD
         ,ifjmp_upd_fsm=>ifJZ_FROM_decode,zero_flag_compara=>zero_flag_FROM_decode
         ,last_taken_compara=>last_taken_FROM_decode,inmiddleofimm=>IN_MIDDLE_OF_IMM_FROM_decode
-        ,ifanyjmp=>IF_ANY_JUMP_FROM_decode);
+        ,ifanyjmp=>IF_ANY_JUMP_FROM_decode
+        ,swap_before_buffer=>swap_before_buffer_FROM_decode,wb_enb_before_buffer=>wb_enb_before_buffer_FROM_decode
+        ,mem_read_before_buffer=>mem_read_before_buffer_FROM_decode
+        ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode
+        ,R3=>R3_FROM_decode,R4=>R4_FROM_decode,R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode);
 
     Execution :  entity work.Execution_Stage
       port map(wb_in=>wb_out_TO_execute,mem_in=>mem_out_TO_execute,alu_op=>alu_op_out_TO_execute
@@ -148,9 +164,10 @@ begin
       ,Mem_out=>mem_out_FROM_execute,wb_out=>wb_out_FROM_execute,alu_out1=>alu_out1_FROM_execute 
       ,alu_out2=>alu_out2_FROM_execute, EA_IMM_out=>EA_IMM_out_FROM_execute, pc_out=>pc_out_FROM_execute
       ,src1_out=>src1_out_FROM_execute, DST_out=>DST_out_FROM_execute, IO_out=>DATA_toIO
+      ,forwarded_jmp_addr=>PC_correct_forwarded_TO_prediction
       ,zero_flag=>zero_FROM_ALU, carry_flag=>carry_FROM_ALU, neg_flag=>neg_FROM_ALU);
     
-    Buffer_Holder_Part :entity work.buffer_holder1
+    Buffer_Holder_1 :entity work.buffer_holder1
       port map(CLK,RST,mem_out_FROM_execute(4)
       --outputs
       ,ENB_Buffer=>ENB_Buffer_EX_MEM);
@@ -213,5 +230,32 @@ begin
     --outputs
     ,INSERT_BUBBLE=>insert_bubble_FROM_DATAHAZARD,PC_ENB=>PC_ENB_FROM_DATAHAZARD
     ,IF_ID_ENB=>IF_ID_ENB_FROM_DATAHAZARD);
+
+------------------------------------------adding perdiction--------------------------------------------------------
+    prediction_result :entity work.comparator
+    port map(zero_flag=>zero_flag_FROM_decode,last_taken=>last_taken_TO_decode,if_JZ=>ifJZ_FROM_decode
+    --output
+    ,flush=>prediction_result_FROM_comparator);
+
+    prediction_stage :entity work.Prediction_Stage
+    port map(instruction_test=>instruction_fetched,clk_test=>CLK,reset_test=>RST
+    ,DST_ID_EX=>dst_out_TO_execute,DST_EX_MEM=>DST_out_TO_Memory
+    ,INSTRCTION_10_8_DECODE_STAGE=>instruction_TO_decode(10 downto 8)
+    ,INSTRUCTION_7_5_DECODE_STAGE=>instruction_TO_decode(7 downto 5)
+    ,INSTRUCTION_4_2_DECODE_STAGE=>instruction_TO_decode(4 downto 2)
+    ,SRC1_ID_EX=>src_1_out_TO_execute,SRC2_ID_EX=>src_2_out_TO_execute
+    ,SRC1_EX_MEM=>src1_out_TO_Memory,DST_MEM_WB=>dst_FROM_WB,WB_SIG_DECODE_STAGE=>wb_enb_before_buffer_FROM_decode
+    ,WB_SIG_ID_EX=>wb_out_TO_execute(0),SWAP_SIG_DECODE_STAGE=>swap_before_buffer_FROM_decode
+    ,SWAP_SIG_ID_EX=>wb_out_TO_execute(3),SWAP_SIG_EX_MEM=>wb_out_TO_Memory(3),WB_SIG_MEM_WB=>reg_wb_FROM_WB
+    ,MEM_READ_SIG_DECODE_STAGE=>mem_read_before_buffer_FROM_decode,MEM_READ_ID_EX=>mem_out_TO_execute(1)
+    ,MEM_READ_EX_MEM=>mem_out_TO_Memory(1),WB_SIG_EX_MEM=>wb_out_FROM_execute(0)
+    ,ALU_OUT_EX_MEM=>alu_out1_TO_Memory,ALU_OUT_2_EX_MEM=>alu_out2_TO_Memory,MEM_OUT_MEM_WB=>Mem_out_FROM_WB
+    ,ifjz_updt_fsm_FROM_dec=>ifJZ_FROM_decode,prediction_correct_FROM_comparator=>prediction_result_FROM_comparator
+    ,addr_fetched_FRMfetch=>PC_fetched_TO_prediction,addr_executed_FRMfetch=>PC_executed_TO_prediction
+    ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode,R3=>R3_FROM_decode,R4=>R4_FROM_decode,
+    R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode
+    --outputs
+    STALL_SIGNAL=>next_stall_FROM_prediction,take_jmp_address=>take_jmp_address
+    ,last_taken=>last_taken_FROM_prediction,JMP_calculated_address_predict=>PC_FROM_prediction);
 
 end Arch ; -- Arch
