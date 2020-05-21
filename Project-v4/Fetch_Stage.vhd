@@ -7,6 +7,7 @@ PORT (
 	rst_async_test, int_test, pc_wb, take_jmp_addr_test,take_correct_jmp_addr_test : 			in std_logic; 
 	IN_MIDDLE_OF_IMM,IF_ANY_JUMP, CLK, flip_next_cycle_INT_test, PC_ENB_DATAHAZARD, Flush: 		in std_logic;
 	pc_frm_wb_test, calc_jmp_addr_test,pc_forwarded_test:										in std_logic_vector(31 downto 0);
+	predection_stall : in std_logic;
 	instruction 						:out std_logic_vector(15 downto 0);
 	PC_Saved 							:out std_logic_vector(31 downto 0);
 	address_executed,address_fetched 	:out std_logic_vector(31 downto 0);
@@ -56,7 +57,7 @@ BEGIN
 	--output
 	,pc_out=>pc_selected);
 
- write_enb_test <= (write_enb_from_INT and PC_ENB_DATAHAZARD and (not int_test));
+ write_enb_test <= write_enb_from_INT and PC_ENB_DATAHAZARD and (not int_test) and (not predection_stall);
 
  pc_REG : entity work.PC_REGISTER
     port map(CLK, rst_async=>rst_async_test, write_enb=>write_enb_test, d=>pc_selected, mem_loc_0_1=>mem_loc_0_1_test,q=>pc_out_memory_in);

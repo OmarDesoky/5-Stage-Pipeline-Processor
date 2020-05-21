@@ -164,7 +164,7 @@ begin
                 --end if;
             elsif counter3 = 2 then
                 stall_int <= '1';
-                counter3 <= 0;
+                counter3 <= '0';
             elsif counter3 = 1 then
                 stall_int <= '1';
                 counter3 <= counter3+1;

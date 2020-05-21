@@ -118,7 +118,7 @@ begin
         ,CLK=>CLK,flip_next_cycle_INT_test=>IF_ID_ENB_FROM_DATAHAZARD
         ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>prediction_result_FROM_comparator
         ,pc_frm_wb_test=>DATA_FROM_WB,calc_jmp_addr_test=>PC_FROM_prediction
-        ,pc_forwarded_test=>PC_correct_forwarded_TO_prediction
+        ,pc_forwarded_test=>PC_correct_forwarded_TO_prediction,predection_stall=>next_stall_FROM_prediction
         --outputs
         ,instruction=>instruction_fetched,PC_Saved=>PC_FROM_fetch
         ,address_fetched=>PC_fetched_TO_prediction,address_executed=>PC_executed_TO_prediction
@@ -254,7 +254,7 @@ begin
     ,WB_SIG_ID_EX=>wb_out_TO_execute(0),SWAP_SIG_DECODE_STAGE=>swap_before_buffer_FROM_decode
     ,SWAP_SIG_ID_EX=>wb_out_TO_execute(3),SWAP_SIG_EX_MEM=>wb_out_TO_Memory(3),WB_SIG_MEM_WB=>reg_wb_FROM_WB
     ,MEM_READ_SIG_DECODE_STAGE=>mem_read_before_buffer_FROM_decode,MEM_READ_ID_EX=>mem_out_TO_execute(1)
-    ,MEM_READ_EX_MEM=>mem_out_TO_Memory(1),WB_SIG_EX_MEM=>wb_out_FROM_execute(0)
+    ,MEM_READ_EX_MEM=>mem_out_TO_Memory(1),WB_SIG_EX_MEM=>wb_out_TO_Memory(0)
     ,ALU_OUT_EX_MEM=>alu_out1_TO_Memory,ALU_OUT_2_EX_MEM=>alu_out2_TO_Memory,MEM_OUT_MEM_WB=>Mem_out_FROM_WB
     ,ifjz_updt_fsm_FROM_dec=>ifJZ_FROM_decode,prediction_correct_FROM_comparator=>prediction_result_FROM_comparator
     ,addr_fetched_FRMfetch=>PC_fetched_TO_prediction,addr_executed_FRMfetch=>PC_executed_TO_prediction

@@ -20,7 +20,7 @@ port (
     int_out : out std_logic;
     instruction_out: out std_logic_vector(15 downto 0);
     pc_out: out std_logic_vector(31 downto 0);
-    pc_incremented_out: out std_logic_vector(31 downto 0)
+    pc_incremented_out: in std_logic_vector(31 downto 0)
 );
 end if_id ;
 
@@ -42,12 +42,12 @@ begin
     else
         if ( rising_edge(clk) and enable ='1' ) then
             last_taken_out <= last_taken_in;
+            next_stall_out <= next_stall_in;
             int_out <= int_in;
             instruction_out <= instruction_in;
             pc_out <= pc_in;
             pc_incremented_out<=pc_incremented_in;
         end if;
-        next_stall_out <= next_stall_in;
     end if;
 
 end process;    
