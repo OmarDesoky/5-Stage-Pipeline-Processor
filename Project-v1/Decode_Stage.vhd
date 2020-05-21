@@ -85,6 +85,12 @@ signal sign_extend1 : std_logic_vector(15 downto 0):=(others => '0');
 signal sign_extend2 : std_logic_vector(11 downto 0):=(others => '0');
 signal out_first4 : std_logic_vector(3 downto 0);
 
+-- these signals are made to made decode happens in the 2nd cycle
+signal sig_src_1_outt : std_logic_vector(2 downto 0);
+signal sig_src_2_outt : std_logic_vector(2 downto 0);
+signal src_1_chosen : std_logic_vector(2 downto 0);
+signal src_2_chosen : std_logic_vector(2 downto 0);
+
 signal negated_clk :std_logic;
 begin
 negated_reg_enb_sig<=not(reg_enb_sig);
@@ -97,9 +103,16 @@ last_taken_compara <=last_taken;
 stall_for_jmp_pred <= last_taken and stall_next;
 zero_flag_compara <= flags_out(1);
 
+-- these signals are made to made decode happens in the 2nd cycle
+src_1_outt <= sig_src_1_outt;
+src_2_outt <= sig_src_2_outt;
+src_1_chosen <= sig_src_1_outt  when ( reg_enb_sig ='1') else instruction (7 downto 5);
+src_2_chosen <= sig_src_2_outt  when ( reg_enb_sig ='1') else instruction (4 downto 2);
+
+
 RegisterFile : entity work.registers
-port map(clk,rst_async,write_enb_wb,swap_wb,flag_enb_wb,carry_flg,zero_flg,neg_flg,instruction (7 downto 5),
-instruction (4 downto 2),dest_mem_wb,data_out_wb,reg_swap_mem_wb,data_swp_wb,flags_out,read_data_1,data2_out);
+port map(clk,rst_async,write_enb_wb,swap_wb,flag_enb_wb,carry_flg,zero_flg,neg_flg,src_1_chosen,
+src_2_chosen,dest_mem_wb,data_out_wb,reg_swap_mem_wb,data_swp_wb,flags_out,read_data_1,data2_out);
 
 Control : entity work.control_unit
 port map(clk,int,instruction(15 downto 11),write_enable_sig,pc_wb_sig,mem_or_reg_sig,swap_sig,flag_register_wb_sig
@@ -128,7 +141,7 @@ port map(int,instruction(15 downto 11),read_data_1,flags_out,io_data,data1_out);
 Buffer_ID_EX :  entity work.id_ex
 port map(clk,rst_async,reg_enb_sig,imm_reg_enb_out, wb_out, mem_out, alu_op, execute, data1_out, 
 data2_out, src1_out,src2_out, em_imm_out, pc_out
-,dst_out, wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, src_1_outt ,src_2_outt,
+,dst_out, wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, sig_src_1_outt ,sig_src_2_outt,
  ea_imm_outt ,pc_outt,dst_outt);
 
 
