@@ -15,6 +15,24 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 
 -- Compiling entity ex_mem
 -- Compiling architecture ex_mem_buffer of ex_mem
 
+} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Fetch_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:\ThirdYear\2nd Term\Computer Architecture_Ahmed\5-Stage-Pipeline-Processor\Project-v4\Fetch_Stage.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity Fetch_Stage
+-- Compiling architecture flow of Fetch_Stage
+-- Loading entity pc_selector
+-- Loading entity PC_REGISTER
+-- Loading entity handler
+-- Loading package std_logic_textio
+-- Loading entity inst_ram
+-- Loading entity PC_Save_Determine
+-- Loading entity mux_2to_1
+
 } {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
 -- Loading package STANDARD

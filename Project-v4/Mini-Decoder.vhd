@@ -50,8 +50,8 @@ begin
 			hazard_prediction_enb <= '0';
 			ret_rti_call_ready<='0';
 			reg_src <= "000";
-
-		elsif (falling_edge(clk)) then
+		else
+		--elsif (falling_edge(clk)) then
 			--if (counter2 = 3) then
 			--	ret_rti_call_ready<='1';
 			--	counter2<=0;

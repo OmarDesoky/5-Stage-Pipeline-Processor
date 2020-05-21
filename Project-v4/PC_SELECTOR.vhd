@@ -32,12 +32,12 @@ begin
         pc_out <= mem_loc_0_1;
     elsif int ='1' then
         pc_out <=  mem_loc_2_3;
-    elsif pc_wb ='1' then
-        pc_out <=  pc_from_wb;
-    elsif take_jmp_correct_addr ='1' then
-        pc_out <=  forwarded_pc;
     elsif take_jmp_addr ='1' then
         pc_out <= calc_jmp_addr;
+    elsif take_jmp_correct_addr ='1' then
+        pc_out <=  forwarded_pc;
+    elsif pc_wb ='1' then
+        pc_out <=  pc_from_wb;
     else
         pc_out <= pc_updated;
     end if;
