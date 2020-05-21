@@ -167,7 +167,8 @@ begin
                 last_op <= op;
             elsif (op = RTI) then
                 mem_read<='1';
-                sp_enb<="01";
+                mem_or_reg<='1';
+                sp_enb<="10";
                 pc_wb<= '1';
                 any_jmp<='1';
                 int_rti_dntuse<="101";

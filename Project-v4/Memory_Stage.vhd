@@ -40,7 +40,7 @@ BEGIN
  DATA_Memory :      entity work.data_ram
     port map(clk, wr=>MEM_write, rd=>MEM_read, address=>INT_Controller_Address_out
      ,datain=>INT_Controller_Data_out, dataout=>Mem_out);
-
+-- modified by waleed in 21/5 SP_enb(1) => SP_enb(0) 10 11
  takeSP_Decision1 :  entity work.mux_2to_1 generic map(32)
     port map(a=>ea_imm_in, b=>SP_chosen, sel=>SP_enb(1), y=>EA_IMM_OR_SP);
 

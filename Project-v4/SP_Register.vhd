@@ -20,7 +20,7 @@ architecture sp_general_register of sp_n_bit_register is
 
 begin
 
-process(clk,rst_async,write_enb)
+process(clk,rst_async,write_enb,d)
 begin
     if rst_async = '1' then
         q <= X"00000FA0";

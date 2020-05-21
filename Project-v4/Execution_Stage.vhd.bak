@@ -54,7 +54,7 @@ select_REGData2_or_EA_IMM:  entity work.mux_2to_1 generic map(32)
 
 forwarded_jmp_addr<=first_operand_for_ALU; --edited 20/5/2020
 
-zero_flag <= '0' when (zero_flag_in and if_jz_in) = '1' else zero_sig;
+zero_flag <= '0' when (zero_flag_in and if_jz_in) else zero_sig;
 	
 execution_unit:  entity work.alu
     port map(a=> first_operand_for_ALU, b=>second_operand_for_ALU, z1=>alu_out1, z2=>alu_out2, zero=>zero_sig, carry=>carry_flag, neg=>neg_flag, sel=>alu_op);

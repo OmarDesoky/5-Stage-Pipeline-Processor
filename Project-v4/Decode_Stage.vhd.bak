@@ -159,6 +159,5 @@ data2_out, src1_out,src2_out, em_imm_out, pc_out
 ,wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, sig_src_1_outt ,sig_src_2_outt,
  ea_imm_outt ,pc_outt,dst_outt,prediction_result_outt,zero_flag_outt,if_jz_outt);
 
-ifjmp_upd_fsm<=if_jz;
 
 end flow; 

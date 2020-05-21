@@ -20,7 +20,7 @@ end mux_8to1;
 
 architecture general_mux_8to1 of mux_8to1 is
 begin
-process(a, b, c, d, e, f, sel)
+process(a, b, c, d, e, f, g, h, sel)
 begin
 	case sel is
 	when "000" => y <= a;

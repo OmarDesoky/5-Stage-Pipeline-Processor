@@ -48,7 +48,7 @@ BEGIN
  pc_Select : entity work.pc_selector
 	port map(rst_async=>rst_async_test, int=>INT_2nd_cycle_test, pc_wb=>PC_WB2, take_jmp_addr=> take_jmp_addr_test
 	,take_jmp_correct_addr=>take_correct_jmp_addr_test, mem_loc_0_1=>mem_loc_0_1_test,mem_loc_2_3=>mem_loc_2_3_test
-	,pc_from_wb=>pc_frm_wb_test ,forwarded_pc=>pc_forwarded_test,calc_jmp_addr=>calc_jmp_addr_test, pc_updated=>pc_updated_test 
+	,pc_frm_wb=>pc_frm_wb_test ,forwarded_pc=>pc_forwarded_test,calc_jmp_addr=>calc_jmp_addr_test, pc_updated=>pc_updated_test 
 	--output
 	,pc_out=>pc_selected);
 

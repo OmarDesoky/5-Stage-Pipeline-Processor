@@ -17,7 +17,7 @@ end MINI_DECODER;
 architecture mini_decoder of MINI_DECODER is
 
 signal counter 	: integer range 0 to 1;
-signal counter2 : integer range 0 to 2;
+signal counter2 : integer range 0 to 4;
 signal opcode  : std_logic_vector(4 downto 0);
 constant IADD : std_logic_vector(4 downto 0) := "00010";
 constant SHL : std_logic_vector(4 downto 0) := "00000";
@@ -32,15 +32,17 @@ constant RET : std_logic_vector(4 downto 0) := "11110";
 constant RTI : std_logic_vector(4 downto 0) := "11111";
 
 begin
-	process(clk,instruction )
+	--process(clk,instruction )
+	--begin
+	--	reg_src <= instruction(7 downto 5);
+	--	opcode <= instruction(15 downto 11);
+		
+	--end process ; 
+
+	process (clk, reset,instruction)
 	begin
 		reg_src <= instruction(7 downto 5);
 		opcode <= instruction(15 downto 11);
-		
-	end process ; 
-
-	process (clk, reset) is
-	begin
 		if (reset = '1') then
 			not_another_inst <= '0';
 			fsm_take_decision <= '0';
@@ -49,20 +51,19 @@ begin
 			ret_rti_call_ready<='0';
 			reg_src <= "000";
 
-		elsif (rising_edge(clk)) then
-			if (counter2 > 0) then 
-					hazard_prediction_enb <= '0';
-					counter2<=counter2+1; --counter =2,3
-					not_another_inst <= '0';
-					fsm_take_decision <= '0'; --don't care
-			elsif (counter2 = 4) then
-					ret_rti_call_ready<='1';
-					counter2<=0;
-					not_another_inst <= '0';
-					hazard_prediction_enb <= '0';
-					fsm_take_decision <= '0'; --don't care
-				
-			elsif (counter > 0) then 
+		elsif (falling_edge(clk)) then
+			--if (counter2 = 3) then
+			--	ret_rti_call_ready<='1';
+			--	counter2<=0;
+			--	not_another_inst <= '1';
+			--	hazard_prediction_enb <= '0';
+			--	fsm_take_decision <= '1'; --don't care
+			--elsif (counter2 > 0) then 
+			--		hazard_prediction_enb <= '0';
+			--		counter2<=counter2+1; --counter =2,3
+			--		not_another_inst <= '0';
+			--		fsm_take_decision <= '0'; --don't care	
+			if (counter > 0) then 
 					hazard_prediction_enb <= '0';
 					counter<=0;
 					not_another_inst <= '0';
@@ -71,14 +72,14 @@ begin
 			-- JZ
 			elsif (opcode = JZ) then
 				not_another_inst <= '1';
-				fsm_take_decision <= '1';
+				fsm_take_decision <= '0';
 				hazard_prediction_enb <= '1';
 				ret_rti_call_ready<='0';
 				
 			-- JMP
 			elsif (opcode = JMP) then
 				not_another_inst <= '1';
-				fsm_take_decision <= '0';
+				fsm_take_decision <= '1';
 				hazard_prediction_enb <= '1';
 				ret_rti_call_ready<='0';
 				

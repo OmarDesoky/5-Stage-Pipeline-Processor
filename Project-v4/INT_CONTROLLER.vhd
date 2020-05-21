@@ -32,11 +32,11 @@ begin
                 if(INT_RTI_call_RET_Dontuse = "100" ) then --INT
                     if counter = 0 then
                         ADDRESS_IN <= EA_IMM_SP;
-                        DATA_IN <= PC;
+                        DATA_IN <= ALU_out;
                         counter <= counter +1;
                     else  --counter =1
                         ADDRESS_IN <= EA_IMM_SP;
-                        DATA_IN <= ALU_out;
+                        DATA_IN <= PC;
                         counter <= 0;
                     end if ;
                 elsif (INT_RTI_call_RET_Dontuse = "101" ) then --RTI

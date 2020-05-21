@@ -40,7 +40,7 @@ architecture Arch of processor is
     signal ea_imm_out_TO_execute:   std_logic_vector(31 downto 0);
     signal pc_out_TO_execute:       std_logic_vector(31 downto 0);
     signal dst_out_TO_execute:      std_logic_vector(2 downto 0);
-    signal zero_flag_TO_execute,if_jz_TO_execute : std_logic;
+
     --from execute
     signal ENB_Buffer_EX_MEM:                               std_logic;
     signal wb_out_FROM_execute:                             std_logic_vector(4 downto 0); 
@@ -106,6 +106,7 @@ architecture Arch of processor is
     signal prediction_result_FROM_comparator          : std_logic        ;
     signal prediction_result_FROM_decode              : std_logic        ;
 
+
 begin
     fetch : entity work.Fetch_Stage
         port map(rst_async_test=>RST,int_test=>INT, pc_wb =>pc_wb_FROM_WB
@@ -149,8 +150,7 @@ begin
         ,swap_before_buffer=>swap_before_buffer_FROM_decode,wb_enb_before_buffer=>wb_enb_before_buffer_FROM_decode
         ,mem_read_before_buffer=>mem_read_before_buffer_FROM_decode
         ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode
-        ,R3=>R3_FROM_decode,R4=>R4_FROM_decode,R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode,
-        zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute);
+        ,R3=>R3_FROM_decode,R4=>R4_FROM_decode,R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode);
 
     Execution :  entity work.Execution_Stage
       port map(wb_in=>wb_out_TO_execute,mem_in=>mem_out_TO_execute,alu_op=>alu_op_out_TO_execute
@@ -160,7 +160,6 @@ begin
       ,mem_out_MEM_WB=>Mem_out_FROM_WB,src1=>src_1_out_TO_execute, src2=>src_2_out_TO_execute
       ,dst=>dst_out_TO_execute,ea_imm_in=>ea_imm_out_TO_execute, pc_in=>pc_out_TO_execute
       ,enb_1st_mux=>enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux=>enb_2nd_mux_FROM_FW_UNIT
-      ,zero_flag_in=>zero_flag_TO_execute,if_jz_in=>if_jz_TO_execute
       --outputs
       ,Mem_out=>mem_out_FROM_execute,wb_out=>wb_out_FROM_execute,alu_out1=>alu_out1_FROM_execute 
       ,alu_out2=>alu_out2_FROM_execute, EA_IMM_out=>EA_IMM_out_FROM_execute, pc_out=>pc_out_FROM_execute
@@ -256,7 +255,7 @@ begin
     ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode,R3=>R3_FROM_decode,R4=>R4_FROM_decode,
     R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode,
     --outputs
-    STALL_SIGNAL=>next_stall_FROM_prediction,take_jmp_address=>take_jmp_addr_FROM_prediction
+    STALL_SIGNAL=>next_stall_FROM_prediction,take_jmp_address=>take_jmp_address
     ,last_taken=>last_taken_FROM_prediction,JMP_calculated_address_predict=>PC_FROM_prediction);
 
 end Arch ; -- Arch

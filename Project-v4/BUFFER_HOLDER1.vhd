@@ -26,16 +26,16 @@ begin
 
             elsif (rising_edge(clk)) then
                 if(if_INT = '1' and counter = 0) then 
-                    ENB_Buffer <= '1';
+                    ENB_Buffer <= '0';
                     counter <= counter +1;
 
-                elsif (counter = 3) then
+                elsif (counter = 1) then
                     ENB_Buffer <= '1';
                     counter <= 0;
 
-                elsif counter < 3 and counter > 0 then
-                    ENB_Buffer <= '0';
-                    counter <= counter +1;
+                --elsif counter < 1 and counter > 0 then
+                    --ENB_Buffer <= '0';
+                    --counter <= counter +1;
 
                 else --if counter = 0 and if_int never came 
                     ENB_Buffer <= '1';
