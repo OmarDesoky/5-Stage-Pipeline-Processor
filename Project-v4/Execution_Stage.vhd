@@ -14,8 +14,10 @@ PORT (
 		src1, src2, dst :						in std_logic_vector (2 downto 0);
     	ea_imm_in, pc_in:         				in std_logic_vector(31 downto 0);
   		enb_1st_mux, enb_2nd_mux:				in std_logic_vector(2 downto 0);
-
-		zero_flag_in,if_jz_in :in std_logic;
+		pc_incremented_in: 						in std_logic_vector(31 downto 0);
+		last_taken_in : 						in std_logic;
+		prediction_result_in : 					in std_logic;
+		zero_flag_in,if_jz_in :					in std_logic;
 		
 		Mem_out :           					out std_logic_vector(6 downto 0);
     	wb_out:             					out std_logic_vector(4 downto 0);
@@ -52,7 +54,10 @@ choose_2nd_operand :  entity work.mux_6to1 generic map(32)
 select_REGData2_or_EA_IMM:  entity work.mux_2to_1 generic map(32)
     port map(a=> reg2_data, b=>ea_imm_in, sel=>ex_in(1), y=>mux_choice);
 
-forwarded_jmp_addr<=first_operand_for_ALU; --edited 20/5/2020
+
+--forwarded_jmp_addr<=first_operand_for_ALU; --edited 20/5/2020
+forwarded_jmp_addr <= pc_incremented_in when (last_taken_in and prediction_result_in) = '1' else first_operand_for_ALU;
+
 
 zero_flag <= '0' when (zero_flag_in and if_jz_in) = '1' else zero_sig;
 	

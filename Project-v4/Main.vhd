@@ -19,6 +19,7 @@ architecture Arch of processor is
     signal last_taken_TO_decode,next_stall_TO_decode,int_TO_decode: std_logic;
     signal instruction_TO_decode :                                  std_logic_vector(15 downto 0);
     signal pc_TO_decode :                                           std_logic_vector(31 downto 0);
+    signal PC_incremented_TO_decode :                               std_logic_vector(31 downto 0);
 
     --from decode
     signal IF_ANY_JUMP_FROM_decode,IN_MIDDLE_OF_IMM_FROM_decode : std_logic;
@@ -29,18 +30,20 @@ architecture Arch of processor is
     signal mem_read_before_buffer_FROM_decode:                                      std_logic;
 
     --to execute
-    signal wb_out_TO_execute:       std_logic_vector(4 downto 0); 
-    signal mem_out_TO_execute:      std_logic_vector(6 downto 0); 
-    signal alu_op_out_TO_execute:   std_logic_vector(3 downto 0);
-    signal ex_out_TO_execute:       std_logic_vector(1 downto 0);
-    signal data_1_out_TO_execute:   std_logic_vector(31 downto 0);
-    signal data_2_out_TO_execute:   std_logic_vector(31 downto 0);
-    signal src_1_out_TO_execute:    std_logic_vector(2 downto 0);
-    signal src_2_out_TO_execute:    std_logic_vector(2 downto 0);
-    signal ea_imm_out_TO_execute:   std_logic_vector(31 downto 0);
-    signal pc_out_TO_execute:       std_logic_vector(31 downto 0);
-    signal dst_out_TO_execute:      std_logic_vector(2 downto 0);
-    signal zero_flag_TO_execute,if_jz_TO_execute : std_logic;
+    signal wb_out_TO_execute:                                             std_logic_vector(4 downto 0); 
+    signal mem_out_TO_execute:                                            std_logic_vector(6 downto 0); 
+    signal alu_op_out_TO_execute:                                         std_logic_vector(3 downto 0);
+    signal ex_out_TO_execute:                                             std_logic_vector(1 downto 0);
+    signal data_1_out_TO_execute:                                         std_logic_vector(31 downto 0);
+    signal data_2_out_TO_execute:                                         std_logic_vector(31 downto 0);
+    signal src_1_out_TO_execute:                                          std_logic_vector(2 downto 0);
+    signal src_2_out_TO_execute:                                          std_logic_vector(2 downto 0);
+    signal ea_imm_out_TO_execute:                                         std_logic_vector(31 downto 0);
+    signal pc_out_TO_execute:                                             std_logic_vector(31 downto 0);
+    signal dst_out_TO_execute:                                            std_logic_vector(2 downto 0);
+    signal PC_incremented_TO_execute:                                     std_logic_vector(31 downto 0);
+    signal zero_flag_TO_execute,if_jz_TO_execute,last_taken_TO_execute :  std_logic;
+
     --from execute
     signal ENB_Buffer_EX_MEM:                               std_logic;
     signal wb_out_FROM_execute:                             std_logic_vector(4 downto 0); 
@@ -85,21 +88,22 @@ architecture Arch of processor is
      signal neg_out_TO_Memory:                         std_logic;
 
     --from fetch
-    signal instruction_fetched :std_logic_vector(15 downto 0);
-    signal PC_FROM_fetch :      std_logic_vector(31 downto 0);
-    signal INT_FROM_fetch :     std_logic;
+    signal instruction_fetched :                  std_logic_vector(15 downto 0);
+    signal PC_FROM_fetch :                        std_logic_vector(31 downto 0);
+    signal PC_incremented_FROM_fetch :            std_logic_vector(31 downto 0);
+    signal INT_FROM_fetch :                       std_logic;
 
     -- from alu
     signal zero_FROM_ALU,neg_FROM_ALU,carry_FROM_ALU :std_logic;
 
-    -- from data hazard "to be used later" the difference between lines (88-93) in v2 we convert TO -> FROM in the phrase
+    -- from data hazard  the difference between lines (88-93) in v2 we convert TO -> FROM in the phrase
     signal PC_ENB_FROM_DATAHAZARD                     : std_logic := '1' ;
     signal insert_bubble_FROM_DATAHAZARD              : std_logic := '0' ;
     signal stall_for_INT_TO_DATAHAZARD                : std_logic        ;
     signal stall_for_jump_prediction_TO_DATAHAZARD    : std_logic        ;
     signal IF_ID_ENB_FROM_DATAHAZARD                  : std_logic := '1' ;
 
-    -- from forwarding unit "to be used later"
+    -- from forwarding unit 
     signal enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux_FROM_FW_UNIT: std_logic_vector(2 downto 0) := "000";
 
     --from comparator
@@ -118,15 +122,15 @@ begin
         --outputs
         ,instruction=>instruction_fetched,PC_Saved=>PC_FROM_fetch
         ,address_fetched=>PC_fetched_TO_prediction,address_executed=>PC_executed_TO_prediction
-        ,INT_First_Cycle=>INT_FROM_fetch);
+        ,INT_First_Cycle=>INT_FROM_fetch,PC_incremented=>PC_incremented_FROM_fetch);
 
     IF_ID : entity work.if_id
         port map(CLK,RST,enable=>IF_ID_ENB_FROM_DATAHAZARD,last_taken_in=>last_taken_FROM_prediction
         ,next_stall_in=>next_stall_FROM_prediction
         ,int_in=>INT_FROM_fetch,instruction_in=>instruction_fetched
-        ,pc_in=>PC_FROM_fetch
+        ,pc_in=>PC_FROM_fetch,pc_incremented_in=>PC_incremented_FROM_fetch
         --outputs
-        ,last_taken_out=>last_taken_TO_decode
+        ,last_taken_out=>last_taken_TO_decode,pc_incremented_out=>PC_incremented_TO_decode
         ,next_stall_out=>next_stall_TO_decode,int_out=>int_TO_decode
         ,instruction_out=>instruction_TO_decode,pc_out=>pc_TO_decode);
 
@@ -136,7 +140,7 @@ begin
         ,instruction=>instruction_TO_decode,dest_mem_wb=>dst_FROM_WB,data_out_wb=>DATA_FROM_WB
         ,data_swp_wb=>ALUout2_FROM_WB,reg_swap_mem_wb=>SRC1_FROM_WB,pc_in=>pc_TO_decode
         ,zero_flg=>zero_FROM_ALU,carry_flg=>carry_FROM_ALU,neg_flg=>neg_FROM_ALU
-        ,insert_bubble=>insert_bubble_FROM_DATAHAZARD,io_data=>DATA_fromIO
+        ,insert_bubble=>insert_bubble_FROM_DATAHAZARD,io_data=>DATA_fromIO,pc_incremented=>PC_incremented_TO_decode
         --outputs
         ,wb_outt=>wb_out_TO_execute,mem_outt=>mem_out_TO_execute,alu_op_outt=>alu_op_out_TO_execute
         ,ex_outt=>ex_out_TO_execute,data_1_outt=>data_1_out_TO_execute,data_2_outt=>data_2_out_TO_execute
@@ -145,7 +149,7 @@ begin
         ,stall_for_int=>stall_for_INT_TO_DATAHAZARD,stall_for_jmp_pred=>stall_for_jump_prediction_TO_DATAHAZARD
         ,ifjmp_upd_fsm=>ifJZ_FROM_decode,zero_flag_compara=>zero_flag_FROM_decode
         ,last_taken_compara=>last_taken_FROM_decode,inmiddleofimm=>IN_MIDDLE_OF_IMM_FROM_decode
-        ,ifanyjmp=>IF_ANY_JUMP_FROM_decode
+        ,ifanyjmp=>IF_ANY_JUMP_FROM_decode,pc_incremented_outt=>PC_incremented_TO_execute,last_taken_outt=>last_taken_TO_execute
         ,swap_before_buffer=>swap_before_buffer_FROM_decode,wb_enb_before_buffer=>wb_enb_before_buffer_FROM_decode
         ,mem_read_before_buffer=>mem_read_before_buffer_FROM_decode
         ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode
@@ -160,7 +164,8 @@ begin
       ,mem_out_MEM_WB=>Mem_out_FROM_WB,src1=>src_1_out_TO_execute, src2=>src_2_out_TO_execute
       ,dst=>dst_out_TO_execute,ea_imm_in=>ea_imm_out_TO_execute, pc_in=>pc_out_TO_execute
       ,enb_1st_mux=>enb_1st_mux_FROM_FW_UNIT, enb_2nd_mux=>enb_2nd_mux_FROM_FW_UNIT
-      ,zero_flag_in=>zero_flag_TO_execute,if_jz_in=>if_jz_TO_execute
+      ,zero_flag_in=>zero_flag_TO_execute,if_jz_in=>if_jz_TO_execute,pc_incremented_in=>PC_incremented_TO_execute
+      ,last_taken_in=>last_taken_TO_execute,prediction_result_in=>prediction_result_FROM_decode
       --outputs
       ,Mem_out=>mem_out_FROM_execute,wb_out=>wb_out_FROM_execute,alu_out1=>alu_out1_FROM_execute 
       ,alu_out2=>alu_out2_FROM_execute, EA_IMM_out=>EA_IMM_out_FROM_execute, pc_out=>pc_out_FROM_execute

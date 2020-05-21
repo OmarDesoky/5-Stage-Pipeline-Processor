@@ -24,6 +24,7 @@ port (
     neg_flg : in std_logic;
     insert_bubble: in std_logic;                                    -------------------------------
     io_data: in std_logic_vector(31 downto 0);
+    pc_incremented: in std_logic_vector(31 downto 0);
 
 
     wb_outt: out std_logic_vector(4 downto 0); --edited 10/5
@@ -38,6 +39,8 @@ port (
     pc_outt: out std_logic_vector(31 downto 0);
     dst_outt: out std_logic_vector(2 downto 0);
     prediction_result_outt : out std_logic;
+    pc_incremented_outt: out std_logic_vector(31 downto 0);
+    last_taken_outt : out std_logic;
 
     stall_for_int : out std_logic;                              ----------------------------------
     stall_for_jmp_pred: out std_logic;                          ----------------------------------
@@ -154,10 +157,10 @@ Buffer_ID_EX :  entity work.id_ex
 --edited 20/5/2020 
 port map(clk,rst_async,reg_enb_sig,imm_reg_enb_out, wb_out, mem_out, alu_op, execute, data1_out, 
 data2_out, src1_out,src2_out, em_imm_out, pc_out
-,dst_out,prediction_result,zero_flg,if_jz
+,dst_out,prediction_result,zero_flg,if_jz,pc_incremented,last_taken
 --outputs
 ,wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, sig_src_1_outt ,sig_src_2_outt,
- ea_imm_outt ,pc_outt,dst_outt,prediction_result_outt,zero_flag_outt,if_jz_outt);
+ ea_imm_outt ,pc_outt,dst_outt,prediction_result_outt,zero_flag_outt,if_jz_outt,pc_incremented_outt,last_taken_outt);
 
 ifjmp_upd_fsm<=if_jz;
 

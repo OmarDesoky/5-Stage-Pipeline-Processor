@@ -13,12 +13,14 @@ port (
     int_in : in std_logic;
     instruction_in: in std_logic_vector(15 downto 0);
     pc_in: in std_logic_vector(31 downto 0);
+    pc_incremented_in: in std_logic_vector(31 downto 0);
 
     last_taken_out : out std_logic;
     next_stall_out : out std_logic;
     int_out : out std_logic;
     instruction_out: out std_logic_vector(15 downto 0);
-    pc_out: out std_logic_vector(31 downto 0)
+    pc_out: out std_logic_vector(31 downto 0);
+    pc_incremented_out: in std_logic_vector(31 downto 0)
 );
 end if_id ;
 
@@ -35,6 +37,7 @@ begin
         int_out <= '0';
         instruction_out <= "0111100000000000";
         pc_out <= (others => '0');
+        pc_incremented_out <=(others => '0');
     
     else
         if ( rising_edge(clk) and enable ='1' ) then
@@ -43,6 +46,7 @@ begin
             int_out <= int_in;
             instruction_out <= instruction_in;
             pc_out <= pc_in;
+            pc_incremented_out<=pc_incremented_in;
         end if;
     end if;
 
