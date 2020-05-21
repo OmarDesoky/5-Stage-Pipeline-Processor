@@ -239,7 +239,7 @@ begin
 
 ------------------------------------------adding perdiction--------------------------------------------------------
     prediction_result :entity work.comparator
-    port map(zero_flag=>zero_flag_FROM_decode,last_taken=>last_taken_TO_decode,if_JZ=>ifJZ_FROM_decode
+    port map(zero_flag=>zero_flag_FROM_decode,last_taken=>last_taken_FROM_decode,if_JZ=>ifJZ_FROM_decode
     --output
     ,flush=>prediction_result_FROM_comparator);
 

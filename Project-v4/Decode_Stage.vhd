@@ -100,7 +100,9 @@ signal src_1_chosen : std_logic_vector(2 downto 0);
 signal src_2_chosen : std_logic_vector(2 downto 0);
 
 signal if_jz : std_logic; 
+signal if_jz_sig : std_logic; 
 signal negated_clk :std_logic;
+signal prediction_result_sig : std_logic;
 begin
 negated_reg_enb_sig<=not(reg_enb_sig);
 negated_clk<=not(clk);
@@ -110,8 +112,8 @@ src1_out <= instruction (7 downto 5);
 src2_out <= instruction (4 downto 2);
 last_taken_compara <=last_taken;
 stall_for_jmp_pred <= last_taken and stall_next;
-zero_flag_compara <= flags_out(1);
-
+--zero_flag_compara <= flags_out(1);
+zero_flag_compara <=zero_flg;
 -- these signals are made to made decode happens in the 2nd cycle
 src_1_outt <= sig_src_1_outt;
 src_2_outt <= sig_src_2_outt;
@@ -136,8 +138,8 @@ mem_out <= sp_enb_sig&int_rti_dntuse_sig&mem_read_sig&mem_write_sig when insert_
 execute <= alu_source_sig&io_enable_sig when insert_bubble='0' else (others => '0');
                                 -------------------------------------------------------------------
 alu_op <= alu_op_sig  when insert_bubble='0' else (others => '0');
-
-
+prediction_result_sig<= prediction_result when insert_bubble='0' else '0';
+if_jz_sig <= if_jz when insert_bubble='0' else '0';
 --  when _imm_ea is 1 we select effecive address 
 --  when _imm_ea is 0 we select immediate address 
 first4 : entity work.n_bit_register generic map(4)
@@ -157,11 +159,11 @@ Buffer_ID_EX :  entity work.id_ex
 --edited 20/5/2020 
 port map(clk,rst_async,reg_enb_sig,imm_reg_enb_out, wb_out, mem_out, alu_op, execute, data1_out, 
 data2_out, src1_out,src2_out, em_imm_out, pc_out
-,dst_out,prediction_result,zero_flg,if_jz,pc_incremented,last_taken
+,dst_out,prediction_result_sig,zero_flg,if_jz_sig,pc_incremented,last_taken
 --outputs
 ,wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, sig_src_1_outt ,sig_src_2_outt,
  ea_imm_outt ,pc_outt,dst_outt,prediction_result_outt,zero_flag_outt,if_jz_outt,pc_incremented_outt,last_taken_outt);
 
-ifjmp_upd_fsm<=if_jz;
+ifjmp_upd_fsm<=if_jz_sig;
 
 end flow; 
