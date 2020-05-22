@@ -24,7 +24,8 @@ PORT (
 		alu_out1, alu_out2, EA_IMM_out, pc_out:	out std_logic_vector(31 downto 0);
 		src1_out, DST_out:						out std_logic_vector (2 downto 0);
 		IO_out,forwarded_jmp_addr : 			out std_logic_vector(31 downto 0); --edited 20/5/2020
-		zero_flag, carry_flag, neg_flag:		out std_logic);
+		zero_flag, carry_flag, neg_flag:		out std_logic;
+		take_jump_Correct : out std_logic);
 END Execution_Stage;
 
 ARCHITECTURE flow OF Execution_Stage IS
@@ -33,6 +34,7 @@ signal second_operand_for_ALU:		std_logic_vector(31 downto 0);
 signal mux_choice:					std_logic_vector(31 downto 0);
 signal zero_sig : std_logic;
 BEGIN   
+take_jump_Correct<= if_jz_in and prediction_result_in;
 Mem_out <= mem_in;
 wb_out <= wb_in;
 EA_IMM_out <=ea_imm_in;

@@ -109,11 +109,11 @@ architecture Arch of processor is
     --from comparator
     signal prediction_result_FROM_comparator          : std_logic        ;
     signal prediction_result_FROM_decode              : std_logic        ;
-
+    signal prediction_result_FROM_execute             : std_logic        ;
 begin
     fetch : entity work.Fetch_Stage
         port map(rst_async_test=>RST,int_test=>INT, pc_wb =>pc_wb_FROM_WB
-        ,take_jmp_addr_test=>take_jmp_addr_FROM_prediction,take_correct_jmp_addr_test=>prediction_result_FROM_decode
+        ,take_jmp_addr_test=>take_jmp_addr_FROM_prediction,take_correct_jmp_addr_test=>prediction_result_FROM_execute
         ,IN_MIDDLE_OF_IMM=>IN_MIDDLE_OF_IMM_FROM_decode,IF_ANY_JUMP=>IF_ANY_JUMP_FROM_decode
         ,CLK=>CLK,flip_next_cycle_INT_test=>IF_ID_ENB_FROM_DATAHAZARD
         ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>prediction_result_FROM_comparator
@@ -171,7 +171,7 @@ begin
       ,alu_out2=>alu_out2_FROM_execute, EA_IMM_out=>EA_IMM_out_FROM_execute, pc_out=>pc_out_FROM_execute
       ,src1_out=>src1_out_FROM_execute, DST_out=>DST_out_FROM_execute, IO_out=>DATA_toIO
       ,forwarded_jmp_addr=>PC_correct_forwarded_TO_prediction
-      ,zero_flag=>zero_FROM_ALU, carry_flag=>carry_FROM_ALU, neg_flag=>neg_FROM_ALU);
+      ,zero_flag=>zero_FROM_ALU, carry_flag=>carry_FROM_ALU, neg_flag=>neg_FROM_ALU,take_jump_Correct=>prediction_result_FROM_execute);
     
     Buffer_Holder_1 :entity work.buffer_holder1
       port map(CLK,RST,mem_out_FROM_execute(4)
