@@ -156,3 +156,14 @@ run
 run
 force -freeze sim:/processor/DATA_fromIO 00000000000000000000001000000000 0
 run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run

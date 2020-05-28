@@ -34,7 +34,7 @@ signal second_operand_for_ALU:		std_logic_vector(31 downto 0);
 signal mux_choice:					std_logic_vector(31 downto 0);
 signal zero_sig : std_logic;
 BEGIN   
-take_jump_Correct<= if_jz_in and prediction_result_in;
+take_jump_Correct<= if_jz_in and (prediction_result_in);
 Mem_out <= mem_in;
 wb_out <= wb_in;
 EA_IMM_out <=ea_imm_in;

@@ -236,8 +236,11 @@ begin
                 sp_enb<="11";
                 mem_write<='1';
                 any_jmp<='1';
-		flush_Decode<='1';
+		        flush_Decode<='1';
                 int_rti_dntuse<="010";
+                -- modification by ahmed waleed in 29/5/2020
+                -- we should write back in pc so i will add
+                pc_wb<='1';
             elsif (op = RET) then
                 pc_wb<='1';
                 sp_enb<="10";
@@ -247,7 +250,7 @@ begin
                 
                 flush_Decode <= '1';
                 counter3 <= counter3+1;
-		flush_Decode<='1';
+		        flush_Decode<='1';
             elsif (op = SWAPP) then
                 alu_op <= NOP_ALU ;
                 swap<='1';
