@@ -181,9 +181,6 @@ begin
                 pc_wb<= '1';
                 any_jmp<='1';
                 int_rti_dntuse<="101";
-                --counter2 <= counter2 +1;
-                --last_op2 <= op;
-
                 flush_Decode <= '1';
                 counter3 <= counter3+1;
 
@@ -219,7 +216,7 @@ begin
                 io_enable<='1';
             elsif (op = PUSH) then
                 --write_enable<='1';
-		mem_write <='1';
+		        mem_write <='1';
                 sp_enb<="11";
             elsif (op = POP) then
                 mem_read<='1';
@@ -247,10 +244,9 @@ begin
                 mem_read<='1';
                 any_jmp<='1';
                 int_rti_dntuse<="011";
-                
+                mem_or_reg<='1';
                 flush_Decode <= '1';
                 counter3 <= counter3+1;
-		        flush_Decode<='1';
             elsif (op = SWAPP) then
                 alu_op <= NOP_ALU ;
                 swap<='1';
