@@ -190,6 +190,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 
 -- Compiling entity alu
 -- Compiling architecture Behavioral of alu
 
+} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/ForwardingUnit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/ForwardingUnit.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity ForwardingUnit
+-- Compiling architecture behavioral_flow of ForwardingUnit
+
 } {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/IF_ID.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/IF_ID.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
 -- Loading package STANDARD
@@ -198,14 +206,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 
 -- Loading package std_logic_arith
 -- Compiling entity if_id
 -- Compiling architecture if_id_buffer of if_id
-
-} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/ForwardingUnit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/ForwardingUnit.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity ForwardingUnit
--- Compiling architecture behavioral_flow of ForwardingUnit
 
 } {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
@@ -308,22 +308,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 
 -- Loading package std_logic_arith
 -- Compiling entity PC_REGISTER
 -- Compiling architecture general_register of PC_REGISTER
-
-} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Decode_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Decode_Stage.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Loading package NUMERIC_STD
--- Compiling entity decode_stage
--- Compiling architecture flow of decode_stage
--- Loading entity registers
--- Loading entity control_unit
--- Loading entity n_bit_register
--- Loading entity Data1_Decision
--- Loading entity id_ex
 
 } {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/FSM_BLOCK.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/FSM_BLOCK.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019

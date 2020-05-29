@@ -24,6 +24,7 @@ port (
     Zero_Flag_in , IF_JZ_IN : in std_logic;
     pc_incremented_in: in std_logic_vector(31 downto 0);
     last_taken_in : in std_logic;
+    stop_forward_in :in std_logic;
 
     wb_out: out std_logic_vector(4 downto 0); --edited 10/5
     mem_out: out std_logic_vector(6 downto 0); --edited 10/5
@@ -39,7 +40,8 @@ port (
     prediction_result_out: out std_logic; --edited 20/5/2020 
     Zero_Flag_out , IF_JZ_out : out std_logic;
     pc_incremented_out: out std_logic_vector(31 downto 0);
-    last_taken_out : out std_logic
+    last_taken_out : out std_logic;
+    stop_forward_out :out std_logic
 );
 end id_ex ;
 
@@ -67,6 +69,7 @@ begin
         Zero_Flag_out <= '0';
         IF_JZ_out <= '0';
         last_taken_out<='0';
+        stop_forward_out <= '0';
     else
         if rising_edge(clk) then
             if imm_reg_enable = '0' then
@@ -89,6 +92,7 @@ begin
             IF_JZ_out <= IF_JZ_IN;
             last_taken_out<=last_taken_in;
             pc_incremented_out<=pc_incremented_in;
+            stop_forward_out <= stop_forward_in;
         end if;
     end if;
 

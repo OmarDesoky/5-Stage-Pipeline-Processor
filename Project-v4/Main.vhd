@@ -43,6 +43,7 @@ architecture Arch of processor is
     signal dst_out_TO_execute:                                            std_logic_vector(2 downto 0);
     signal PC_incremented_TO_execute:                                     std_logic_vector(31 downto 0);
     signal zero_flag_TO_execute,if_jz_TO_execute,last_taken_TO_execute :  std_logic;
+    signal stop_forwarding_to_execute : std_logic;
 
     --from execute
     signal ENB_Buffer_EX_MEM:                               std_logic;
@@ -154,7 +155,7 @@ begin
         ,mem_read_before_buffer=>mem_read_before_buffer_FROM_decode
         ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode
         ,R3=>R3_FROM_decode,R4=>R4_FROM_decode,R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode,
-        zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute);
+        zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute,stop_forward_to_ex=>stop_forwarding_to_execute);
 
     Execution :  entity work.Execution_Stage
       port map(wb_in=>wb_out_TO_execute,mem_in=>mem_out_TO_execute,alu_op=>alu_op_out_TO_execute
@@ -223,7 +224,7 @@ begin
     port map(SRC1=>src_1_out_TO_execute,SRC2=>src_2_out_TO_execute,DST_MEM_WB=>dst_FROM_WB
     ,DST_EX_MEM=>DST_out_TO_Memory,DST2_EX_MEM=>src1_out_TO_Memory,DST2_MEM_WB=>SRC1_FROM_WB
     ,SWAP_SIGNAL_EX_MEM=>wb_out_TO_Memory(3),SWAP_SIGNAL_MEM_WB=>swap_wb_FROM_WB
-    ,WB_MEM_WB=>reg_wb_FROM_WB,WB_EX_MEM=>wb_out_TO_Memory(0),MEM_OR_REG_MEM_WB=>wb_sigs_FROM_WB(2)
+    ,WB_MEM_WB=>reg_wb_FROM_WB,WB_EX_MEM=>wb_out_TO_Memory(0),MEM_OR_REG_MEM_WB=>wb_sigs_FROM_WB(2),disable=>stop_forwarding_to_execute
     --outputs
     ,ENABLE_1ST_MUX=>enb_1st_mux_FROM_FW_UNIT, ENABLE_2ND_MUX=>enb_2nd_mux_FROM_FW_UNIT);
 

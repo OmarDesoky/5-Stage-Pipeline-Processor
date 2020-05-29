@@ -5317,3 +5317,3539 @@ run
 run
 run
 run
+quit -sim
+# End time: 04:28:22 on May 29,2020, Elapsed time: 0:11:44
+# Errors: 32, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 04:34:29 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 05:00:23 on May 29,2020, Elapsed time: 0:25:54
+# Errors: 27, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:01:26 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+quit -sim
+# End time: 05:02:09 on May 29,2020, Elapsed time: 0:00:43
+# Errors: 27, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:02:14 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 05:04:00 on May 29,2020, Elapsed time: 0:01:46
+# Errors: 27, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:04:03 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 05:11:03 on May 29,2020, Elapsed time: 0:07:00
+# Errors: 27, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:11:10 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 05:14:14 on May 29,2020, Elapsed time: 0:03:04
+# Errors: 30, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:14:33 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+add wave -position insertpoint sim:/processor/Execution/execution_unit/*
+add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
+add wave -position insertpoint sim:/processor/FW_Unit/*
+quit -sim
+# End time: 05:38:45 on May 29,2020, Elapsed time: 0:24:12
+# Errors: 42, Warnings: 42
+# Compile of 2_BITS_FSM.vhd was successful.
+# Compile of ADDER_SUB.vhd was successful.
+# Compile of ALU.vhd was successful.
+# Compile of Brach_Forwarding_Unit.vhd was successful.
+# Compile of Branch_Hazard_Predection_Unit.vhd was successful.
+# Compile of BUFFER_HOLDER1.vhd was successful.
+# Compile of BUFFER_HOLDER2.vhd was successful.
+# Compile of COMPARATOR.vhd was successful.
+# Compile of CONTROL_UNIT.vhd was successful.
+# Compile of data_hazard_detection_unit.vhd was successful.
+# Compile of Data_MEM.vhd was successful.
+# Compile of Data1_Decision.vhd was successful.
+# Compile of Decode_Stage.vhd failed with 1 errors.
+# Compile of EX_MEM.vhd was successful.
+# Compile of Execution_Stage.vhd was successful.
+# Compile of Fetch_Stage.vhd was successful.
+# Compile of ForwardingUnit.vhd was successful.
+# Compile of FSM_BLOCK.vhd was successful.
+# Compile of ID_EX.vhd was successful.
+# Compile of IF_ID.vhd was successful.
+# Compile of INST_MEM.vhd was successful.
+# Compile of INT_CONTROLLER.vhd was successful.
+# Compile of INT_HANDLER.vhd was successful.
+# Compile of Main.vhd was successful.
+# Compile of MEM_WB.vhd was successful.
+# Compile of Memory_Stage.vhd was successful.
+# Compile of Mini-Decoder.vhd was successful.
+# Compile of MUX_2TO1.vhd was successful.
+# Compile of MUX_4TO1.vhd was successful.
+# Compile of MUX_6TO1 .vhd was successful.
+# Compile of MUX_8TO1.vhd was successful.
+# Compile of N_BIT_REGISTER.vhd was successful.
+# Compile of PC_REGISTER.vhd was successful.
+# Compile of PC_Save_Determine.vhd was successful.
+# Compile of PC_SELECTOR.vhd was successful.
+# Compile of Prediction_Stage.vhd was successful.
+# Compile of REGISTER_FILE.vhd was successful.
+# Compile of SP_Register.vhd was successful.
+# 38 compiles, 1 failed with 1 error.
+# Compile of Decode_Stage.vhd was successful with warnings.
+# Compile of Decode_Stage.vhd was successful with warnings.
+# Compile of Decode_Stage.vhd was successful.
+# Compile of 2_BITS_FSM.vhd was successful.
+# Compile of ADDER_SUB.vhd was successful.
+# Compile of ALU.vhd was successful.
+# Compile of Brach_Forwarding_Unit.vhd was successful.
+# Compile of Branch_Hazard_Predection_Unit.vhd was successful.
+# Compile of BUFFER_HOLDER1.vhd was successful.
+# Compile of BUFFER_HOLDER2.vhd was successful.
+# Compile of COMPARATOR.vhd was successful.
+# Compile of CONTROL_UNIT.vhd was successful.
+# Compile of data_hazard_detection_unit.vhd was successful.
+# Compile of Data_MEM.vhd was successful.
+# Compile of Data1_Decision.vhd was successful.
+# Compile of Decode_Stage.vhd was successful.
+# Compile of EX_MEM.vhd was successful.
+# Compile of Execution_Stage.vhd was successful.
+# Compile of Fetch_Stage.vhd was successful.
+# Compile of ForwardingUnit.vhd was successful.
+# Compile of FSM_BLOCK.vhd was successful.
+# Compile of ID_EX.vhd was successful.
+# Compile of IF_ID.vhd was successful.
+# Compile of INST_MEM.vhd was successful.
+# Compile of INT_CONTROLLER.vhd was successful.
+# Compile of INT_HANDLER.vhd was successful.
+# Compile of Main.vhd was successful.
+# Compile of MEM_WB.vhd was successful.
+# Compile of Memory_Stage.vhd was successful.
+# Compile of Mini-Decoder.vhd was successful.
+# Compile of MUX_2TO1.vhd was successful.
+# Compile of MUX_4TO1.vhd was successful.
+# Compile of MUX_6TO1 .vhd was successful.
+# Compile of MUX_8TO1.vhd was successful.
+# Compile of N_BIT_REGISTER.vhd was successful.
+# Compile of PC_REGISTER.vhd was successful.
+# Compile of PC_Save_Determine.vhd was successful.
+# Compile of PC_SELECTOR.vhd was successful.
+# Compile of Prediction_Stage.vhd was successful.
+# Compile of REGISTER_FILE.vhd was successful.
+# Compile of SP_Register.vhd was successful.
+# 38 compiles, 0 failed with no errors.
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:40:36 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
+add wave -position insertpoint sim:/processor/FW_Unit/*
+quit -sim
+# End time: 05:43:51 on May 29,2020, Elapsed time: 0:03:15
+# Errors: 33, Warnings: 42
+# Compile of ForwardingUnit.vhd was successful.
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:44:20 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+quit -sim
+# End time: 05:44:57 on May 29,2020, Elapsed time: 0:00:37
+# Errors: 27, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:45:00 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
+add wave -position insertpoint sim:/processor/FW_Unit/*
+add wave -position insertpoint sim:/processor/decode/Control/*
+quit -sim
+# End time: 05:49:37 on May 29,2020, Elapsed time: 0:04:37
+# Errors: 29, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 05:49:44 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
+add wave -position insertpoint sim:/processor/FW_Unit/*
+add wave -position insertpoint sim:/processor/decode/Control/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 06:04:47 on May 29,2020, Elapsed time: 0:15:03
+# Errors: 40, Warnings: 42
+# Compile of CONTROL_UNIT.vhd was successful.
+# Compile of Decode_Stage.vhd was successful.
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 06:05:39 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
+add wave -position insertpoint sim:/processor/FW_Unit/*
+add wave -position insertpoint sim:/processor/decode/Control/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 06:06:54 on May 29,2020, Elapsed time: 0:01:15
+# Errors: 27, Warnings: 42
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 06:06:59 on May 29,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.processor(arch)
+# Loading ieee.std_logic_textio(body)
+# Loading work.fetch_stage(flow)
+# Loading work.pc_selector(pc_select)
+# Loading work.pc_register(general_register)
+# Loading work.handler(int_handler)
+# Loading work.inst_ram(syncram)
+# Loading work.pc_save_determine(behavioral_flow)
+# Loading work.mux_2to_1(general_mux_2to_1)
+# Loading work.if_id(if_id_buffer)
+# Loading work.decode_stage(flow)
+# Loading work.registers(registers_file)
+# Loading work.n_bit_register(general_register)
+# Loading work.control_unit(control)
+# Loading work.data1_decision(comp_arch)
+# Loading work.id_ex(id_ex_buffer)
+# Loading work.execution_stage(flow)
+# Loading work.mux_6to1(general_mux_6to1)
+# Loading work.alu(behavioral)
+# Loading work.buffer_holder1(bfh1)
+# Loading work.ex_mem(ex_mem_buffer)
+# Loading work.memory_stage(flow)
+# Loading work.data_ram(syncram)
+# Loading work.controller(int_controller)
+# Loading work.sp_n_bit_register(sp_general_register)
+# Loading work.add_sub(adder_sub)
+# Loading work.buffer_holder2(bfh2)
+# Loading work.mem_wb(mem_wb_buffer)
+# Loading work.forwardingunit(behavioral_flow)
+# Loading work.data_hazard_detection_unit(behavioral_flow)
+# Loading work.comparator(comp_arch)
+# Loading work.prediction_stage(predict)
+# Loading work.mini_decoder(mini_decoder)
+# Loading work.branch_hazard_predection_unit(behavioral_flow)
+# Loading work.brach_forwarding_unit(behavioral_flow)
+# Loading work.mux_4to1(general_mux_4to1)
+# Loading work.fsm_block(fsmblock)
+# Loading work.fsm_2_bits(fsm_2_bit)
+# Loading work.mux_8to1(general_mux_8to1)
+add wave -position insertpoint  \
+sim:/processor/CLK \
+sim:/processor/RST \
+sim:/processor/INT \
+sim:/processor/DATA_fromIO \
+sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
+sim:/processor/last_taken_TO_decode \
+sim:/processor/next_stall_TO_decode \
+sim:/processor/int_TO_decode \
+sim:/processor/instruction_TO_decode \
+sim:/processor/pc_TO_decode \
+sim:/processor/IF_ANY_JUMP_FROM_decode \
+sim:/processor/IN_MIDDLE_OF_IMM_FROM_decode \
+sim:/processor/ifJZ_FROM_decode \
+sim:/processor/zero_flag_FROM_decode \
+sim:/processor/last_taken_FROM_decode \
+sim:/processor/R0_FROM_decode \
+sim:/processor/R1_FROM_decode \
+sim:/processor/R2_FROM_decode \
+sim:/processor/R3_FROM_decode \
+sim:/processor/R4_FROM_decode \
+sim:/processor/R5_FROM_decode \
+sim:/processor/R6_FROM_decode \
+sim:/processor/R7_FROM_decode \
+sim:/processor/swap_before_buffer_FROM_decode \
+sim:/processor/wb_enb_before_buffer_FROM_decode \
+sim:/processor/mem_read_before_buffer_FROM_decode \
+sim:/processor/wb_out_TO_execute \
+sim:/processor/mem_out_TO_execute \
+sim:/processor/alu_op_out_TO_execute \
+sim:/processor/ex_out_TO_execute \
+sim:/processor/data_1_out_TO_execute \
+sim:/processor/data_2_out_TO_execute \
+sim:/processor/src_1_out_TO_execute \
+sim:/processor/src_2_out_TO_execute \
+sim:/processor/ea_imm_out_TO_execute \
+sim:/processor/pc_out_TO_execute \
+sim:/processor/dst_out_TO_execute \
+sim:/processor/ENB_Buffer_EX_MEM \
+sim:/processor/wb_out_FROM_execute \
+sim:/processor/mem_out_FROM_execute \
+sim:/processor/alu_out1_FROM_execute \
+sim:/processor/alu_out2_FROM_execute \
+sim:/processor/EA_IMM_out_FROM_execute \
+sim:/processor/pc_out_FROM_execute \
+sim:/processor/src1_out_FROM_execute \
+sim:/processor/DST_out_FROM_execute \
+sim:/processor/take_jmp_addr_FROM_prediction \
+sim:/processor/last_taken_FROM_prediction \
+sim:/processor/next_stall_FROM_prediction \
+sim:/processor/PC_FROM_prediction \
+sim:/processor/PC_fetched_TO_prediction \
+sim:/processor/PC_executed_TO_prediction \
+sim:/processor/PC_correct_forwarded_TO_prediction \
+sim:/processor/pc_wb_FROM_WB \
+sim:/processor/swap_wb_FROM_WB \
+sim:/processor/reg_wb_FROM_WB \
+sim:/processor/flag_wb_FROM_WB \
+sim:/processor/wb_sigs_FROM_WB \
+sim:/processor/DATA_FROM_WB \
+sim:/processor/ALUout1_FROM_WB \
+sim:/processor/ALUout2_FROM_WB \
+sim:/processor/Mem_out_FROM_WB \
+sim:/processor/dst_FROM_WB \
+sim:/processor/SRC1_FROM_WB \
+sim:/processor/carry_flag_final \
+sim:/processor/zero_flag_final \
+sim:/processor/neg_flag_final \
+sim:/processor/Memout_FROM_Memory \
+sim:/processor/wb_out_FROM_Memory \
+sim:/processor/wb_out_TO_Memory \
+sim:/processor/mem_out_TO_Memory \
+sim:/processor/alu_out1_TO_Memory \
+sim:/processor/alu_out2_TO_Memory \
+sim:/processor/EA_IMM_out_TO_Memory \
+sim:/processor/pc_out_TO_Memory \
+sim:/processor/src1_out_TO_Memory \
+sim:/processor/DST_out_TO_Memory \
+sim:/processor/carry_out_TO_Memory \
+sim:/processor/zero_out_TO_Memory \
+sim:/processor/neg_out_TO_Memory \
+sim:/processor/instruction_fetched \
+sim:/processor/PC_FROM_fetch \
+sim:/processor/INT_FROM_fetch \
+sim:/processor/zero_FROM_ALU \
+sim:/processor/neg_FROM_ALU \
+sim:/processor/carry_FROM_ALU \
+sim:/processor/PC_ENB_FROM_DATAHAZARD \
+sim:/processor/insert_bubble_FROM_DATAHAZARD \
+sim:/processor/stall_for_INT_TO_DATAHAZARD \
+sim:/processor/stall_for_jump_prediction_TO_DATAHAZARD \
+sim:/processor/IF_ID_ENB_FROM_DATAHAZARD \
+sim:/processor/enb_1st_mux_FROM_FW_UNIT \
+sim:/processor/enb_2nd_mux_FROM_FW_UNIT \
+sim:/processor/prediction_result_FROM_comparator \
+sim:/processor/prediction_result_FROM_decode
+add wave -position insertpoint sim:/processor/fetch/*
+add wave -position insertpoint sim:/processor/IF_ID/*
+add wave -position insertpoint sim:/processor/decode/*
+add wave -position insertpoint sim:/processor/Execution/*
+add wave -position insertpoint sim:/processor/prediction_stage/*
+add wave -position insertpoint sim:/processor/EX_MEM_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/*
+add wave -position insertpoint sim:/processor/Buffer_Holder_1/*
+add wave -position insertpoint sim:/processor/MEM_WB_Buffer/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision1/*
+add wave -position insertpoint sim:/processor/Memory/INT_Controller/*
+add wave -position insertpoint sim:/processor/Memory/takeSP_Decision2/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/fetch/pc_Select/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
+add wave -position insertpoint sim:/processor/FW_Unit/*
+add wave -position insertpoint sim:/processor/decode/Control/*
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RST 1 0
+force -freeze sim:/processor/INT 0 0
+force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/prediction_stage/FSM
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/Execution/execution_unit
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(7)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(6)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(5)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(4)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(3)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(2)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(1)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Region: /processor/decode/RegisterFile/genCompReg(0)
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/fetch/INS_Memory
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /processor/decode/RegisterFile
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 2  Instance: /processor/prediction_stage/FSM
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 3  Instance: /processor/prediction_stage/FSM
+force -freeze sim:/processor/RST 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
