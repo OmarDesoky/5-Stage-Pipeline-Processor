@@ -15,7 +15,6 @@ LDM R1,50 #R1=50
 LDM R3,20 #R3=20
 LDM R4,2  #R4=2
 JMP R3    #Jump to 20
-
 .ORG 20
 SUB R0,R2,R5 #check if R0 = R2
 JZ R1 #jump if R0=R2 to 50
@@ -23,8 +22,6 @@ ADD R4,R4,R4 #R4 = R4*2
 OUT R4
 INC R0
 JMP R3 #jump to 20
-
-
 .ORG 50
 LDM R0,0 #R0=0
 LDM R2,8 #R2=8
