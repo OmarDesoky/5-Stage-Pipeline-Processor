@@ -67,7 +67,7 @@ execution_unit:  entity work.alu
     port map(a=> first_operand_for_ALU, b=>second_operand_for_ALU, z1=>alu_out1, z2=>alu_out2, zero=>zero_sig, carry=>carry_flag, neg=>neg_flag, sel=>alu_op);
 
 	process(first_operand_for_ALU)
-begin
+	begin
 	if (ex_in(0) = '1') then
 		IO_out <= first_operand_for_ALU;
 	else
