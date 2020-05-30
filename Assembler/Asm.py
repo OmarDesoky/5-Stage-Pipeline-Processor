@@ -247,17 +247,23 @@ contents = readInput()
 parsedContent = parseInstructions(contents)
 
 # output in ram
-# ram_file = "..\Vhdl Src\Memory\inst_memory.mem"
 f= open("ram.mem","w")
 f.write("// memory data file (do not edit the following line - required for mem load use)\r")
 # f.write("// instance=/data_ram/ram\r")
 f.write("// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1\r")
+
+# add software solution for jmp/jz hazard. 
+lastOp = '-1'
+lastRdst1 = '-1'
+lastRdst2 = '-1'
+##########################################
 
 i = 0
 cursor = 0
 while(i< len(parsedContent)):
     if(parsedContent[i][0] == ".org"):
         cursor = int(str(parsedContent[i][1]),16)
+        # for numerical values; convert it to 32 bit
         if(parsedContent[i+1][0].isnumeric()):
             totalString = hex2bin(parsedContent[i+1][0],32)
             secondPart, firstPart = totalString[:int(len(totalString)/2)], totalString[int(len(totalString)/2):]
@@ -267,12 +273,74 @@ while(i< len(parsedContent)):
             cursor+=1
         else:
             for j in range(len(convertInstruction(parsedContent[i+1]))):
-                f.write("@"+hex(cursor)[2:]+" "+convertInstruction(parsedContent[i+1])[j] +"\r")
+                IR = convertInstruction(parsedContent[i+1])[j]
+                # check if there is a hazard and current instruction is jmp or jz => put stalls
+                # we stall 2 NOPs unless its LDD or POP => 3 NOPs 
+                if (j == 0) and (IR[8:11] == lastRdst1 or IR[8:11] == lastRdst2) and ( IR[0:5] == "11000" or IR[0:5] == "11001" ):
+                    # insert 2 NOPs 
+                    f.write("@"+hex(cursor)[2:]+" "+ "0111100000000000" +"\r")
+                    cursor+=1
+                    f.write("@"+hex(cursor)[2:]+" "+ "0111100000000000" +"\r")
+                    cursor+=1
+                    # if LDD or POP => another NOP
+                    if lastOp == "10011" or lastOp == "10001":
+                        f.write("@"+hex(cursor)[2:]+" "+ "0111100000000000" +"\r")
+                        cursor+=1
+
+                if j == 0:
+                    # swap instruction
+                    # NOP, OUT, PUSH, STD, ANY JMP => we should not save last IR
+                    if IR[0:5] == "01111" or IR[0:5] == "01011" or IR[0:5] == "10000" or IR[0:5] == "10100" or IR[0:2] == "11":
+                        lastOp = '-1'
+                        lastRdst1 = '-1'
+                        lastRdst2 = '-1'
+
+                    elif IR[0:5] == "00011":
+                        lastOp = IR[0:5]
+                        lastRdst1 = IR[5:8]
+                        lastRdst2 = IR[8:11]
+                    else:
+                        lastOp = IR[0:5]
+                        lastRdst1 = IR[5:8]
+                        lastRdst2 = '-1'
+
+                f.write("@"+hex(cursor)[2:]+" "+ IR +"\r")
                 cursor+=1
         i+=2
     else:
         for j in range(len(convertInstruction(parsedContent[i]))):
-            f.write("@"+hex(cursor)[2:]+" "+convertInstruction(parsedContent[i])[j] +"\r")    
-            cursor+=1        
+            IR = convertInstruction(parsedContent[i])[j]
+            # check if there is a hazard and current instruction is jmp or jz => put stalls
+            # we stall 2 NOPs unless its LDD or POP => 3 NOPs 
+            if (j == 0) and (IR[8:11] == lastRdst1 or IR[8:11] == lastRdst2) and ( IR[0:5] == "11000" or IR[0:5] == "11001" ):
+                # insert 2 NOPs 
+                f.write("@"+hex(cursor)[2:]+" "+ "0111100000000000" +"\r")
+                cursor+=1
+                f.write("@"+hex(cursor)[2:]+" "+ "0111100000000000" +"\r")
+                cursor+=1
+
+                if lastOp == "10011" or lastOp == "10001":
+                    f.write("@"+hex(cursor)[2:]+" "+ "0111100000000000" +"\r")
+                    cursor+=1
+                    
+            if j == 0:
+                # swap instruction
+                # NOP, OUT, PUSH, STD, ANY JMP => we should not save last IR
+                if IR[0:5] == "01111" or IR[0:5] == "01011" or IR[0:5] == "10000" or IR[0:5] == "10100" or IR[0:2] == "11":
+                    lastOp = '-1'
+                    lastRdst1 = '-1'
+                    lastRdst2 = '-1'
+
+                elif IR[0:5] == "00011":
+                    lastOp = IR[0:5]
+                    lastRdst1 = IR[5:8]
+                    lastRdst2 = IR[8:11]
+                else:
+                    lastOp = IR[0:5]
+                    lastRdst1 = IR[5:8]
+                    lastRdst2 = '-1'
+
+            f.write("@"+hex(cursor)[2:]+" "+ IR +"\r")
+            cursor+=1   
         i+=1
 f.close()
