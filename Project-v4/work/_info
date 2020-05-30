@@ -1071,7 +1071,7 @@ R185
 R12
 R13
 Emini_decoder
-Z188 w1590160450
+Z188 w1590864902
 R1
 R2
 R3
@@ -1084,11 +1084,11 @@ VYhY;MC7bN<5gioLJaCgmG3
 !s100 b;J8HQagMHSUT?Ecm>43R3
 R7
 32
-R183
+Z191 !s110 1590864977
 !i10b 1
-Z191 !s108 1590772729.000000
-Z192 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Mini-Decoder.vhd|
-Z193 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Mini-Decoder.vhd|
+Z192 !s108 1590864976.000000
+Z193 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Mini-Decoder.vhd|
+Z194 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Mini-Decoder.vhd|
 !i113 1
 R12
 R13
@@ -1096,39 +1096,39 @@ Amini_decoder
 R1
 R2
 R3
-Z194 DEx4 work 12 mini_decoder 0 22 YhY;MC7bN<5gioLJaCgmG3
+Z195 DEx4 work 12 mini_decoder 0 22 YhY;MC7bN<5gioLJaCgmG3
 l38
 L17
-VB87`WS?KB35LSEjCY7]_m2
-!s100 mEBJc4Md;F?Y;HGjYj=kU0
+V1]n[n:d[zDRSDS;I9^lGm1
+!s100 Bd<jCEUgLIh>SOUX`D_LS0
 R7
 32
-R183
-!i10b 1
 R191
+!i10b 1
 R192
 R193
+R194
 !i113 1
 R12
 R13
 Emux_2to_1
-Z195 w1588743105
+Z196 w1588743105
 R2
 R3
 R4
-Z196 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd
-Z197 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd
+Z197 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd
+Z198 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd
 l0
 L4
 VOTbzHd5POGWoP7hAg0DmC0
 !s100 H5M^kN<L8SzTln5LK@K622
 R7
 32
-Z198 !s110 1590772730
+Z199 !s110 1590772730
 !i10b 1
-R191
-Z199 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd|
-Z200 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd|
+Z200 !s108 1590772729.000000
+Z201 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd|
+Z202 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_2TO1.vhd|
 !i113 1
 R12
 R13
@@ -1142,11 +1142,11 @@ V?z@6dEJ1Gf13B0R@a4jTl0
 !s100 YEoeRXn^18fN9eB8O>5_@3
 R7
 32
-R198
-!i10b 1
-R191
 R199
+!i10b 1
 R200
+R201
+R202
 !i113 1
 R12
 R13
@@ -1155,58 +1155,58 @@ R15
 R2
 R3
 R4
-Z201 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd
-Z202 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd
+Z203 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd
+Z204 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd
 l0
 L4
 V=NMh2O;Va<9G]BUDeR[G:1
 !s100 JH4L;F`d1PE9jWS>UP:NH2
 R7
 32
-R198
+R199
 !i10b 1
-Z203 !s108 1590772730.000000
-Z204 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd|
-Z205 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd|
+Z205 !s108 1590772730.000000
+Z206 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd|
+Z207 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_4TO1.vhd|
 !i113 1
 R12
 R13
 Ageneral_mux_4to1
 R2
 R3
-Z206 DEx4 work 8 mux_4to1 0 22 =NMh2O;Va<9G]BUDeR[G:1
+Z208 DEx4 work 8 mux_4to1 0 22 =NMh2O;Va<9G]BUDeR[G:1
 l18
 L17
 V5O67bbjLch]cU8c<J2XcB2
 !s100 R3Ic6P0MF>LS9975dj^aN3
 R7
 32
-R198
+R199
 !i10b 1
-R203
-R204
 R205
+R206
+R207
 !i113 1
 R12
 R13
 Emux_6to1
-Z207 w1588944673
+Z209 w1588944673
 R2
 R3
 R4
-Z208 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd
-Z209 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd
+Z210 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd
+Z211 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd
 l0
 L4
 V<df1G@O0IJ@K`^gMnNKbV2
 !s100 fLd2GFT:kekmozFbT33TT3
 R7
 32
-R198
+R199
 !i10b 1
-R203
-Z210 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd|
-Z211 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd|
+R205
+Z212 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd|
+Z213 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_6TO1 .vhd|
 !i113 1
 R12
 R13
@@ -1220,72 +1220,72 @@ VC]3cmgRWMQc=l<dF8^Oa;1
 !s100 TAYOZAhBc9JZNS9V4lVLR3
 R7
 32
-R198
+R199
 !i10b 1
-R203
-R210
-R211
+R205
+R212
+R213
 !i113 1
 R12
 R13
 Emux_8to1
-Z212 w1590002043
+Z214 w1590002043
 R2
 R3
 R4
-Z213 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd
-Z214 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd
+Z215 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd
+Z216 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd
 l0
 L4
 VjNQBAKlOlinc^jn<Hcc0Q0
 !s100 ofD@7V0D`>3Hd;cbh4>3^3
 R7
 32
-Z215 !s110 1590772731
+Z217 !s110 1590772731
 !i10b 1
-Z216 !s108 1590772731.000000
-Z217 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd|
-Z218 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd|
+Z218 !s108 1590772731.000000
+Z219 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd|
+Z220 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/MUX_8TO1.vhd|
 !i113 1
 R12
 R13
 Ageneral_mux_8to1
 R2
 R3
-Z219 DEx4 work 8 mux_8to1 0 22 jNQBAKlOlinc^jn<Hcc0Q0
+Z221 DEx4 work 8 mux_8to1 0 22 jNQBAKlOlinc^jn<Hcc0Q0
 l22
 L21
 VfjjW0LRCXBh=Wn?U>dSmQ3
 !s100 lRNRWM]?mfoofm`:9V_fM3
 R7
 32
-R215
-!i10b 1
-R216
 R217
+!i10b 1
 R218
+R219
+R220
 !i113 1
 R12
 R13
 En_bit_register
-Z220 w1588794124
+Z222 w1588794124
 R16
 R2
 R3
 R4
-Z221 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd
-Z222 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd
+Z223 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd
+Z224 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd
 l0
 L5
 Vnf[Go5K7P0L@TPHLV?_ZI3
 !s100 0b`PMIR9jODaZ7_A5_Q<80
 R7
 32
-R215
+R217
 !i10b 1
-R216
-Z223 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd|
-Z224 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd|
+R218
+Z225 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd|
+Z226 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/N_BIT_REGISTER.vhd|
 !i113 1
 R12
 R13
@@ -1300,33 +1300,33 @@ Vk5F7L@?ZQ11RVZk:>feUE0
 !s100 WMMQ8`hef[h^<5gFLfQbC2
 R7
 32
-R215
+R217
 !i10b 1
-R216
-R223
-R224
+R218
+R225
+R226
 !i113 1
 R12
 R13
 Epc_register
-Z225 w1589772323
+Z227 w1589772323
 R16
 R2
 R3
 R4
-Z226 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd
-Z227 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd
+Z228 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd
+Z229 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd
 l0
 L5
 V;1omXT<9<c>?NG?F3LEG^1
 !s100 ?QSeO6h]eBQkK?n[>JaGz3
 R7
 32
-Z228 !s110 1590772732
+Z230 !s110 1590772732
 !i10b 1
-R216
-Z229 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd|
-Z230 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd|
+R218
+Z231 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd|
+Z232 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_REGISTER.vhd|
 !i113 1
 R12
 R13
@@ -1341,11 +1341,11 @@ VQ0ZceRoa0>3oTDUUB09N^2
 !s100 nB80]z0:XfWW][l32[1II2
 R7
 32
-R228
-!i10b 1
-R216
-R229
 R230
+!i10b 1
+R218
+R231
+R232
 !i113 1
 R12
 R13
@@ -1354,19 +1354,19 @@ R15
 R2
 R3
 R4
-Z231 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd
-Z232 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd
+Z233 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd
+Z234 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd
 l0
 L4
 V:Obfzkfg<^IZ;iE?_W8Pd1
 !s100 Y5R[PTZzl8>1SPec1cAc73
 R7
 32
-R228
+R230
 !i10b 1
-Z233 !s108 1590772732.000000
-Z234 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd|
-Z235 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd|
+Z235 !s108 1590772732.000000
+Z236 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd|
+Z237 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_Save_Determine.vhd|
 !i113 1
 R12
 R13
@@ -1380,32 +1380,32 @@ V[WIa=AP6LXjO:QCbzoDXB0
 !s100 N<53ZKA?0lScoTlLfPdae0
 R7
 32
-R228
+R230
 !i10b 1
-R233
-R234
 R235
+R236
+R237
 !i113 1
 R12
 R13
 Epc_selector
-Z236 w1590092385
+Z238 w1590092385
 R2
 R3
 R4
-Z237 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd
-Z238 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd
+Z239 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd
+Z240 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd
 l0
 L4
 VlozYRKz^`<gd3iSB8P?VR3
 !s100 SD9_J=J16cYZHlB[j0L:B2
 R7
 32
-R228
+R230
 !i10b 1
-R233
-Z239 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd|
-Z240 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd|
+R235
+Z241 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd|
+Z242 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/PC_SELECTOR.vhd|
 !i113 1
 R12
 R13
@@ -1419,73 +1419,73 @@ VhBj?1^NZQeI^6R]k_j[lS3
 !s100 YffKRD>>LHZjO5>00bKzK0
 R7
 32
-R228
+R230
 !i10b 1
-R233
-R239
-R240
+R235
+R241
+R242
 !i113 1
 R12
 R13
 Eprediction_stage
-Z241 w1590161509
+Z243 w1590161509
 R1
 R16
 R17
 R2
 R3
 R4
-Z242 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd
-Z243 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd
+Z244 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd
+Z245 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd
 l0
 L5
 V=n3WEPeYMzja<MBWETZo]3
 !s100 ;IWz@]f6>g=hn<lfP_hSO3
 R7
 32
-Z244 !s110 1590772733
+Z246 !s110 1590772733
 !i10b 1
-Z245 !s108 1590772733.000000
-Z246 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd|
-Z247 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd|
+Z247 !s108 1590772733.000000
+Z248 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd|
+Z249 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Prediction_Stage.vhd|
 !i113 1
 R12
 R13
 Apredict
-R219
+R221
 R149
-R206
+R208
 R30
 R36
-R194
+R195
 R1
 R16
 R17
 R2
 R3
-Z248 DEx4 work 16 prediction_stage 0 22 =n3WEPeYMzja<MBWETZo]3
+Z250 DEx4 work 16 prediction_stage 0 22 =n3WEPeYMzja<MBWETZo]3
 l39
 L28
 VF:SVEnIYbEk@CL[XX>2[[3
 !s100 Ca1]=Dkan]1PTmGY1OWVN1
 R7
 32
-R244
-!i10b 1
-R245
 R246
+!i10b 1
 R247
+R248
+R249
 !i113 1
 R12
 R13
 Eprocessor
-Z249 w1590772532
+Z251 w1590772532
 R1
 R2
 R3
 R4
-Z250 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd
-Z251 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd
+Z252 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd
+Z253 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd
 l0
 L6
 V[N1dlgglOKgoo5Idh`Sc^0
@@ -1495,13 +1495,13 @@ R7
 R175
 !i10b 1
 R68
-Z252 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd|
-Z253 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd|
+Z254 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd|
+Z255 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/Main.vhd|
 !i113 1
 R12
 R13
 Aarch
-R248
+R250
 R57
 R85
 R137
@@ -1529,8 +1529,8 @@ R7
 R175
 !i10b 1
 R68
-R252
-R253
+R254
+R255
 !i113 1
 R12
 R13
@@ -1540,19 +1540,19 @@ R1
 R2
 R3
 R4
-Z254 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd
-Z255 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd
+Z256 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd
+Z257 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd
 l0
 L5
 VSaZzD`>k0^;h2f4dHARYa2
 !s100 5X<_mF[NaDH[F8ZE1?_C?0
 R7
 32
-R244
+R246
 !i10b 1
-R245
-Z256 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd|
-Z257 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd|
+R247
+Z258 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd|
+Z259 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/REGISTER_FILE.vhd|
 !i113 1
 R12
 R13
@@ -1567,33 +1567,33 @@ V19XlIFYad7T[QoSI>_n3E0
 !s100 0?Xz_>[cSogN[ZId41S;?1
 R7
 32
-R244
+R246
 !i10b 1
-R245
-R256
-R257
+R247
+R258
+R259
 !i113 1
 R12
 R13
 Esp_n_bit_register
-Z258 w1590028850
+Z260 w1590028850
 R16
 R2
 R3
 R4
-Z259 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd
-Z260 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd
+Z261 8E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd
+Z262 FE:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd
 l0
 L5
 VlVl7a6a[aNH=zZZkdfg?Q2
 !s100 IzCl2VoW2XA7g66C2zTGD2
 R7
 32
-Z261 !s110 1590772734
+Z263 !s110 1590772734
 !i10b 1
-R245
-Z262 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd|
-Z263 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd|
+R247
+Z264 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd|
+Z265 !s107 E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/SP_Register.vhd|
 !i113 1
 R12
 R13
@@ -1604,15 +1604,15 @@ R3
 R186
 l21
 L19
-Z264 VLzAVQ<ii?a?QkSD<kzSQ62
-Z265 !s100 Rm[4QkR:ZVnNzU2L4gojK2
+VLzAVQ<ii?a?QkSD<kzSQ62
+!s100 Rm[4QkR:ZVnNzU2L4gojK2
 R7
 32
-R261
-!i10b 1
-R245
-R262
 R263
+!i10b 1
+R247
+R264
+R265
 !i113 1
 R12
 R13
