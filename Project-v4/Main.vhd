@@ -8,8 +8,8 @@ entity processor is
     CLK,RST,INT:    in std_logic;
     DATA_fromIO :   in std_logic_vector(31 downto 0);
 
-    DATA_toIO :     out std_logic_vector(31 downto 0);
-    IO_enb :        out std_logic
+    DATA_toIO :     out std_logic_vector(31 downto 0)
+    -- IO_enb :        out std_logic
   ) ;
 end processor;
 

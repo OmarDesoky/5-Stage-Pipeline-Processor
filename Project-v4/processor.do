@@ -112,6 +112,9 @@ add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
 add wave -position insertpoint sim:/processor/fetch/pc_Select/*
 add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
 add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
+add wave -position insertpoint sim:/processor/FW_Unit/*
+add wave -position insertpoint sim:/processor/decode/Control/*
 mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
 force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/processor/RST 1 0
@@ -120,6 +123,12 @@ force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
 run
 force -freeze sim:/processor/RST 0 0
 run
+
+
+
+
+
+
 force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000110000 0
 run
 force -freeze sim:/processor/DATA_fromIO 00000000000000000000000001010000 0
