@@ -157,11 +157,7 @@ begin
         ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode
         ,R3=>R3_FROM_decode,R4=>R4_FROM_decode,R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode,
 <<<<<<< HEAD
-<<<<<<< HEAD
         zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute,stop_forward_to_ex=>stop_forwarding_to_execute,Flush_out_from_control_unit=>flush_from_decode);
-=======
-        zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute);
->>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
 =======
         zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute);
 >>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case

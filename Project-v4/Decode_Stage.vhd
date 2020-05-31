@@ -53,13 +53,9 @@ port (
 
     R0,R1,R2,R3,R4,R5,R6,R7: out std_logic_vector(31 downto 0); ----------------------------------
 <<<<<<< HEAD
-<<<<<<< HEAD
     zero_flag_outt,if_jz_outt :out std_logic;
     stop_forward_to_ex :out std_logic;
     Flush_out_from_control_unit :out std_logic
-=======
-    zero_flag_outt,if_jz_outt :out std_logic
->>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
 =======
     zero_flag_outt,if_jz_outt :out std_logic
 >>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
@@ -141,11 +137,7 @@ Control : entity work.control_unit
 port map(clk,int,instruction(15 downto 11),write_enable_sig,pc_wb_sig,mem_or_reg_sig,swap_sig,flag_register_wb_sig
 ,mem_write_sig,mem_read_sig,int_rti_dntuse_sig,sp_enb_sig,alu_op_sig,alu_source_sig,io_enable_sig,imm_ea_sig,
 <<<<<<< HEAD
-<<<<<<< HEAD
 if_jz,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int,stop_forward_sig,Flush_out_from_control_unit);
-=======
-if_jz,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int);
->>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
 =======
 if_jz,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int);
 >>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
