@@ -39,29 +39,27 @@ type mem_fsm is array (0 to 4095) of std_logic_vector(1 downto 0) ;
 signal memory : mem_fsm;
 signal output : std_logic;
 signal state_out :  std_logic_vector(1 downto 0) ;
-signal addr : std_logic_vector(size-1 downto 0);
-signal state_in :  std_logic_vector(1 downto 0) ;
+signal state_in :  std_logic_vector(1 downto 0);
 signal prediction_correct_inverted :std_logic; 
 begin
     prediction_correct_inverted <= not (prediction_correct);
     f: fsm_2_bits port map(clk,rst_async,ifjz_updt_fsm,prediction_correct_inverted,state_in,output,state_out);
-    process (decision_alwaystaken,ifjz_updt_fsm,state_out,addr_executed,addr_fetched)
+    process (clk,decision_alwaystaken,ifjz_updt_fsm,addr_executed,addr_fetched,state_out)
     begin
-        
-        if ifjz_updt_fsm = '1' then
-            state_in <=memory(to_integer(unsigned(addr_executed)));
-            -- addr <= addr_executed;
+        if (ifjz_updt_fsm = '1') then
+            if falling_edge(clk) then
+                state_in <= memory(to_integer(unsigned(addr_executed)));
+            end if;
             memory(to_integer(unsigned(addr_executed))) <= state_out;
         elsif decision_alwaystaken = '1' then
             taken_not_taken <= '1';
         else
-            state_in <=memory(to_integer(unsigned(addr_fetched)));
-            --addr <= addr_fetched;
+            state_in <= memory(to_integer(unsigned(addr_fetched)));
             -- check if jz is already in mem or not
             -- memory[addr][0] => exist or not
             -- memory[addr][1] => state (integer [will be convert from std_logic_vector to integer] )
             -- 0 means empty, so we need initialize a state ("2"=> weak_taken) and save it in memory.
-            if( memory(to_integer(unsigned(addr_fetched))) = "UU") then
+            if( memory(to_integer(unsigned(addr_fetched))) = "UU" or memory(to_integer(unsigned(addr_fetched))) = "XX" ) then
                 memory(to_integer(unsigned(addr_fetched))) <= "10";
             end if;
             taken_not_taken <= output;

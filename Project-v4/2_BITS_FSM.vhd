@@ -26,27 +26,22 @@ architecture fsm_2_bit of fsm_2_bits is
     constant WEAK_NOT_TAKEN : std_logic_vector(1 downto 0)  := "01";
     constant WEAK_TAKEN : std_logic_vector(1 downto 0)  := "10";
     constant STRONG_TAKEN : std_logic_vector(1 downto 0)  := "11";
-
-    -- signal states : std_logic_vector(1 downto 0)  := "10";
-    signal current_state_sig : std_logic_vector(1 downto 0);
 begin
 
-process (rst_async,enb,input,current_state_sig)
+process (enb,input,current_state)
     begin
-        if rst_async = '1' then 
-            output_state <= WEAK_TAKEN;
-            output<='1';
-        elsif (enb = '0') then
-            output_state <= current_state_sig;
-            if ((current_state_sig = STRONG_NOT_TAKEN) or (current_state_sig = WEAK_NOT_TAKEN)) then
+
+        if (enb = '0') then
+            output_state <= current_state;
+            if ((current_state = STRONG_NOT_TAKEN) or (current_state = WEAK_NOT_TAKEN)) then
                 output<='0';
             else
                 output<='1';
             end if;
             -- if input = 1 => prediction is true
             -- else prediction is false
-        elsif (enb = '1') then
-            if (current_state_sig = STRONG_NOT_TAKEN) then
+        else
+            if (current_state = STRONG_NOT_TAKEN) then
                 if (input = '1') then
                     output_state <= STRONG_NOT_TAKEN;
                     output<='0';
@@ -54,7 +49,7 @@ process (rst_async,enb,input,current_state_sig)
                     output_state <= WEAK_NOT_TAKEN;
                     output<='0';
                 end if;
-            elsif (current_state_sig = WEAK_NOT_TAKEN) then
+            elsif (current_state = WEAK_NOT_TAKEN) then
                 if input = '1' then 
                     output_state <= STRONG_NOT_TAKEN; 
                     output<='0';
@@ -62,7 +57,7 @@ process (rst_async,enb,input,current_state_sig)
                     output_state <= WEAK_TAKEN; 
                     output<='1';
                 end if;  
-            elsif (current_state_sig = WEAK_TAKEN) then
+            elsif (current_state = WEAK_TAKEN) then
                 if input = '1' then 
                     output_state <= STRONG_TAKEN; 
                     output<='1';
@@ -70,7 +65,7 @@ process (rst_async,enb,input,current_state_sig)
                     output_state <= WEAK_NOT_TAKEN; 
                     output<='0';
                 end if;
-            elsif (current_state_sig = STRONG_TAKEN) then
+            elsif (current_state = STRONG_TAKEN) then
                 if input = '1' then 
                     output_state <= STRONG_TAKEN; 
                     output<='1';
@@ -83,21 +78,4 @@ process (rst_async,enb,input,current_state_sig)
         end if;
 end process;
 
-process (clk,current_state)
-begin
-    if falling_edge(clk)
-    then 
-        current_state_sig <= current_state;
-    end if;
-end process;
--- process (states)
---     begin
---         if ( states = STRONG_TAKEN ) or ( states = WEAK_TAKEN ) then
---             output<='1';
---         elsif ( states = STRONG_NOT_TAKEN ) or ( states = WEAK_NOT_TAKEN ) then
---             output<='0';
---         end if;
--- end process;
-
-    -- output_state <= states;
 end fsm_2_bit;
