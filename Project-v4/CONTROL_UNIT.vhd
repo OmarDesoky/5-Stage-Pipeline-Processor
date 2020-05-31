@@ -33,7 +33,10 @@ port (
     mid_imm: out std_logic;
     any_jmp: out std_logic;
     stall_int: out std_logic;
+<<<<<<< HEAD
     stop_forward : out std_logic;
+=======
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
     flush_Decode : out std_logic
 );
 end control_unit ;
@@ -115,8 +118,12 @@ begin
         mid_imm<='0';
         any_jmp<='0';
         stall_int<='0';
+<<<<<<< HEAD
         stop_forward <= '0';
         flush_Decode <= '0';
+=======
+	flush_Decode <= '0';
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
         if(falling_edge(clk)) then
             if counter > 0 then
                 if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) or (last_op = LDM) then
@@ -128,7 +135,6 @@ begin
                     elsif(last_op=SHR) then 
                         alu_op<=SHR_ALU;
                     else
-                        stop_forward <= '1';
                         alu_op<=SWAP_ALU;
                     end if;
                     alu_source <='1';
@@ -194,7 +200,11 @@ begin
                 counter2 <= counter2 +1;
 
                 flush_Decode <= '1';
+<<<<<<< HEAD
                 -- counter3 <= counter3+1; --31/5/2020 ahmed and mostafa
+=======
+                counter3 <= counter3+1;
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
     
             elsif (op = ADD) or (op = SUB) or (op = ANDD) or (op = ORR) or (op = INC) or (op = DEC) or (op =NOTT) then
                 write_enable<='1';
@@ -231,7 +241,11 @@ begin
                 any_jmp<='1';
             elsif (op = JMP) then
                 any_jmp<='1';
+<<<<<<< HEAD
 		    flush_Decode<='1';                      
+=======
+		-- flush_Decode<='1';                      
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
             elsif (op = CALL) then
                 sp_enb<="11";
                 mem_write<='1';

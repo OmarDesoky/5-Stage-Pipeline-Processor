@@ -52,9 +52,13 @@ port (
     swap_before_buffer,wb_enb_before_buffer,mem_read_before_buffer: out std_logic; ----------------------------------
 
     R0,R1,R2,R3,R4,R5,R6,R7: out std_logic_vector(31 downto 0); ----------------------------------
+<<<<<<< HEAD
     zero_flag_outt,if_jz_outt :out std_logic;
     stop_forward_to_ex :out std_logic;
     Flush_out_from_control_unit :out std_logic
+=======
+    zero_flag_outt,if_jz_outt :out std_logic
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
     );
 end decode_stage;
 
@@ -105,8 +109,6 @@ signal if_jz : std_logic;
 signal if_jz_sig : std_logic; 
 signal negated_clk :std_logic;
 signal prediction_result_sig : std_logic;
-
-signal stop_forward_sig :std_logic;
 begin
 negated_reg_enb_sig<=not(reg_enb_sig);
 negated_clk<=not(clk);
@@ -134,7 +136,11 @@ src_2_chosen,dest_mem_wb,data_out_wb,reg_swap_mem_wb,data_swp_wb
 Control : entity work.control_unit
 port map(clk,int,instruction(15 downto 11),write_enable_sig,pc_wb_sig,mem_or_reg_sig,swap_sig,flag_register_wb_sig
 ,mem_write_sig,mem_read_sig,int_rti_dntuse_sig,sp_enb_sig,alu_op_sig,alu_source_sig,io_enable_sig,imm_ea_sig,
+<<<<<<< HEAD
 if_jz,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int,stop_forward_sig,Flush_out_from_control_unit);
+=======
+if_jz,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int);
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
 
                                 -------------- NEEDS MODIFICATIONS (REARRANGE BITS) --------------
 wb_out <=  flag_register_wb_sig&swap_sig&mem_or_reg_sig&pc_wb_sig&write_enable_sig  when insert_bubble='0' else (others => '0');    
@@ -163,10 +169,10 @@ Buffer_ID_EX :  entity work.id_ex
 --edited 20/5/2020 
 port map(clk,rst_async,reg_enb_sig,imm_reg_enb_out, wb_out, mem_out, alu_op, execute, data1_out, 
 data2_out, src1_out,src2_out, em_imm_out, pc_out
-,dst_out,prediction_result_sig,zero_flg,if_jz_sig,pc_incremented,last_taken,stop_forward_sig
+,dst_out,prediction_result_sig,zero_flg,if_jz_sig,pc_incremented,last_taken
 --outputs
 ,wb_outt, mem_outt, alu_op_outt, ex_outt, data_1_outt, data_2_outt, sig_src_1_outt ,sig_src_2_outt,
- ea_imm_outt ,pc_outt,dst_outt,prediction_result_outt,zero_flag_outt,if_jz_outt,pc_incremented_outt,last_taken_outt,stop_forward_to_ex);
+ ea_imm_outt ,pc_outt,dst_outt,prediction_result_outt,zero_flag_outt,if_jz_outt,pc_incremented_outt,last_taken_outt);
 
 ifjmp_upd_fsm<=if_jz_sig;
 
