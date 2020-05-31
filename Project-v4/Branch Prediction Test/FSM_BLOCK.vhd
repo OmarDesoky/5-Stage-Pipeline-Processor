@@ -35,36 +35,46 @@ port (
 
 end component;
 
-type mem_fsm is array (0 to 6710886) of std_logic_vector(1 downto 0) ;
+type mem_fsm is array (0 to 4095) of std_logic_vector(1 downto 0) ;
 signal memory : mem_fsm;
 signal output : std_logic;
 signal state_out :  std_logic_vector(1 downto 0) ;
+signal output1 : std_logic;
+signal state_out1 :  std_logic_vector(1 downto 0) ;
 signal addr : std_logic_vector(size-1 downto 0);
 signal state_in :  std_logic_vector(1 downto 0) ;
+signal prediction_correct_inverted :std_logic; 
+signal fsm1 :  std_logic_vector(1 downto 0) ;
+signal fsm2 :  std_logic_vector(1 downto 0) ;
 begin
-    state_in <=memory(to_integer(unsigned(addr)));
-    f: fsm_2_bits port map(clk,rst_async,ifjz_updt_fsm,prediction_correct,state_in,output,state_out);
-    process (decision_alwaystaken,ifjz_updt_fsm,state_out,addr_executed,addr_fetched,addr)
+    prediction_correct_inverted <= not (prediction_correct);
+    fsm1 <= memory(to_integer(unsigned(addr_fetched)));
+    fsm2 <= memory(to_integer(unsigned(addr_executed)));
+    f: fsm_2_bits port map(clk,rst_async,ifjz_updt_fsm,prediction_correct_inverted,fsm1,output,state_out);
+    f2: fsm_2_bits port map(clk,rst_async,ifjz_updt_fsm,prediction_correct_inverted,fsm2,output1,state_out1);
+    process (decision_alwaystaken,ifjz_updt_fsm,addr_executed,addr_fetched,state_out1)
     begin
-        if decision_alwaystaken = '1' then
+        
+        if ifjz_updt_fsm = '1' then
+            -- state_in <=memory(to_integer(unsigned(addr_executed)));
+            -- addr <= addr_executed;
+            memory(to_integer(unsigned(addr_executed))) <= state_out1;
+        elsif decision_alwaystaken = '1' then
             taken_not_taken <= '1';
-
-        elsif ifjz_updt_fsm = '1' then
-            addr <= addr_executed;
-            memory(to_integer(unsigned(addr))) <= state_out;
         else
-            addr <= addr_fetched;
+            -- state_in <=memory(to_integer(unsigned(addr_fetched)));
+            --addr <= addr_fetched;
             -- check if jz is already in mem or not
             -- memory[addr][0] => exist or not
             -- memory[addr][1] => state (integer [will be convert from std_logic_vector to integer] )
             -- 0 means empty, so we need initialize a state ("2"=> weak_taken) and save it in memory.
-            if( memory(to_integer(unsigned(addr))) = "UU") then
-                memory(to_integer(unsigned(addr))) <= "10";
+            if( memory(to_integer(unsigned(addr_fetched))) = "UU") then
+                memory(to_integer(unsigned(addr_fetched))) <= "10";
             end if;
             taken_not_taken <= output;
 
         end if;
-
+        
     end process;   
 
 end fsmblock;

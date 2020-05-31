@@ -33,8 +33,8 @@ port (
     mid_imm: out std_logic;
     any_jmp: out std_logic;
     stall_int: out std_logic;
-    -- flush_Decode : out std_logic;
-    stop_forward : out std_logic
+    stop_forward : out std_logic;
+    flush_Decode : out std_logic
 );
 end control_unit ;
 
@@ -116,7 +116,7 @@ begin
         any_jmp<='0';
         stall_int<='0';
         stop_forward <= '0';
-	-- flush_Decode <= '0';
+        flush_Decode <= '0';
         if(falling_edge(clk)) then
             if counter > 0 then
                 if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) or (last_op = LDM) then
@@ -184,7 +184,7 @@ begin
                 pc_wb<= '1';
                 any_jmp<='1';
                 int_rti_dntuse<="101";
-                -- flush_Decode <= '1';
+                flush_Decode <= '1';
                 counter3 <= counter3+1;
 
             elsif (int='1') then
@@ -193,8 +193,8 @@ begin
                 int_rti_dntuse<= "100";
                 counter2 <= counter2 +1;
 
-                -- flush_Decode <= '1';
-                counter3 <= counter3+1;
+                flush_Decode <= '1';
+                -- counter3 <= counter3+1; --31/5/2020 ahmed and mostafa
     
             elsif (op = ADD) or (op = SUB) or (op = ANDD) or (op = ORR) or (op = INC) or (op = DEC) or (op =NOTT) then
                 write_enable<='1';
@@ -231,12 +231,12 @@ begin
                 any_jmp<='1';
             elsif (op = JMP) then
                 any_jmp<='1';
-		    -- flush_Decode<='1';                      
+		    flush_Decode<='1';                      
             elsif (op = CALL) then
                 sp_enb<="11";
                 mem_write<='1';
                 any_jmp<='1';
-		        -- flush_Decode<='1';
+		        flush_Decode<='1';
                 int_rti_dntuse<="010";
                 -- modification by ahmed waleed in 29/5/2020
                 -- we should write back in pc so i will add
@@ -248,7 +248,7 @@ begin
                 any_jmp<='1';
                 int_rti_dntuse<="011";
                 mem_or_reg<='1';
-                -- flush_Decode <= '1';
+                flush_Decode <= '1';
                 counter3 <= counter3+1;
             elsif (op = SWAPP) then
                 alu_op <= NOP_ALU ;

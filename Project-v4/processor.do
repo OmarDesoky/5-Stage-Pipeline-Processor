@@ -287,3 +287,30 @@ run
 run
 run
 run
+
+
+
+
+
+
+
+
+
+
+
+vsim -gui work.fsm_block
+add wave -position insertpoint sim:/fsm_block/*
+add wave -position insertpoint sim:/fsm_block/f/*
+force -freeze sim:/fsm_block/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/fsm_block/ifjz_updt_fsm 0 0
+force -freeze sim:/fsm_block/prediction_correct 0 0
+force -freeze sim:/fsm_block/decision_alwaystaken 0 0
+force -freeze sim:/fsm_block/addr_fetched 16#00000021 0
+force -freeze sim:/fsm_block/addr_executed 16#00000021 0
+force -freeze sim:/fsm_block/rst_async 1 0
+run
+force -freeze sim:/fsm_block/rst_async 0 0
+force -freeze sim:/fsm_block/ifjz_updt_fsm 0 0, 1 {50 ps} -r 100
+force -freeze sim:/fsm_block/prediction_correct 1 0, 0 {50 ps} -r 100
+run
+run

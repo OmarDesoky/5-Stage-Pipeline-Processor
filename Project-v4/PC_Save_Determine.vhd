@@ -18,12 +18,12 @@ ARCHITECTURE behavioral_flow OF PC_Save_Determine IS
 signal q2_SIG:std_logic_vector(63 downto 0);
 BEGIN   
 
-process(clk, CURRENT_PC,IN_MIDDLE_OF_IMM, IF_ANY_JUMP)
+process(clk, CURRENT_PC,IN_MIDDLE_OF_IMM, IF_ANY_JUMP,UPDATED_PC)
 -- variable q1_SIG:std_logic_vector(31 downto 0);
--- variable q2_SIG:std_logic_vector(63 downto 0);
+variable q3_SIG:std_logic_vector(63 downto 0);
 begin 
 if ((IN_MIDDLE_OF_IMM = '1') or (IF_ANY_JUMP = '1')) then
-	PC_OUT <= q2_SIG(63 downto 32);
+	PC_OUT <= q3_SIG(63 downto 32);
 else 
 	PC_OUT <= UPDATED_PC;
 end if;
@@ -33,6 +33,8 @@ if rising_edge (clk) then
 end if;
 q2_SIG(63 downto 32) <= q2_SIG(31 downto 0);
 q2_SIG(31 downto 0) <= CURRENT_PC;
+q3_SIG(63 downto 32) := q3_SIG(31 downto 0);
+q3_SIG(31 downto 0) := CURRENT_PC;
 end process;
 
 

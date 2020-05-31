@@ -53,7 +53,8 @@ port (
 
     R0,R1,R2,R3,R4,R5,R6,R7: out std_logic_vector(31 downto 0); ----------------------------------
     zero_flag_outt,if_jz_outt :out std_logic;
-    stop_forward_to_ex :out std_logic
+    stop_forward_to_ex :out std_logic;
+    Flush_out_from_control_unit :out std_logic
     );
 end decode_stage;
 
@@ -133,7 +134,7 @@ src_2_chosen,dest_mem_wb,data_out_wb,reg_swap_mem_wb,data_swp_wb
 Control : entity work.control_unit
 port map(clk,int,instruction(15 downto 11),write_enable_sig,pc_wb_sig,mem_or_reg_sig,swap_sig,flag_register_wb_sig
 ,mem_write_sig,mem_read_sig,int_rti_dntuse_sig,sp_enb_sig,alu_op_sig,alu_source_sig,io_enable_sig,imm_ea_sig,
-if_jz,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int,stop_forward_sig);
+if_jz,imm_reg_enb_out,reg_enb_sig,inmiddleofimm,ifanyjmp,stall_for_int,stop_forward_sig,Flush_out_from_control_unit);
 
                                 -------------- NEEDS MODIFICATIONS (REARRANGE BITS) --------------
 wb_out <=  flag_register_wb_sig&swap_sig&mem_or_reg_sig&pc_wb_sig&write_enable_sig  when insert_bubble='0' else (others => '0');    
