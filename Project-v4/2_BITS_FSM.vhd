@@ -5,7 +5,7 @@ entity fsm_2_bits is
 
 port (
     clk : in std_logic;
-    rst_async: in std_logic;
+    -- rst_async: in std_logic;
     enb : in std_logic; -- enable to write the right data in the FSM when you know the right answer from the decode stage
                         --  1=> write // 0=> read
     input : in std_logic; -- right answer  1=> correct // 0=> not correct
