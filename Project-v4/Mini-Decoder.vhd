@@ -51,7 +51,7 @@ begin
 		opcode <= instruction(15 downto 11);
 		if (reset = '1') then
 			not_another_inst <= '0';
-			fsm_take_decision <= '0';
+			fsm_take_decision <= '1';
 			counter<=0;
 			hazard_prediction_enb <= '0';
 			ret_rti_call_ready<='0';
@@ -96,7 +96,7 @@ begin
 			elsif(old_opcode_sig =JZ or old_opcode_sig = JMP) then
 				reg_src <= old_instruction_sig(7 downto 5);
 				not_another_inst <= '0';
-				fsm_take_decision <= '0'; --don't care
+				fsm_take_decision <= '1'; --don't care
 				hazard_prediction_enb <= '0';
 				ret_rti_call_ready<='0';
 				-- counter<=0;

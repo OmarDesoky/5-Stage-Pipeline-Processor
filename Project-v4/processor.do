@@ -5,7 +5,6 @@ sim:/processor/RST \
 sim:/processor/INT \
 sim:/processor/DATA_fromIO \
 sim:/processor/DATA_toIO \
-sim:/processor/IO_enb \
 sim:/processor/last_taken_TO_decode \
 sim:/processor/next_stall_TO_decode \
 sim:/processor/int_TO_decode \
@@ -122,6 +121,118 @@ force -freeze sim:/processor/INT 0 0
 force -freeze sim:/processor/DATA_fromIO 00000000000000000000000000000000 0
 run
 force -freeze sim:/processor/RST 0 0
+run
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/prediction_stage/forwarded_chooser/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+add wave -position insertpoint sim:/processor/prediction_stage/hazard_detect/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
+add wave -position insertpoint sim:/processor/prediction_stage/forwarded_chooser/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
+add wave -position insertpoint sim:/processor/prediction_stage/hazard_detect/*
+add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
+add wave -position insertpoint sim:/processor/prediction_stage/FSM/f/*
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 run
 
 
