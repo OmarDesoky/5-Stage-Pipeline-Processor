@@ -8,8 +8,8 @@ entity processor is
     CLK,RST,INT:    in std_logic;
     DATA_fromIO :   in std_logic_vector(31 downto 0);
 
-    DATA_toIO :     out std_logic_vector(31 downto 0);
-    IO_enb :        out std_logic
+    DATA_toIO :     out std_logic_vector(31 downto 0)
+    -- IO_enb :        out std_logic
   ) ;
 end processor;
 
@@ -22,7 +22,7 @@ architecture Arch of processor is
     signal PC_incremented_TO_decode :                               std_logic_vector(31 downto 0);
 
     --from decode
-    signal IF_ANY_JUMP_FROM_decode,IN_MIDDLE_OF_IMM_FROM_decode : std_logic;
+    signal IF_ANY_JUMP_FROM_decode,IN_MIDDLE_OF_IMM_FROM_decode,flush_from_decode : std_logic;
     signal ifJZ_FROM_decode,zero_flag_FROM_decode,last_taken_FROM_decode :          std_logic;
     signal R0_FROM_decode,R1_FROM_decode,R2_FROM_decode,R3_FROM_decode:             std_logic_vector(31 downto 0);
     signal R4_FROM_decode,R5_FROM_decode,R6_FROM_decode,R7_FROM_decode:             std_logic_vector(31 downto 0);
@@ -110,13 +110,15 @@ architecture Arch of processor is
     signal prediction_result_FROM_comparator          : std_logic        ;
     signal prediction_result_FROM_decode              : std_logic        ;
     signal prediction_result_FROM_execute             : std_logic        ;
+    signal flush_final :std_logic;
 begin
+    flush_final <= prediction_result_FROM_comparator or flush_from_decode;
     fetch : entity work.Fetch_Stage
         port map(rst_async_test=>RST,int_test=>INT, pc_wb =>pc_wb_FROM_WB
         ,take_jmp_addr_test=>take_jmp_addr_FROM_prediction,take_correct_jmp_addr_test=>prediction_result_FROM_execute
         ,IN_MIDDLE_OF_IMM=>IN_MIDDLE_OF_IMM_FROM_decode,IF_ANY_JUMP=>IF_ANY_JUMP_FROM_decode
         ,CLK=>CLK,flip_next_cycle_INT_test=>IF_ID_ENB_FROM_DATAHAZARD
-        ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>prediction_result_FROM_comparator
+        ,PC_ENB_DATAHAZARD=>PC_ENB_FROM_DATAHAZARD,Flush=>flush_final
         ,pc_frm_wb_test=>DATA_FROM_WB,calc_jmp_addr_test=>PC_FROM_prediction
         ,pc_forwarded_test=>PC_correct_forwarded_TO_prediction,predection_stall=>next_stall_FROM_prediction
         --outputs
@@ -154,7 +156,15 @@ begin
         ,mem_read_before_buffer=>mem_read_before_buffer_FROM_decode
         ,R0=>R0_FROM_decode,R1=>R1_FROM_decode,R2=>R2_FROM_decode
         ,R3=>R3_FROM_decode,R4=>R4_FROM_decode,R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode,
+<<<<<<< HEAD
+<<<<<<< HEAD
+        zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute,stop_forward_to_ex=>stop_forwarding_to_execute,Flush_out_from_control_unit=>flush_from_decode);
+=======
         zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute);
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
+=======
+        zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute);
+>>>>>>> parent of 2e8a122... add signal stop forward will be enabled by the control unit in immediate test cases but for now IDM and propagate it to the forwarding unit and run branch prediction test case
 
     Execution :  entity work.Execution_Stage
       port map(wb_in=>wb_out_TO_execute,mem_in=>mem_out_TO_execute,alu_op=>alu_op_out_TO_execute
