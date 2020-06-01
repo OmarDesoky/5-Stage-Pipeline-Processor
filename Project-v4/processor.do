@@ -5,6 +5,7 @@ sim:/processor/RST \
 sim:/processor/INT \
 sim:/processor/DATA_fromIO \
 sim:/processor/DATA_toIO \
+sim:/processor/IO_enb \
 sim:/processor/last_taken_TO_decode \
 sim:/processor/next_stall_TO_decode \
 sim:/processor/int_TO_decode \
@@ -111,9 +112,6 @@ add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
 add wave -position insertpoint sim:/processor/fetch/pc_Select/*
 add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
 add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
-add wave -position insertpoint sim:/processor/Execution/choose_2nd_operand/*
-add wave -position insertpoint sim:/processor/FW_Unit/*
-add wave -position insertpoint sim:/processor/decode/Control/*
 mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v4/test.mem} /processor/fetch/INS_Memory/ram
 force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/processor/RST 1 0
@@ -157,151 +155,6 @@ run
 run
 run
 force -freeze sim:/processor/DATA_fromIO 00000000000000000000001000000000 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-
-
-
-
-
-
-
-
-
-
-
-vsim -gui work.fsm_block
-add wave -position insertpoint sim:/fsm_block/*
-add wave -position insertpoint sim:/fsm_block/f/*
-force -freeze sim:/fsm_block/clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/fsm_block/ifjz_updt_fsm 0 0
-force -freeze sim:/fsm_block/prediction_correct 0 0
-force -freeze sim:/fsm_block/decision_alwaystaken 0 0
-force -freeze sim:/fsm_block/addr_fetched 16#00000021 0
-force -freeze sim:/fsm_block/addr_executed 16#00000021 0
-force -freeze sim:/fsm_block/rst_async 1 0
-run
-force -freeze sim:/fsm_block/rst_async 0 0
-force -freeze sim:/fsm_block/ifjz_updt_fsm 0 0, 1 {50 ps} -r 100
-force -freeze sim:/fsm_block/prediction_correct 1 0, 0 {50 ps} -r 100
-run
-run
-
-
-
-
-
-
-add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
-add wave -position insertpoint sim:/processor/prediction_stage/forwarded_chooser/*
-add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
-add wave -position insertpoint sim:/processor/prediction_stage/hazard_detect/*
-add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
-add wave -position insertpoint sim:/processor/prediction_stage/FWD_unit/*
-add wave -position insertpoint sim:/processor/prediction_stage/forwarded_chooser/*
-add wave -position insertpoint sim:/processor/prediction_stage/FSM/*
-add wave -position insertpoint sim:/processor/prediction_stage/hazard_detect/*
-add wave -position insertpoint sim:/processor/prediction_stage/mini_decode/*
-add wave -position insertpoint sim:/processor/prediction_stage/FSM/f/*
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
 run
 run
 run

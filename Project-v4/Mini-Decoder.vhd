@@ -36,7 +36,7 @@ constant RET : std_logic_vector(4 downto 0) := "11110";
 constant RTI : std_logic_vector(4 downto 0) := "11111";
 
 begin
-	process (clk,reset,instruction,opcode)
+	process (clk,reset,instruction)
 	-- variable old_instruction:std_logic_vector(31 downto 0);
 	-- variable old_opcode  	: std_logic_vector(9 downto 0);
 	begin
@@ -51,7 +51,7 @@ begin
 		opcode <= instruction(15 downto 11);
 		if (reset = '1') then
 			not_another_inst <= '0';
-			fsm_take_decision <= '1';
+			fsm_take_decision <= '0';
 			counter<=0;
 			hazard_prediction_enb <= '0';
 			ret_rti_call_ready<='0';
@@ -71,7 +71,7 @@ begin
 					fsm_take_decision <= '0';
 					hazard_prediction_enb <= '1';
 					ret_rti_call_ready<='0';
-					-- counter<=0;
+					counter<=0;
 				-- JMP
 				elsif (opcode = JMP) then
 					not_another_inst <= '1';
@@ -79,40 +79,27 @@ begin
 					hazard_prediction_enb <= '1';
 					ret_rti_call_ready<='0';
 				end if;
-
-			elsif(opcode=IADD or opcode=SHL or opcode=SHR or opcode=LDM or opcode=LDD or opcode=STD) then
-				not_another_inst <= '0';
-				fsm_take_decision <= '1'; --don't care
-				hazard_prediction_enb <= '0';
-				ret_rti_call_ready<='0';
-
-				-- if (opcode=IADD or opcode=SHL or opcode=SHR or opcode=LDM or opcode=LDD or opcode=STD) then
-					--skip next instruction
-				counter<=1;
-				-- elsif (opcode=CALL or opcode=RET or opcode=RTI) then
-				-- 	counter2<=1;
-				-- end if;
 			--check old
 			elsif(old_opcode_sig =JZ or old_opcode_sig = JMP) then
 				reg_src <= old_instruction_sig(7 downto 5);
 				not_another_inst <= '0';
-				fsm_take_decision <= '1'; --don't care
+				fsm_take_decision <= '0'; --don't care
 				hazard_prediction_enb <= '0';
 				ret_rti_call_ready<='0';
-				-- counter<=0;
+				counter<=0;
 			-- Other Operation
 			else
 				not_another_inst <= '0';
-				fsm_take_decision <= '1'; -- don't care
+				fsm_take_decision <= '1'; --don't care
 				hazard_prediction_enb <= '0';
 				ret_rti_call_ready<='0';
 
-				-- if (opcode=IADD or opcode=SHL or opcode=SHR or opcode=LDM or opcode=LDD or opcode=STD) then
-				-- 	--skip next instruction
-				-- 	counter<=1;
-				-- elsif (opcode=CALL or opcode=RET or opcode=RTI) then
-				-- 	counter2<=1;
-				-- end if;
+				if (opcode=IADD or opcode=SHL or opcode=SHR or opcode=LDM or opcode=LDD or opcode=STD) then
+					--skip next instruction
+					counter<=1;
+				elsif (opcode=CALL or opcode=RET or opcode=RTI) then
+					counter2<=1;
+				end if;
 			end if;
 		end if;
 		-- old_instruction_sig <= instruction;

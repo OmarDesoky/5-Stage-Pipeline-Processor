@@ -114,7 +114,7 @@ begin
         mid_imm<='0';
         any_jmp<='0';
         stall_int<='0';
-	    flush_Decode <= '0';
+	flush_Decode <= '0';
         if(falling_edge(clk)) then
             if counter > 0 then
                 if (last_op = IADD) or (last_op = SHL) or (last_op = SHR) or (last_op = LDM) then
@@ -191,7 +191,7 @@ begin
                 counter2 <= counter2 +1;
 
                 flush_Decode <= '1';
-                -- counter3 <= counter3+1; --31/5/2020 ahmed and mostafa
+                counter3 <= counter3+1;
     
             elsif (op = ADD) or (op = SUB) or (op = ANDD) or (op = ORR) or (op = INC) or (op = DEC) or (op =NOTT) then
                 write_enable<='1';
@@ -228,7 +228,7 @@ begin
                 any_jmp<='1';
             elsif (op = JMP) then
                 any_jmp<='1';
-		        flush_Decode<='1';                                           
+		-- flush_Decode<='1';                      
             elsif (op = CALL) then
                 sp_enb<="11";
                 mem_write<='1';

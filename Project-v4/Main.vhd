@@ -156,7 +156,6 @@ begin
         ,R3=>R3_FROM_decode,R4=>R4_FROM_decode,R5=>R5_FROM_decode,R6=>R6_FROM_decode,R7=>R7_FROM_decode,
         zero_flag_outt=>zero_flag_TO_execute,if_jz_outt=>if_jz_TO_execute);
 
-
     Execution :  entity work.Execution_Stage
       port map(wb_in=>wb_out_TO_execute,mem_in=>mem_out_TO_execute,alu_op=>alu_op_out_TO_execute
       ,ex_in=>ex_out_TO_execute,reg1_data=>data_1_out_TO_execute, reg2_data=>data_2_out_TO_execute
