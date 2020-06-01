@@ -1,4 +1,12 @@
-{E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/MUX_8TO1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/MUX_8TO1.vhd}
+{E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/PC_Save_Determine.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/PC_Save_Determine.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity PC_Save_Determine
+-- Compiling architecture behavioral_flow of PC_Save_Determine
+
+} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/MUX_8TO1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/MUX_8TO1.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -66,6 +74,15 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 
 -- Compiling entity sp_n_bit_register
 -- Compiling architecture sp_general_register of sp_n_bit_register
 
+} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/CONTROL_UNIT.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/CONTROL_UNIT.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity control_unit
+-- Compiling architecture control of control_unit
+
 } {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/N_BIT_REGISTER.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/N_BIT_REGISTER.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
 -- Loading package STANDARD
@@ -92,15 +109,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 
 -- Loading package NUMERIC_STD
 -- Compiling entity handler
 -- Compiling architecture INT_handler of handler
-
-} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/CONTROL_UNIT.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/CONTROL_UNIT.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity control_unit
--- Compiling architecture control of control_unit
 
 } {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/data_hazard_detection_unit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/data_hazard_detection_unit.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
@@ -190,6 +198,24 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 
 -- Loading package std_logic_1164
 -- Compiling entity ForwardingUnit
 -- Compiling architecture behavioral_flow of ForwardingUnit
+
+} {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/Prediction_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/Prediction_Stage.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity Prediction_Stage
+-- Compiling architecture predict of Prediction_Stage
+-- Loading entity MINI_DECODER
+-- Loading entity Branch_Hazard_Predection_Unit
+-- Loading entity Brach_Forwarding_Unit
+-- Loading entity mux_4to1
+-- Loading entity n_bit_register
+-- Loading entity fsm_block
+-- Loading entity mux_8to1
 
 } {} {}} {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/REGISTER_FILE.vhd} {1 {vcom -work work -2002 -explicit -stats=none {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/REGISTER_FILE.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2019.2 Compiler 2019.04 Apr 17 2019

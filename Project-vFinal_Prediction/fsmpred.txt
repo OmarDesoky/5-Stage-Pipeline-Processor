@@ -11,17 +11,17 @@ force -freeze sim:/fsm_block/prediction_correct 0 0
 force -freeze sim:/fsm_block/decision_alwaystaken 0 0
 force -freeze sim:/fsm_block/addr_fetched 16#00000021 0
 force -freeze sim:/fsm_block/addr_executed 16#00000020 0
-run 50 ps
-force -freeze sim:/fsm_block/addr_executed 16#00000021 0
-run 50 ps
+run 
+//force -freeze sim:/fsm_block/addr_executed 16#00000021 0
+//run 50 ps
 
 force -freeze sim:/fsm_block/ifjz_updt_fsm 0 0, 1 {50 ps} -r 100
 force -freeze sim:/fsm_block/prediction_correct 0 0, 1 {50 ps} -r 100
 force -freeze sim:/fsm_block/addr_fetched 16#00000022 0
 force -freeze sim:/fsm_block/addr_executed 16#00000021 0
-run 50 ps
-force -freeze sim:/fsm_block/addr_executed 16#00000022 0
-run 50 ps
+run 
+//force -freeze sim:/fsm_block/addr_executed 16#00000022 0
+//run 50 ps
 
 noforce sim:/fsm_block/ifjz_updt_fsm
 force -freeze sim:/fsm_block/ifjz_updt_fsm 0 0

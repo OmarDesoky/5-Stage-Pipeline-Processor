@@ -218,6 +218,12 @@ begin
                 end if;
             elsif (op = INN) then
                 write_enable<='1';
+                -- this modification based on the test case reported by ali khaled 
+                -- in 1operand test case
+                -- inc R1
+                -- in R1
+                -- we don't need to forward here
+                stop_forward <= '1';
             elsif (op = OUTT) then
                 io_enable<='1';
             elsif (op = PUSH) then
