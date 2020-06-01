@@ -1,5 +1,5 @@
 vsim -gui work.processor
-mem load -i {E:\ThirdYear\2nd Term\Computer Architecture_Ahmed\5-Stage-Pipeline-Processor\Project-v2(+ Forwarding)\Documents\1-operand\WITH_forw_no_haza\ram.mem} /processor/fetch/INS_Memory/ram
+mem load -i {C:\Users\DELL\Desktop\Arch\project\5-Stage-Pipeline-Processor\Project-v1\Documents\1-operand\NO_haza_no_forw_WRONG\ram.mem} /processor/fetch/INS_Memory/ram
 
 add wave -position insertpoint sim:/processor/CLK
 add wave -position insertpoint sim:/processor/RST
