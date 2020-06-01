@@ -1,0 +1,77 @@
+library IEEE;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity fsm_block is 
+
+generic (size : integer := 32);
+
+port (
+    clk : in std_logic;
+    rst_async : in std_logic;
+    ifjz_updt_fsm: in std_logic;
+    prediction_correct: in std_logic;
+    decision_alwaystaken: in std_logic;
+    addr_fetched: in std_logic_vector(size-1 downto 0);
+    addr_executed : in std_logic_vector(size-1 downto 0);
+    taken_not_taken : out std_logic             -- Taken = 1                NotTaken = 0
+);
+end fsm_block ;
+
+
+architecture fsmblock of fsm_block is
+
+component fsm_2_bits is
+
+port (
+    rst_async: in std_logic;
+    enb : in std_logic;
+    input : in std_logic;
+    current_state: in  std_logic_vector(1 downto 0);
+    output : out std_logic;
+    output_state : out std_logic_vector(1 downto 0) 
+);  
+
+end component;
+
+type mem_fsm is array (0 to 6710886) of std_logic_vector(1 downto 0) ;
+signal memory : mem_fsm;
+signal output : std_logic;
+signal state_out :  std_logic_vector(1 downto 0) ;
+signal output2 : std_logic;
+signal state_out2 :  std_logic_vector(1 downto 0) ;
+signal address_fetched : std_logic_vector(size-1 downto 0);
+signal address_executed : std_logic_vector(size-1 downto 0);
+signal state_in1 :  std_logic_vector(1 downto 0) ;
+signal state_in2 :  std_logic_vector(1 downto 0) ;
+begin
+    -- state_in <=memory(to_integer(unsigned(addr)));
+    f: fsm_2_bits port map(rst_async,ifjz_updt_fsm,prediction_correct,state_in1,output,state_out);
+    f2: fsm_2_bits port map(rst_async,ifjz_updt_fsm,prediction_correct,state_in2,output2,state_out2);
+    process (clk,decision_alwaystaken)
+    begin
+        if rising_edge(clk)then 
+            address_executed <= addr_executed;
+            address_fetched <= addr_fetched;
+            state_in1 <= memory(to_integer(unsigned(address_fetched)));
+            state_in2 <= memory(to_integer(unsigned(address_executed)));
+            -- check if jz is already in mem or not
+            -- memory[addr][0] => exist or not
+            -- memory[addr][1] => state (integer [will be convert from std_logic_vector to integer] )
+            -- 0 means empty, so we need initialize a state ("2"=> weak_taken) and save it in memory.
+            if( memory(to_integer(unsigned(address_fetched))) = "UU") then
+                memory(to_integer(unsigned(address_fetched))) <= "10";
+            end if;
+        elsif falling_edge(clk)then
+            taken_not_taken <= output;
+            if ifjz_updt_fsm = '1' then
+                memory(to_integer(unsigned(address_fetched))) <= state_out2;
+            end if;
+        end if;   
+        if decision_alwaystaken = '1' then
+                taken_not_taken <= '1';
+        end if;
+
+    end process;   
+
+end fsmblock;
