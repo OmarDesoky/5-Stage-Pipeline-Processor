@@ -36,6 +36,7 @@ architecture predict of Prediction_Stage is
     signal foward_selector    :         STD_LOGIC_VECTOR (1 DOWNTO 0);
     signal my_Reg :                     STD_LOGIC_VECTOR (31 DOWNTO 0);
 
+    signal addr_executed_sig :                     STD_LOGIC_VECTOR (31 DOWNTO 0);
 begin
     mini_decode : entity work.MINI_DECODER
         port map(instruction_test,clk_test,reset_test
@@ -63,10 +64,13 @@ begin
         --output
         ,y=>JMP_calculated_address_predict);
 
+    address_executed_BUF : entity work.n_bit_register
+    port map(clk_test,reset_test,'1',addr_executed_FRMfetch,addr_executed_sig);
+
     FSM :entity work.fsm_block
         port map(clk=>clk_test,rst_async=>reset_test,ifjz_updt_fsm=>ifjz_updt_fsm_FROM_dec
         ,prediction_correct=>prediction_correct_FROM_comparator,decision_alwaystaken=>fsm_take_decision
-        ,addr_fetched=>addr_fetched_FRMfetch,addr_executed=>addr_executed_FRMfetch,
+        ,addr_fetched=>addr_fetched_FRMfetch,addr_executed=>addr_executed_sig,
         --output
         taken_not_taken=>FSM_decision); -- Taken = 1                NotTaken = 0
 

@@ -239,7 +239,7 @@ begin
     Hazard_detect :entity work.data_hazard_detection_unit
     port map(SRC1=>instruction_TO_decode(7 downto 5), SRC2=>instruction_TO_decode(4 downto 2)
     ,DST=> dst_out_TO_execute,MEM_READ_ID_EX=>mem_out_TO_execute(1)
-    ,STALL_FOR_JUMP_PREDECTION=>stall_for_jump_prediction_TO_DATAHAZARD,STALL_FOR_INT=>stall_for_INT_TO_DATAHAZARD
+    ,STALL_FOR_JUMP_PREDECTION=>stall_for_jump_prediction_TO_DATAHAZARD,STALL_FOR_INT=>stall_for_INT_TO_DATAHAZARD,enable=>IN_MIDDLE_OF_IMM_FROM_decode
     --outputs
     ,INSERT_BUBBLE=>insert_bubble_FROM_DATAHAZARD,PC_ENB=>PC_ENB_FROM_DATAHAZARD
     ,IF_ID_ENB=>IF_ID_ENB_FROM_DATAHAZARD);

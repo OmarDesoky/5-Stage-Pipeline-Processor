@@ -12,7 +12,7 @@ add wave -position insertpoint sim:/processor/Memory/SP_chosen
 add wave -position insertpoint sim:/processor/carry_flag_final
 add wave -position insertpoint sim:/processor/neg_flag_final
 add wave -position insertpoint sim:/processor/zero_flag_final
-mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5/test.mem} /processor/fetch/INS_Memory/ram
+mem load -i {E:/ThirdYear/2nd Term/Computer Architecture_Ahmed/5-Stage-Pipeline-Processor/Project-v5_testing/test.mem} /processor/fetch/INS_Memory/ram
 force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/processor/RST 1 0
 force -freeze sim:/processor/INT 0 0

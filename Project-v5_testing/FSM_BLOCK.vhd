@@ -21,57 +21,81 @@ end fsm_block ;
 
 architecture fsmblock of fsm_block is
 
-component fsm_2_bits is
-
-port (
-    rst_async: in std_logic;
-    enb : in std_logic;
-    input : in std_logic;
-    current_state: in  std_logic_vector(1 downto 0);
-    output : out std_logic;
-    output_state : out std_logic_vector(1 downto 0) 
-);  
-
-end component;
 
 type mem_fsm is array (0 to 6710886) of std_logic_vector(1 downto 0) ;
-signal memory : mem_fsm;
+signal memory : mem_fsm := (others=>"10");
 signal output : std_logic;
 signal state_out :  std_logic_vector(1 downto 0) ;
-signal output2 : std_logic;
-signal state_out2 :  std_logic_vector(1 downto 0) ;
-signal address_fetched : std_logic_vector(size-1 downto 0);
-signal address_executed : std_logic_vector(size-1 downto 0);
-signal state_in1 :  std_logic_vector(1 downto 0) ;
-signal state_in2 :  std_logic_vector(1 downto 0) ;
-begin
-    -- state_in <=memory(to_integer(unsigned(addr)));
-    f: fsm_2_bits port map(rst_async,ifjz_updt_fsm,prediction_correct,state_in1,output,state_out);
-    f2: fsm_2_bits port map(rst_async,ifjz_updt_fsm,prediction_correct,state_in2,output2,state_out2);
-    process (clk,decision_alwaystaken)
-    begin
-        if rising_edge(clk)then 
-            address_executed <= addr_executed;
-            address_fetched <= addr_fetched;
-            state_in1 <= memory(to_integer(unsigned(address_fetched)));
-            state_in2 <= memory(to_integer(unsigned(address_executed)));
-            -- check if jz is already in mem or not
-            -- memory[addr][0] => exist or not
-            -- memory[addr][1] => state (integer [will be convert from std_logic_vector to integer] )
-            -- 0 means empty, so we need initialize a state ("2"=> weak_taken) and save it in memory.
-            if( memory(to_integer(unsigned(address_fetched))) = "UU") then
-                memory(to_integer(unsigned(address_fetched))) <= "10";
-            end if;
-        elsif falling_edge(clk)then
-            taken_not_taken <= output;
-            if ifjz_updt_fsm = '1' then
-                memory(to_integer(unsigned(address_fetched))) <= state_out2;
-            end if;
-        end if;   
-        if decision_alwaystaken = '1' then
-                taken_not_taken <= '1';
-        end if;
+signal state_in :  std_logic_vector(1 downto 0);
+signal prediction_correct_inverted :std_logic; 
 
-    end process;   
+signal addr : std_logic_vector(size-1 downto 0);
+-- signal addr_fetched_sig : std_logic_vector(size-1 downto 0);
+-- signal addr_executed_sig : std_logic_vector(size-1 downto 0);
+
+constant STRONG_NOT_TAKEN : std_logic_vector(1 downto 0)  := "00";
+constant WEAK_NOT_TAKEN : std_logic_vector(1 downto 0)  := "01";
+constant WEAK_TAKEN : std_logic_vector(1 downto 0)  := "10";
+constant STRONG_TAKEN : std_logic_vector(1 downto 0)  := "11";
+
+begin
+
+    -- address_fetched_BUF : entity work.n_bit_register
+    -- port map(clk,rst_async,'1',addr_fetched,addr_fetched_sig);
+
+    -- address_executed_BUF : entity work.n_bit_register
+    -- port map(clk,rst_async,'1',addr_executed,addr_executed_sig);
+
+    prediction_correct_inverted <= not (prediction_correct);
+
+    addr <= addr_executed when (ifjz_updt_fsm ='1') else addr_fetched;
+
+    process (clk,addr,prediction_correct_inverted,state_in)
+    begin
+        state_in <= memory(to_integer(unsigned(addr)));
+        if (state_in = STRONG_NOT_TAKEN) then
+            if (prediction_correct_inverted = '1') then
+                state_out <= STRONG_NOT_TAKEN;
+                output<='0';
+            else
+                state_out <= WEAK_NOT_TAKEN;
+                output<='0';
+            end if;
+        elsif (state_in = WEAK_NOT_TAKEN) then
+            if prediction_correct_inverted = '1' then 
+                state_out <= STRONG_NOT_TAKEN; 
+                output<='0';
+            else 
+                state_out <= WEAK_TAKEN; 
+                output<='1';
+            end if;  
+        elsif (state_in = WEAK_TAKEN) then
+            if prediction_correct_inverted = '1' then 
+                state_out <= STRONG_TAKEN; 
+                output<='1';
+            else 
+                state_out <= WEAK_NOT_TAKEN; 
+                output<='0';
+            end if;
+        elsif (state_in = STRONG_TAKEN) then
+            if prediction_correct_inverted = '1' then 
+                state_out <= STRONG_TAKEN; 
+                output<='1';
+            else 
+                state_out <= WEAK_TAKEN; 
+                output<='1';
+            end if;                                   
+        end if;
+    end process;
+
+    process (clk,state_out,ifjz_updt_fsm)
+    begin
+        if (ifjz_updt_fsm='1')  then
+            memory(to_integer(unsigned(addr))) <= state_out;
+        end if;
+    end process;
+    
+    taken_not_taken<= '1'  when (decision_alwaystaken='1' and ifjz_updt_fsm ='0') else output;
+    
 
 end fsmblock;
