@@ -453,3 +453,6 @@ run
 run
 run
 
+quit -sim
+# End time: 01:03:18 on Jun 02,2020, Elapsed time: 0:17:15
+# Errors: 25, Warnings: 38
